@@ -1,7 +1,7 @@
 " nvim ~/.config/nvim/init.vim
 " Directorio de plugins
 "
-" set number
+"set number
 syntax enable
 set showcmd
 set list
@@ -54,8 +54,7 @@ call plug#end()
 
 
 let g:gruvbox_material_background='medium'
-colorscheme gruvbox-material
-highlight Normal ctermfg=white ctermbg=black
+"highlight Normal ctermfg=white ctermbg=black
 
 
 " Set internal encoding of vim, not needed on neovim, since coc.nvim using some
