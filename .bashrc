@@ -126,6 +126,9 @@ neofetch --config $OSH/neofetch.conf --ascii "$OSH"/tardis.txt
 alias cls=clear
 alias vim=nvim
 alias vi=nvim
-alias ssh-gabrielsan="ssh -o ServerAliveInterval=30 root@198.71.49.57 -v"
-
+alias c-ssh-gabrielsan="ssh -o ServerAliveInterval=30 root@198.71.49.57 -v"
+alias c-ssh-personal="ssh -o ServerAliveInterval=30 root@74.208.211.146 -v"
+alias c-ssh-generico="ssh -o ServerAliveInterval=30 root@198.71.50.22 -v"
+alias c-ssh-plata="ssh -o ServerAliveInterval=30 rootk@74.208.235.42 -v"
+alias c-ssh-agalano="ssh -o ServerAliveInterval=30 agalano@ssh.web7.us.cloudlogin.co -v"
 force_color_prompt=yes
