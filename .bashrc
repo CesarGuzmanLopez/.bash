@@ -126,6 +126,6 @@ neofetch --config $OSH/neofetch.conf --ascii "$OSH"/tardis.txt
 alias cls=clear
 alias vim=nvim
 alias vi=nvim
-alias ssh-gabrielan="ssh -o ServerAliveInterval=30 root@198.71.49.57 -v"
+alias ssh-gabrielsan="ssh -o ServerAliveInterval=30 root@198.71.49.57 -v"
 
 force_color_prompt=yes
