@@ -120,8 +120,12 @@ export LANG=en_US.UTF-8
 # Example aliases
 # alias bashconfig="mate .bashrc"
 # alias ohmybash="mate .oh-my-bash"
-neofetch --ascii "$OSH"/tardis.txt
+
+neofetch --config $OSH/neofetch.conf --ascii "$OSH"/tardis.txt
+
 alias cls=clear
 alias vim=nvim
 alias vi=nvim
+alias ssh-gabrielan="ssh -o ServerAliveInterval=30 root@198.71.49.57 -v"
+
 force_color_prompt=yes
