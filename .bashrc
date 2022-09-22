@@ -91,7 +91,6 @@ plugins=(
 #      plugins+=(tmux-autoattach)
 #  fi
 
-
 source "$OSH"/oh-my-bash.sh
 
 # User configuration
@@ -125,3 +124,4 @@ neofetch --ascii "$OSH"/tardis.txt
 alias cls=clear
 alias vim=nvim
 alias vi=nvim
+force_color_prompt=yes
