@@ -1,0 +1,22 @@
+version: "2.1"
+services:
+  duckdns:
+    image: lscr.io/linuxserver/duckdns:latest
+    container_name: duckdns
+    environment:
+      - PUID=1000 #optional
+      - PGID=1000 #optional
+      - TZ=America/Mexico_City
+      - SUBDOMAINS=cggl1.duckdns.org
+      - TOKEN=df7d29cf-a249-45c6-b46a-7d35b9bfb3ba
+      - LOG_FILE=yes #optional
+      - IPV6=yes #optional
+      - INTERVAL=1 #optional
+    volumes:
+      - /path/to/appdata/config:/config #optional
+    restart: unless-stopped
+    
+
+
+#sudo docker run --name=duckdns -d -v /etc/localtime:/etc/localtime -v /config/dir/path:/config -e DOMAINS=cggl1.duckdns.org -e TOKEN=df7d29cf-a249-45c6-b46a-7d35b9bfb3ba -e INTERVAL=1 -e IPV6=yes coppit/duckdns
+
