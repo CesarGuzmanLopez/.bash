@@ -132,6 +132,6 @@ alias c-ssh-generico="ssh -o ServerAliveInterval=30 root@198.71.50.22 -v"
 alias c-ssh-plata="ssh -o ServerAliveInterval=30 root@74.208.235.42 -v"
 alias c-ssh-agalano="ssh -p 2222 -o ServerAliveInterval=30 agalano@ssh.web7.us.cloudlogin.co -v"
 alias clsource="clear && source ~/.bashrc"
-alias c-ssh-sqm="ssh -o ServerAliveInterval=30 sqmorg1@173.231.197.92 -v"
-
+alias c-ssh-sqm="ssh -o ServerAliveInterval=30 -o TCPKeepAlive=yes sqmorg1@173.231.197.92 -v"
+alias c-ssh-cggl="ssh -o ServerAliveInterval=30 -o TCPKeepAlive=yes cesarguzmanlopez@cesarworkstation.ddns.net -v"
 force_color_prompt=yes
