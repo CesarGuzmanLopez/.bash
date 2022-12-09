@@ -1,8 +1,9 @@
 " nvim ~/.config/nvim/init.vim
 " Directorio de plugins
 "
-"set number
+
 syntax enable
+set number
 set showcmd
 set list
 set encoding=utf-8
@@ -15,12 +16,12 @@ set smartindent
 set ignorecase
 set smartcase
 set nowrap
+set listchars=tab:>·,trail:~,extends:>,precedes:<,space:␣
+set list
 set expandtab
 set tabstop=4
 set shiftwidth=4
-set clipboard=unnamed
 set fileformat=unix
-
 call plug#begin('~/.vim/plugged')
     Plug 'sainnhe/gruvbox-material'
     Plug 'sheerun/vim-polyglot'
@@ -213,14 +214,3 @@ nnoremap <silent><nowait> <space>j  :<C-u>CocNext<CR>
 nnoremap <silent><nowait> <space>k  :<C-u>CocPrev<CR>
 " Resume latest coc list.
 nnoremap <silent><nowait> <space>p  :<C-u>CocListResume<CR>
-
-
-
-
-
-
-
-
-
-
-
