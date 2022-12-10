@@ -6,8 +6,8 @@ esac
 
 # Path to your oh-my-bash installation.
 
-export OSH=/home/cesarguzman/.bash_vim
-#neofetch --config $OSH/neofetch.conf --ascii "$OSH"/tardis.txt
+export OSH=/home/cesarguzmanlopez/.bash_vim
+neofetch --config $OSH/neofetch.conf --ascii "$OSH"/tardis.txt
 # Set name of the theme to load. Optionally, if you set this to "random"
 # it'll load a random theme each time that oh-my-bash is loaded.
 OSH_THEME="powerline-multiline"
