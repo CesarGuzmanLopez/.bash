@@ -1,9 +1,11 @@
-" nvim ~/.config/nvim/init.vim
+"nvim ~/.config/nvim/init.vim
 " Directorio de plugins
-"
+
 
 syntax enable
 set number
+set undofile
+set undodir=~/.vim/undodir
 set showcmd
 set list
 set encoding=utf-8
@@ -16,7 +18,6 @@ set smartindent
 set ignorecase
 set smartcase
 set nowrap
-set listchars=tab:>·,trail:~,extends:>,precedes:<,space:␣
 set list
 set expandtab
 set tabstop=4
@@ -77,7 +78,6 @@ set updatetime=300
 
 set signcolumn=number
 set signcolumn=yes
-
 " Use tab for trigger completion with characters ahead and navigate.
 " NOTE: Use command ':verbose imap <tab>' to make sure tab is not mapped by
 " other plugin before putting this into your config.
@@ -169,19 +169,9 @@ xmap ac <Plug>(coc-classobj-a)
 omap ac <Plug>(coc-classobj-a)
 
 " Remap <C-f> and <C-b> for scroll float windows/popups.
-if has('nvim-0.4.0') || has('patch-8.2.0750')
-  nnoremap <silent><nowait><expr> <C-f> coc#float#has_scroll() ? coc#float#scroll(1) : "\<C-f>"
-  nnoremap <silent><nowait><expr> <C-b> coc#float#has_scroll() ? coc#float#scroll(0) : "\<C-b>"
-  inoremap <silent><nowait><expr> <C-f> coc#float#has_scroll() ? "\<c-r>=coc#float#scroll(1)\<cr>" : "\<Right>"
-  inoremap <silent><nowait><expr> <C-b> coc#float#has_scroll() ? "\<c-r>=coc#float#scroll(0)\<cr>" : "\<Left>"
-  vnoremap <silent><nowait><expr> <C-f> coc#float#has_scroll() ? coc#float#scroll(1) : "\<C-f>"
-  vnoremap <silent><nowait><expr> <C-b> coc#float#has_scroll() ? coc#float#scroll(0) : "\<C-b>"
-endif
 
-" Use CTRL-S for selections ranges.
+
 " Requires 'textDocument/selectionRange' support of language server.
-nmap <silent> <C-s> <Plug>(coc-range-select)
-xmap <silent> <C-s> <Plug>(coc-range-select)
 
 " Add `:Format` command to format current buffer.
 command! -nargs=0 Format :call CocActionAsync('format')
