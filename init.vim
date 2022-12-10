@@ -1,4 +1,5 @@
-"nvim ~/.config/nvim/init.vim
+"nvi
+"~/.config/nvim/init.vim
 " Directorio de plugins
 syntax enable
 set number
@@ -20,8 +21,8 @@ set expandtab
 set tabstop=4
 set shiftwidth=4
 set fileformat=unix
-
-"highlight Normal ctermfg=white ctermbg=black
+" set spell
+set spelllang=es,en_us
 " TextEdit might fail if hidden is not set.
 set hidden
 " Some servers have issues with backup files, see #649.
@@ -35,8 +36,8 @@ set updatetime=300
 set signcolumn=number
 set signcolumn=yes
 set relativenumber
-
-
+" copy paste to system clipboard
+set clipboard=unnamedplus
 
 call plug#begin('~/.vim/plugged')
     Plug 'sainnhe/gruvbox-material'
@@ -51,11 +52,13 @@ call plug#begin('~/.vim/plugged')
     Plug 'tpope/vim-surround'
     Plug 'tpope/vim-repeat'
     Plug 'tpope/vim-fugitive'
+    Plug 'tpope/vim-rhubarb'
     Plug 'skywind3000/asyncrun.vim'
     Plug 'nanotech/jellybeans.vim'
     Plug 'majutsushi/tagbar'
     Plug 'w0rp/ale'
-    Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+    Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+    Plug 'junegunn/fzf.vim'
     Plug 'junegunn/goyo.vim'  " write mode
     Plug 'junegunn/limelight.vim'  " spotlight on cursorline
     Plug 'mileszs/ack.vim'
@@ -66,16 +69,24 @@ call plug#begin('~/.vim/plugged')
     Plug 'Yggdroot/indentLine'
     Plug 'vim-airline/vim-airline'  " alt.: lightline; manually build statusline (see below)
     Plug 'tpope/vim-unimpaired'  " define some paired key-bindings
+    Plug 'tpope/vim-eunuch'  " some unix commands
+    Plug 'semanticart/tag-peek.vim'
+    Plug 'puremourning/vimspector'
 call plug#end()
 
 
 let g:gruvbox_material_background='medium'
 let NERDTreeShowHidden=1
+let g:fzf_action = { 'enter': 'tab split' }
+let g:fzf_layout = { 'window': { 'width': 0.9, 'height': 0.4 } }
 
 "Use Ctrl-S for save 
 noremap <silent> <C-S>          :update<CR>
 vnoremap <silent> <C-S>         <C-C>:update<CR>
 inoremap <silent> <C-S>         <C-O>:update<CR>
+"Use Ctrl-z for undo
+noremap <silent> <C-z> :undo<CR>
+vnoremap <silent> <C-z> :undo<CR>
 
 "auto poner los parentesis y llaves
 inoremap { {}<Esc>ha
@@ -86,11 +97,11 @@ inoremap ' ''<Esc>ha
 inoremap ` ``<Esc>ha
 inoremap < <><Esc>ha
 
-
-
 nnoremap <C-E> :NERDTreeToggle<CR>
-
-
+"set leader \
+let mapleader = "\\"
+"use <leader> E para abrir fzr
+nnoremap <leader>E :FZF<CR>
 "COC
 "
 " Use tab for trigger completion with characters ahead and navigate.
@@ -99,26 +110,26 @@ nnoremap <C-E> :NERDTreeToggle<CR>
 " NOTE: Use command ':verbose imap <tab>' to make sure tab is not mapped by
 " other plugin before putting this into your config.
 inoremap <silent><expr> <TAB>
-      \ coc#pum#visible() ? coc#pum#next(1) :
-      \ CheckBackspace() ? "\<Tab>" :
-      \ coc#refresh()
+            \ coc#pum#visible() ? coc#pum#next(1) :
+            \ CheckBackspace() ? "\<Tab>" :
+            \ coc#refresh()
 inoremap <expr><S-TAB> coc#pum#visible() ? coc#pum#prev(1) : "\<C-h>"
 
 " Make <CR> to accept selected completion item or notify coc.nvim to format
 " <C-g>u breaks current undo, please make your own choice.
 inoremap <silent><expr> <CR> coc#pum#visible() ? coc#pum#confirm()
-                              \: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
+            \: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
 
 function! CheckBackspace() abort
-  let col = col('.') - 1
-  return !col || getline('.')[col - 1]  =~# '\s'
+    let col = col('.') - 1
+    return !col || getline('.')[col - 1]  =~# '\s'
 endfunction
 
 " Use <c-space> to trigger completion.
 if has('nvim')
-  inoremap <silent><expr> <c-space> coc#refresh()
+    inoremap <silent><expr> <c-space> coc#refresh()
 else
-  inoremap <silent><expr> <c-@> coc#refresh()
+    inoremap <silent><expr> <c-@> coc#refresh()
 endif
 
 " Use `[g` and `]g` to navigate diagnostics
@@ -136,11 +147,11 @@ nmap <silent> gr <Plug>(coc-references)
 nnoremap <silent> K :call ShowDocumentation()<CR>
 
 function! ShowDocumentation()
-  if CocAction('hasProvider', 'hover')
-    call CocActionAsync('doHover')
-  else
-    call feedkeys('K', 'in')
-  endif
+    if CocAction('hasProvider', 'hover')
+        call CocActionAsync('doHover')
+    else
+        call feedkeys('K', 'in')
+    endif
 endfunction
 
 " Highlight the symbol and its references when holding the cursor.
@@ -154,11 +165,11 @@ xmap <leader>f  <Plug>(coc-format-selected)
 nmap <leader>f  <Plug>(coc-format-selected)
 
 augroup mygroup
-  autocmd!
-  " Setup formatexpr specified filetype(s).
-  autocmd FileType typescript,json setl formatexpr=CocAction('formatSelected')
-  " Update signature help on jump placeholder.
-  autocmd User CocJumpPlaceholder call CocActionAsync('showSignatureHelp')
+    autocmd!
+    " Setup formatexpr specified filetype(s).
+    autocmd FileType typescript,json setl formatexpr=CocAction('formatSelected')
+    " Update signature help on jump placeholder.
+    autocmd User CocJumpPlaceholder call CocActionAsync('showSignatureHelp')
 augroup end
 
 " Applying code actions to the selected code block.
@@ -194,12 +205,12 @@ omap ac <Plug>(coc-classobj-a)
 
 " Remap <C-f> and <C-b> for scroll float windows/popups.
 if has('nvim-0.4.0') || has('patch-8.2.0750')
-  nnoremap <silent><nowait><expr> <C-f> coc#float#has_scroll() ? coc#float#scroll(1) : "\<C-f>"
-  nnoremap <silent><nowait><expr> <C-b> coc#float#has_scroll() ? coc#float#scroll(0) : "\<C-b>"
-  inoremap <silent><nowait><expr> <C-f> coc#float#has_scroll() ? "\<c-r>=coc#float#scroll(1)\<cr>" : "\<Right>"
-  inoremap <silent><nowait><expr> <C-b> coc#float#has_scroll() ? "\<c-r>=coc#float#scroll(0)\<cr>" : "\<Left>"
-  vnoremap <silent><nowait><expr> <C-f> coc#float#has_scroll() ? coc#float#scroll(1) : "\<C-f>"
-  vnoremap <silent><nowait><expr> <C-b> coc#float#has_scroll() ? coc#float#scroll(0) : "\<C-b>"
+    nnoremap <silent><nowait><expr> <C-f> coc#float#has_scroll() ? coc#float#scroll(1) : "\<C-f>"
+    nnoremap <silent><nowait><expr> <C-b> coc#float#has_scroll() ? coc#float#scroll(0) : "\<C-b>"
+    inoremap <silent><nowait><expr> <C-f> coc#float#has_scroll() ? "\<c-r>=coc#float#scroll(1)\<cr>" : "\<Right>"
+    inoremap <silent><nowait><expr> <C-b> coc#float#has_scroll() ? "\<c-r>=coc#float#scroll(0)\<cr>" : "\<Left>"
+    vnoremap <silent><nowait><expr> <C-f> coc#float#has_scroll() ? coc#float#scroll(1) : "\<C-f>"
+    vnoremap <silent><nowait><expr> <C-b> coc#float#has_scroll() ? coc#float#scroll(0) : "\<C-b>"
 endif
 
 
