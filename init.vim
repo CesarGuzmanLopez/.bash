@@ -87,9 +87,8 @@ inoremap ` ``<Esc>ha
 inoremap < <><Esc>ha
 
 
-nnoremap <leader>e :NERDTreeFocus<CR>
+
 nnoremap <C-E> :NERDTreeToggle<CR>
-nnoremap <C-F> :NERDTreeFind<CR>
 
 
 "COC
