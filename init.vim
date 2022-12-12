@@ -1,7 +1,7 @@
 
-"~/.config/nvim/init.vim
+"tagba~/.config/nvim/init.vim
 " Directorio de plugins
-" 
+"  
 
 syntax enable
 set number
@@ -20,7 +20,7 @@ set smartcase
 set nowrap
 set list
 set expandtab
-set tabstop=4
+set tabstop=5
 set shiftwidth=4
 set fileformat=unix
 " set spell
@@ -42,15 +42,17 @@ set relativenumber
 set clipboard=unnamedplus
 set foldmethod=indent
 set foldlevel=1
+set lazyredraw
 
 call plug#begin('~/.vim/plugged')
-
+    Plug 'ycm-core/YouCompleteMe', { 'do': './install.py --all' }
+    Plug 'ryanoasis/vim-devicons'
     Plug 'sainnhe/gruvbox-material'
     Plug 'sheerun/vim-polyglot'
     Plug 'maximbaz/lightline-ale'
     Plug 'itchyny/lightline.vim'
     Plug 'preservim/nerdtree'
-    Plug 'neoclide/coc.nvim', {'branch': 'release'}
+    Plug 'neoclide/coc.nvim', {'tag': 'v0.0.81'}
     Plug 'github/copilot.vim'
     Plug 'tpope/vim-sensible'
     Plug 'tpope/vim-commentary'
@@ -64,11 +66,11 @@ call plug#begin('~/.vim/plugged')
     Plug 'w0rp/ale'
     Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
     Plug 'junegunn/fzf.vim'
-    Plug 'junegunn/goyo.vim'  " write mode
-    Plug 'junegunn/limelight.vim'  " spotlight on cursorline
+    Plug 'junegunn/goyo.vim'        " write mode
+    Plug 'junegunn/limelight.vim'   " spotlight on cursorline
     Plug 'mileszs/ack.vim'
     Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'
-    Plug 'tmhedberg/SimpylFold'  " for python
+    Plug 'tmhedberg/SimpylFold'     " for python
     Plug 'matze/vim-tex-fold'
     Plug 'akaron/vim-markdown-fold'
     Plug 'Yggdroot/indentLine'
@@ -78,19 +80,27 @@ call plug#begin('~/.vim/plugged')
     Plug 'semanticart/tag-peek.vim'
     Plug 'puremourning/vimspector'
     Plug 'mikelue/vim-maven-plugin'
+    Plug 'iberianpig/tig-explorer.vim'
+    Plug 'rbgrouleff/bclose.vim'
+    Plug 'puremourning/vimspector'
+    Plug 'chrisbra/NrrwRgn'
 call plug#end()
 
 let g:gruvbox_material_background='medium'
 let NERDTreeShowHidden=1
+
 let g:fzf_action = { 'enter': 'tab split' }
-let g:fzf_layout = { 'window': { 'width': 0.9, 'height': 0.4 } }
+""let g:copilot_assume_mapped = v:true
+let g:copilot_no_tab = v:true
+let g:devicons_enable_nerdtree = 1
+
+"let g:devicons_font='FiraCode Nerd Font'
+"let g:ycm_java_jdtls_extension_path = []
 
 " $FZF_DEFAULT_COMMAND show all files including hidden files and directories
 " exclude .git directory
 " exclude .gitignore file
 let $FZF_DEFAULT_COMMAND='find . \! \( -type d -path ./.git -prune \) \! -type d \! -name ''*.tags'' -printf ''%P\n'''
-
-
 "Use Ctrl-S for save 
 noremap <silent> <C-S>          :update<CR>
 vnoremap <silent> <C-S>         <C-C>:update<CR>
@@ -110,40 +120,37 @@ inoremap < <><Esc>ha
 
 nnoremap <C-E> :NERDTreeToggle<CR>
 "set leader \
+let mapleader = "\\"
 nnoremap <leader>e :FZF<CR>
 noremap  <leader>n :tabnew <CR>
-"COC
-"
+
 " Use tab for trigger completion with characters ahead and navigate.
-" NOTE: There's always complete item selected by default, you may want to enable
-" no select by `"suggest.noselect": true` in your configuration file.
 " NOTE: Use command ':verbose imap <tab>' to make sure tab is not mapped by
 " other plugin before putting this into your config.
 inoremap <silent><expr> <TAB>
-            \ coc#pum#visible() ? coc#pum#next(1) :
-            \ CheckBackspace() ? "\<Tab>" :
-            \ coc#refresh()
-inoremap <expr><S-TAB> coc#pum#visible() ? coc#pum#prev(1) : "\<C-h>"
-
-" Make <CR> to accept selected completion item or notify coc.nvim to format
-" <C-g>u breaks current undo, please make your own choice.
-inoremap <silent><expr> <CR> coc#pum#visible() ? coc#pum#confirm()
-            \: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
+      \ pumvisible() ? "\<C-n>" :
+      \ CheckBackspace() ? "\<TAB>" :
+      \ coc#refresh()
+inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
 
 function! CheckBackspace() abort
-    let col = col('.') - 1
-    return !col || getline('.')[col - 1]  =~# '\s'
+  let col = col('.') - 1
+  return !col || getline('.')[col - 1]  =~# '\s'
 endfunction
 
 " Use <c-space> to trigger completion.
 if has('nvim')
-    inoremap <silent><expr> <c-space> coc#refresh()
+  inoremap <silent><expr> <c-space> coc#refresh()
 else
-    inoremap <silent><expr> <c-@> coc#refresh()
+  inoremap <silent><expr> <c-@> coc#refresh()
 endif
 
-" Use `[g` and `]g` to navigate diagnostics
-" Use `:CocDiagnostics` to get all diagnostics of current buffer in location list.
+" Make <CR> auto-select the first completion item and notify coc.nvim to
+" format on enter, <cr> could be remapped by other vim plugin
+inoremap <silent><expr> <cr> pumvisible() ? coc#_select_confirm()
+                              \: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
+
+
 nmap <silent> [g <Plug>(coc-diagnostic-prev)
 nmap <silent> ]g <Plug>(coc-diagnostic-next)
 
@@ -224,6 +231,7 @@ if has('nvim-0.4.0') || has('patch-8.2.0750')
 endif
 
 
+
 " Add `:Format` command to format current buffer.
 command! -nargs=0 Format :call CocActionAsync('format')
 
@@ -255,3 +263,5 @@ nnoremap <silent><nowait> <space>j  :<C-u>CocNext<CR>
 nnoremap <silent><nowait> <space>k  :<C-u>CocPrev<CR>
 " Resume latest coc list.
 nnoremap <silent><nowait> <space>p  :<C-u>CocListResume<CR>
+
+
