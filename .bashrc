@@ -1,3 +1,4 @@
+#!/bin/bash
 # Enable the subsequent settings only in interactive sessions
 case $- in
   *i*) ;;
@@ -137,3 +138,35 @@ alias c-ssh-sqm="ssh -o ServerAliveInterval=30 -o TCPKeepAlive=yes sqmorg1@173.2
 alias c-ssh-cggl="ssh -6 -o  ServerAliveInterval=30 -o TCPKeepAlive=yes cesarguzmanlopez@cggl1.duckdns.org -v"
 alias conn-ssh="netstat -at | grep ssh && who"
 force_color_prompt=yes
+
+alias a-grep='grep -lirs --exclude-dir=".git;.svn" --color=always'
+
+function a-find () {
+  find $1 -type f -not -path "*/\.git/*"
+}
+export -f a-find
+
+FZF_CTRL_T_OPTS="--preview 'bat --style=full --color=always --border --line-range :500 {}' --preview-window '~1' --bind='F2:toggle-preview,shift-up:preview-up,shift-down:preview-down' --color --height='90%'"
+FZF_DEFAULT_OPTS="--height='30%' --layout='reverse'"
+
+FZF_DEFAULT_COMMAND='fd --type f --hidden --follow --exclude .git'
+export FZF_DEFAULT_COMMAND="find . -type f -not -path '*/\.git/*'"
+
+# Use fd (https://github.com/sharkdp/fd) instead of the default find
+# command for listing path candidates.
+# - The first argument to the function ($1) is the base path to start traversal
+# - See the source code (completion.{bash,zsh}) for the details.
+
+_fzf_compgen_path() {
+  fd --hidden --follow --exclude ".git" . "$1"
+}
+
+# Use fd to generate the list for directory completion
+_fzf_compgen_dir() {
+  fd --type d --hidden --follow --exclude ".git" . "$1"
+}
+
+function Grep(){
+   bash $OSH/rfv $1
+}
+export HISTCONTROL=ignoreboth:erasedups
