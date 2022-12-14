@@ -8,7 +8,11 @@ esac
 # Path to your oh-my-bash installation.
 
 export OSH=/home/cesarguzmanlopez/.bash_vim
-neofetch --config $OSH/neofetch.conf --ascii "$OSH"/tardis.txt
+
+
+alias neofetch="neofetch --config $OSH/neofetch.conf --ascii "$OSH"/tardis.txt"
+source $OSH/tardis.sh
+
 # Set name of the theme to load. Optionally, if you set this to "random"
 # it'll load a random theme each time that oh-my-bash is loaded.
 OSH_THEME="powerline-multiline"
@@ -146,7 +150,13 @@ function a-find () {
 }
 export -f a-find
 
-FZF_CTRL_T_OPTS="--preview 'bat --style=full --color=always --border --line-range :500 {}' --preview-window '~1' --bind='F2:toggle-preview,shift-up:preview-up,shift-down:preview-down' --color --height='90%'"
+function :q () {
+  echo "use exit remember?"
+  sleep 1
+  exit
+}
+
+FZF_CTRL_T_OPTS="--preview 'bat --style=full --color=always --line-range :500 {}' --preview-window '~1' --bind='F2:toggle-preview,shift-up:preview-up,shift-down:preview-down' --color --height='90%'"
 FZF_DEFAULT_OPTS="--height='30%' --layout='reverse'"
 
 FZF_DEFAULT_COMMAND='fd --type f --hidden --follow --exclude .git'
@@ -157,6 +167,14 @@ export FZF_DEFAULT_COMMAND="find . -type f -not -path '*/\.git/*'"
 # - The first argument to the function ($1) is the base path to start traversal
 # - See the source code (completion.{bash,zsh}) for the details.
 
+function Grep(){
+   bash $OSH/rfv $1
+}
+
+# Use fd (https://github.com/sharkdp/fd) instead of the default find
+# command for listing path candidates.
+# - The first argument to the function ($1) is the base path to start traversal
+# - See the source code (completion.{bash,zsh}) for the details.
 _fzf_compgen_path() {
   fd --hidden --follow --exclude ".git" . "$1"
 }
@@ -166,7 +184,36 @@ _fzf_compgen_dir() {
   fd --type d --hidden --follow --exclude ".git" . "$1"
 }
 
-function Grep(){
-   bash $OSH/rfv $1
+# (EXPERIMENTAL) Advanced customization of fzf options via _fzf_comprun function
+# - The first argument to the function is the name of the command.
+# - You should make sure to pass the rest of the arguments to fzf.
+_fzf_comprun() {
+  local command=$1
+  shift
+
+  case "$command" in
+    cd)           fzf "$@" --preview 'tree -C {} | head -200' ;;
+    export|unset) fzf "$@" --preview "eval 'echo \$'{}" ;;
+    ssh)          fzf "$@" --preview 'dig {}' ;;
+    *)            fzf "$@" ;;
+  esac
 }
-export HISTCONTROL=ignoreboth:erasedups
+
+
+# Custom fuzzy completion for "doge" command
+#   e.g. doge **<TAB>
+_fzf_complete_doge() {
+  _fzf_complete --multi --reverse --prompt="doge> " -- "$@" < <(
+    echo very
+    echo wow
+    echo such
+    echo doge
+  )
+}
+export -f _fzf_complete_doge
+export -f Grep
+export -f _fzf_compgen_path
+export -f _fzf_compgen_dir
+export -f _fzf_comprun
+
+
