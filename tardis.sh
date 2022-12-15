@@ -11,7 +11,7 @@ echo "  |  |####|  |  |####|  |S  || CPU: " $(cat /proc/cpuinfo | grep "model na
 echo "  |  |####|  |  |####|  |A  || RAM: " $(free -m | awk 'NR==2{printf "%.2f%%\t\t", $3*100/$2 }')
 echo "  |  |####|  |  |####|  |R  || processes: " $(ps -A | wc -l)
 echo "% |  ------  |  ------  |˚  || OS VERSION: " $(cat /etc/*release | grep "PRETTY_NAME" | cut -d "=" -f2)
-echo "  |  |BAD |  |  |    |  |˚  || Resolutions: " $(xrandr | grep " connected" | cut -d " " -f3)
+echo "  |  |BAD |  |  |    |  |˚  ||" 
 echo "  |  |WOLF|  |  |    |  |   || Kernel: " $(uname -r)
 echo "  |  ------  |O ------  |   || time: " $(date +"%H:%M:%S")
 echo "  |  ------  |° ------  |   || CPU USAGE: " $(top -bn1 | grep load | awk '{printf "%.2f%%\t\t", $(NF-2)}')

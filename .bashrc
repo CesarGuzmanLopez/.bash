@@ -128,6 +128,7 @@ export LANG=en_US.UTF-8
 # alias ohmybash="mate .oh-my-bash"
 
 
+[ -f ~/.fzf.bash ] && source ~/.fzf.bash
 mkdir -p ~/.vim/undodir
 alias cls=clear
 alias vim=nvim
@@ -156,10 +157,13 @@ function :q () {
   exit
 }
 
-FZF_CTRL_T_OPTS="--preview 'bat --style=full --color=always --line-range :500 {}' --preview-window '~1' --bind='F2:toggle-preview,shift-up:preview-up,shift-down:preview-down' --color --height='90%'"
+
+
+
+
+FZF_CTRL_T_OPTS="--preview 'bat --style=full --color=always --line-range :500 {}' --preview-window '~3' --bind='F2:toggle-preview,shift-up:preview-up,shift-down:preview-down' --color --height='90%'"
 FZF_DEFAULT_OPTS="--height='30%' --layout='reverse'"
 
-FZF_DEFAULT_COMMAND='fd --type f --hidden --follow --exclude .git'
 export FZF_DEFAULT_COMMAND="find . -type f -not -path '*/\.git/*'"
 
 # Use fd (https://github.com/sharkdp/fd) instead of the default find
@@ -168,52 +172,74 @@ export FZF_DEFAULT_COMMAND="find . -type f -not -path '*/\.git/*'"
 # - See the source code (completion.{bash,zsh}) for the details.
 
 function Grep(){
-   bash $OSH/rfv $1
-}
-
-# Use fd (https://github.com/sharkdp/fd) instead of the default find
-# command for listing path candidates.
-# - The first argument to the function ($1) is the base path to start traversal
-# - See the source code (completion.{bash,zsh}) for the details.
-_fzf_compgen_path() {
-  fd --hidden --follow --exclude ".git" . "$1"
-}
-
-# Use fd to generate the list for directory completion
-_fzf_compgen_dir() {
-  fd --type d --hidden --follow --exclude ".git" . "$1"
-}
-
-# (EXPERIMENTAL) Advanced customization of fzf options via _fzf_comprun function
-# - The first argument to the function is the name of the command.
-# - You should make sure to pass the rest of the arguments to fzf.
-_fzf_comprun() {
-  local command=$1
-  shift
-
-  case "$command" in
-    cd)           fzf "$@" --preview 'tree -C {} | head -200' ;;
-    export|unset) fzf "$@" --preview "eval 'echo \$'{}" ;;
-    ssh)          fzf "$@" --preview 'dig {}' ;;
-    *)            fzf "$@" ;;
-  esac
+  bash $OSH/rfv $1
 }
 
 
-# Custom fuzzy completion for "doge" command
-#   e.g. doge **<TAB>
-_fzf_complete_doge() {
-  _fzf_complete --multi --reverse --prompt="doge> " -- "$@" < <(
-    echo very
-    echo wow
-    echo such
-    echo doge
-  )
-}
-export -f _fzf_complete_doge
 export -f Grep
 export -f _fzf_compgen_path
 export -f _fzf_compgen_dir
-export -f _fzf_comprun
 
+# fzf on Fedora
+if [ -x "$(command -v fzf)"  ]
+then
+  source /usr/share/fzf/shell/key-bindings.bash
+fi
+
+
+
+_fzf_compgen_path() {
+  echo "$1"
+  command find -L "$1" \
+    -name .git -prune -o -name .hg -prune -o -name .svn -prune -o \( -type d -o -type f -o -type l \) \
+    -a -not -path "$1" -print 2> /dev/null | sed 's@^\./@@'
+  }
+_fzf_compgen_dir() {
+    command find -L "$1" \
+      -name .git -prune -o -name .hg -prune -o -name .svn -prune -o -type d \
+      -a -not -path "$1" -print 2> /dev/null | sed 's@^\./@@'
+    }
+
+_fzf_comprun() {
+  local command=$1
+  shift
+  
+  case "$command" in
+    cd)           find . -type d| fzf  --reverse --preview 'tree -C {} -I ".git"| head -200' --color --height='40%';echo -n "/" ;;
+    export|unset) fzf  --preview "eval 'echo \$'{}" --height='40%' ;;
+    *)            find .| fzf  --preview 'bat --style=full --color=always --line-range :500 {}' \
+                          --preview-window '~3' --bind='F2:toggle-preview,shift-up:preview-up,shift-down:preview-down'  \
+                          --color --height='50%';;
+  esac
+}
+
+_fzf(){
+  echo "fzf"
+}
+
+#depues le acciono con ctrl+t a _fzf_comprun
+#bind -x '"\C-t":result="$(_fzf_comprun "$READLINE_ARGUMENT")";READLINE_LINE="$result";'
+#get first argument
+__get_first_arg() {
+  echo "$1"
+}
+#get size of first argument
+__get_first_arg_size() {
+  echo "${#1}"
+}
+
+insertar_texto() {
+  # Asignar los argumentos a las variables locales
+  local texto_original=$1
+  local texto_a_agregar=$2
+  local posicion=$3
+
+   echo "$texto_original" | awk -v texto="$texto_a_agregar" -v \
+                          posicion="$posicion" '{print substr($0,1,posicion-1) texto substr($0,posicion)}'
+}
+
+bind -x '"\C-t": \
+  result="$(_fzf_comprun $(__get_first_arg $READLINE_LINE))";\
+  READLINE_LINE=  $(insertar_texto $READLINE_LINE $result $READLINE_POINT );\
+              READLINE_POINT=$(( $READLINE_POINT +  ${#result} + 1));'
 
