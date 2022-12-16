@@ -21,9 +21,8 @@ function _omb_theme_PROMPT_COMMAND() {
 
   local SC
   if ((status == 0)); then
-    SC="";#SC="$_omb_prompt_teal-$_omb_prompt_bold_green(${_omb_prompt_green}^_^$_omb_prompt_bold_green)";
+  SC=""; #SC="$_omb_prompt_teal-$_omb_prompt_bold_green(${_omb_prompt_green}^_^$_omb_prompt_bold_green)";
   else
-
     SC="$_omb_prompt_teal-$_omb_prompt_bold_green(${_omb_prompt_brown}! $status $_omb_prompt_bold_green)";
   fi
 

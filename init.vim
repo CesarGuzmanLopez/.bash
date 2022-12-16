@@ -37,7 +37,8 @@ set updatetime=200 "Tiempo de espera para que se actualice el archivo
 set signcolumn=yes "Muestra la columna de signos
 set relativenumber "Muestra el numero de linea relativo
 " copy paste to system clipboard 
-set clipboard=unnamedplus "Permite copiar y pegar desde el portapapeles
+set clipboard^=unnamed,unnamedplus
+
 set foldmethod=indent "Permite que se puedan colapsar las lineas de codigo
 set foldlevel=1 "Nivel de colapso de las lineas de codigo
 set lazyredraw "Permite que se actualice el archivo sin tener que cerrarlo
