@@ -7,7 +7,7 @@ esac
 
 # Path to your oh-my-bash installation.
 
-export OSH=/home/cesarguzmanlopez/.bash_vim
+export OSH=/home/cesarguzman/.bash_vim
 
 
 alias neofetch="neofetch --config $OSH/neofetch.conf --ascii "$OSH"/tardis.txt"
@@ -229,17 +229,11 @@ __get_first_arg_size() {
 }
 
 insertar_texto() {
-  # Asignar los argumentos a las variables locales
-  local texto_original=$1
-  local texto_a_agregar=$2
-  local posicion=$3
-
-   echo "$texto_original" | awk -v texto="$texto_a_agregar" -v \
-                          posicion="$posicion" '{print substr($0,1,posicion-1) texto substr($0,posicion)}'
+    local result="$(_fzf_comprun $(__get_first_arg $READLINE_LINE))";
+    READLINE_LINE=$(echo "$READLINE_LINE" | awk -v texto="$result" -v  posicion="$READLINE_POINT" '{print substr($0,1,posicion-1) texto substr($0,posicion)}');
+    READLINE_POINT=$(( $READLINE_POINT +  ${#result} + 1));
 }
 
-bind -x '"\C-t": \
-  result="$(_fzf_comprun $(__get_first_arg $READLINE_LINE))";\
-  READLINE_LINE=  $(insertar_texto $READLINE_LINE $result $READLINE_POINT );\
-              READLINE_POINT=$(( $READLINE_POINT +  ${#result} + 1));'
+bind -x '"\C-t":insertar_texto'
+
 
