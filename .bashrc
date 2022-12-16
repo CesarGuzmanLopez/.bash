@@ -16,8 +16,8 @@ source $OSH/tardis.sh
 # Set name of the theme to load. Optionally, if you set this to "random"
 # it'll load a random theme each time that oh-my-bash is loaded.
 OSH_THEME="kitsune"
-DISABLE_AUTO_UPDATE=true
-# Uncomment thefollowing line to use case-sensitive completion.
+
+# Uncomment the following line to use case-sensitive completion.
 # CASE_SENSITIVE="true"
 
 # Uncomment the following line to use hyphen-insensitive completion. Case
@@ -219,8 +219,10 @@ _fzf_comprun() {
 __get_first_arg() {
   echo "$1"
 }
+
 insertar_texto() {
-  if [ -z  $1 ]; then
+
+  if [ -z  $READLINE_LINE ]; then
     Grep;
   else
     local result="$(_fzf_comprun $(__get_first_arg $READLINE_LINE))";
@@ -228,4 +230,5 @@ insertar_texto() {
     READLINE_POINT=$(( $READLINE_POINT +  ${#result} + 1));
   fi;
 }
+
 bind -x '"\C-t":insertar_texto'
