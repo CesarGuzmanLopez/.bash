@@ -21,9 +21,10 @@ function _omb_theme_PROMPT_COMMAND() {
 
   local SC
   if ((status == 0)); then
-    SC="$_omb_prompt_teal-$_omb_prompt_bold_green(${_omb_prompt_green}^_^$_omb_prompt_bold_green)";
+    SC="";#SC="$_omb_prompt_teal-$_omb_prompt_bold_green(${_omb_prompt_green}^_^$_omb_prompt_bold_green)";
   else
-    SC="$_omb_prompt_teal-$_omb_prompt_bold_green(${_omb_prompt_brown}T_T$_omb_prompt_bold_green)";
+
+    SC="$_omb_prompt_teal-$_omb_prompt_bold_green(${_omb_prompt_brown}! $status $_omb_prompt_bold_green)";
   fi
 
   local BC=$(battery_percentage)
@@ -33,9 +34,11 @@ function _omb_theme_PROMPT_COMMAND() {
   PS1=$TITLEBAR"\n${_omb_prompt_teal}┌─${_omb_prompt_bold_white}[\u@\h]${_omb_prompt_teal}─${_omb_prompt_bold_olive}(\w)$(scm_prompt_info)\n${_omb_prompt_teal}└─${_omb_prompt_bold_green}[\A]$SC$BC${_omb_prompt_teal}-${_omb_prompt_bold_teal}[${_omb_prompt_green}${_omb_prompt_bold_green}\$${_omb_prompt_bold_teal}]${_omb_prompt_green} "
 }
 
+
+
 # scm theming
 SCM_THEME_PROMPT_DIRTY=" ${_omb_prompt_brown}✗"
-SCM_THEME_PROMPT_CLEAN=" ${_omb_prompt_bold_green}✓"
+SCM_THEME_PROMPT_CLEAN=" ${_omb_prompt_bold_gren}✓"
 SCM_THEME_PROMPT_PREFIX="${_omb_prompt_bold_teal}("
 SCM_THEME_PROMPT_SUFFIX="${_omb_prompt_bold_teal})${_omb_prompt_reset_color}"
 
