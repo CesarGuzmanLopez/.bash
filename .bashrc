@@ -15,7 +15,7 @@ source $OSH/tardis.sh
 
 # Set name of the theme to load. Optionally, if you set this to "random"
 # it'll load a random theme each time that oh-my-bash is loaded.
-OSH_THEME="powerline-multiline"
+OSH_THEME="kitsune"
 
 # Uncomment the following line to use case-sensitive completion.
 # CASE_SENSITIVE="true"
@@ -204,18 +204,13 @@ _fzf_comprun() {
   local command=$1
   shift
   case "$command" in
-    cd)           find . -type d| fzf  --reverse --preview 'tree -C {} -I ".git"| head -200' --color --height='40%' ;;
+    cd)           find . -type d -not -path '*/\.git/*' | fzf  --reverse --preview 'tree -C {} -I ".git"| head -200' --color --height='40%' ;;
     export|unset) fzf  --preview "eval 'echo \$'{}" --height='40%' ;;
-    " "| "" )     Grep  ;;
+    " "| "" )     echo error  ;;
     *)            find .| fzf  --preview 'bat --style=full --color=always --line-range :500 {}' \
                           --preview-window '~3' --bind='F2:toggle-preview,shift-up:preview-up,shift-down:preview-down'  \
                           --color --height='50%';;
   esac
-}
-
-
-_fzf(){
-  echo "fzf"
 }
 
 #depues le acciono con ctrl+t a _fzf_comprun
@@ -224,15 +219,13 @@ _fzf(){
 __get_first_arg() {
   echo "$1"
 }
-
 insertar_texto() {
-  if [ -e  __get_first_arg  ]; then
-     Grep
+  if [ -z  $1 ]; then
+    Grep;
   else
     local result="$(_fzf_comprun $(__get_first_arg $READLINE_LINE))";
     READLINE_LINE=$(echo "$READLINE_LINE" | awk -v texto="$result" -v  posicion="$READLINE_POINT" '{print substr($0,1,posicion-1) " " texto " " substr($0,posicion)} ');
     READLINE_POINT=$(( $READLINE_POINT +  ${#result} + 1));
-  fi
+  fi;
 }
-
 bind -x '"\C-t":insertar_texto'
