@@ -16,8 +16,8 @@ source $OSH/tardis.sh
 # Set name of the theme to load. Optionally, if you set this to "random"
 # it'll load a random theme each time that oh-my-bash is loaded.
 OSH_THEME="kitsune"
-
-# Uncomment the following line to use case-sensitive completion.
+DISABLE_AUTO_UPDATE=true
+# Uncomment thefollowing line to use case-sensitive completion.
 # CASE_SENSITIVE="true"
 
 # Uncomment the following line to use hyphen-insensitive completion. Case
