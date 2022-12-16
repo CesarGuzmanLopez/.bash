@@ -172,7 +172,7 @@ export FZF_DEFAULT_COMMAND="find . -type f -not -path '*/\.git/*'"
 # - See the source code (completion.{bash,zsh}) for the details.
 
 function Grep(){
-  bash $OSH/rfv $1
+  bash   $OSH/rfv $1
 }
 
 
@@ -203,15 +203,16 @@ _fzf_compgen_dir() {
 _fzf_comprun() {
   local command=$1
   shift
-  
   case "$command" in
-    cd)           find . -type d| fzf  --reverse --preview 'tree -C {} -I ".git"| head -200' --color --height='40%';echo -n "/" ;;
+    cd)           find . -type d| fzf  --reverse --preview 'tree -C {} -I ".git"| head -200' --color --height='40%' ;;
     export|unset) fzf  --preview "eval 'echo \$'{}" --height='40%' ;;
+    " "| "" )     Grep  ;;
     *)            find .| fzf  --preview 'bat --style=full --color=always --line-range :500 {}' \
                           --preview-window '~3' --bind='F2:toggle-preview,shift-up:preview-up,shift-down:preview-down'  \
                           --color --height='50%';;
   esac
 }
+
 
 _fzf(){
   echo "fzf"
@@ -223,17 +224,15 @@ _fzf(){
 __get_first_arg() {
   echo "$1"
 }
-#get size of first argument
-__get_first_arg_size() {
-  echo "${#1}"
-}
 
 insertar_texto() {
+  if [ -e  __get_first_arg  ]; then
+     Grep
+  else
     local result="$(_fzf_comprun $(__get_first_arg $READLINE_LINE))";
-    READLINE_LINE=$(echo "$READLINE_LINE" | awk -v texto="$result" -v  posicion="$READLINE_POINT" '{print substr($0,1,posicion-1) texto substr($0,posicion)}');
+    READLINE_LINE=$(echo "$READLINE_LINE" | awk -v texto="$result" -v  posicion="$READLINE_POINT" '{print substr($0,1,posicion-1) " " texto " " substr($0,posicion)} ');
     READLINE_POINT=$(( $READLINE_POINT +  ${#result} + 1));
+  fi
 }
 
 bind -x '"\C-t":insertar_texto'
-
-
