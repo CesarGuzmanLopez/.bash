@@ -70,10 +70,10 @@ function _omb_theme_PROMPT_COMMAND() {
   [[ $BC == no && $BC == -1 ]] && BC=
   BC=${BC:+${_omb_prompt_teal}-${_omb_prompt_green}($BC%)}
   PS1=$TITLEBAR"${_omb_prompt_teal}┌─${_omb_prompt_teal}${_omb_prompt_bold_white}[$(_user_info)]"
-  PS1+="${_omb_prompt_bold_green}[\A]$SC$(__powerline_python_venv_prompt)"
+  PS1+="${_omb_prompt_bold_green}[\A]$(__powerline_python_venv_prompt)"
   PS1+="${_omb_prompt_teal}${_omb_prompt_bold_olive}(\w)$(scm_prompt_info)\n"
   PS1+="${_omb_prompt_teal}└─${_omb_prompt_bold_teal}$(__ssh_client)$BC${_omb_prompt_green}"
-  PS1+="${_omb_prompt_bold_green}$(get_symbol_user_info)${_omb_prompt_bold_teal}${_omb_prompt_bold_white} "
+  PS1+="$SC${_omb_prompt_bold_green}$(get_symbol_user_info)${_omb_prompt_bold_teal}${_omb_prompt_bold_white} "
 
 }
 # scm theming
