@@ -62,7 +62,6 @@ function __powerline_python_venv_prompt {
   elif [[ -n "${VIRTUAL_ENV}" ]]; then
     python_venv=$(basename "${VIRTUAL_ENV}")
   fi
-
   [[ -n "${python_venv}" ]] && echo "${PYTHON_VENV_CHAR}${python_venv}|${PYTHON_VENV_THEME_PROMPT_COLOR}"
 }
 

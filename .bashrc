@@ -7,7 +7,7 @@ esac
 
 # Path to your oh-my-bash installation.
 
-export OSH=/home/cesarguzman/.bash_vim
+export OSH=/home/cesarguzmanlopez/.bash_vim
 
 
 alias neofetch="neofetch --config $OSH/neofetch.conf --ascii "$OSH"/tardis.txt"
@@ -157,10 +157,6 @@ function :q () {
   exit
 }
 
-
-
-
-
 FZF_CTRL_T_OPTS="--preview 'bat --style=full --color=always --line-range :500 {}' --preview-window '~3' --bind='F2:toggle-preview,shift-up:preview-up,shift-down:preview-down' --color --height='90%'"
 FZF_DEFAULT_OPTS="--height='30%' --layout='reverse'"
 
@@ -175,7 +171,6 @@ function Grep(){
   bash   $OSH/rfv $1
 }
 
-
 export -f Grep
 export -f _fzf_compgen_path
 export -f _fzf_compgen_dir
@@ -185,8 +180,6 @@ if [ -x "$(command -v fzf)"  ]
 then
   source /usr/share/fzf/shell/key-bindings.bash
 fi
-
-
 
 _fzf_compgen_path() {
   echo "$1"
@@ -204,7 +197,7 @@ _fzf_comprun() {
   local command=$1
   shift
   case "$command" in
-    cd)           find . -type d -not -path '*/\.git/*' | fzf  --reverse --preview 'tree -C {} -I ".git"| head -200' --color --height='40%' ;;
+    cd)           find . -type d -not -path '*/\.git/*' | fzf  --preview 'tree -C {} -I ".git"| head -200' --color --height='40%' ;;
     export|unset) fzf  --preview "eval 'echo \$'{}" --height='40%' ;;
     " "| "" )     echo error  ;;
     *)            find .| fzf  --preview 'bat --style=full --color=always --line-range :500 {}' \
@@ -213,16 +206,11 @@ _fzf_comprun() {
   esac
 }
 
-#depues le acciono con ctrl+t a _fzf_comprun
-#bind -x '"\C-t":result="$(_fzf_comprun "$READLINE_ARGUMENT")";READLINE_LINE="$result";'
-#get first argument
 __get_first_arg() {
   echo "$1"
 }
-
 insertar_texto() {
-
-  if [ -z  $READLINE_LINE ]; then
+  if [[ -z  ${READLINE_LINE//[$'\t\n ']} ]]; then
     Grep;
   else
     local result="$(_fzf_comprun $(__get_first_arg $READLINE_LINE))";
