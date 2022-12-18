@@ -210,7 +210,7 @@ __get_first_arg() {
   echo "$1"
 }
 insertar_texto() {
-  if [[ -z  ${READLINE_LINE//[$'\t\n ']} ]]; then
+ if [[ -z  ${READLINE_LINE//[$'\t\n ']} ]]; then
     Grep;
   else
     local result="$(_fzf_comprun $(__get_first_arg $READLINE_LINE))";
