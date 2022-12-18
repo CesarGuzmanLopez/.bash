@@ -40,7 +40,7 @@ function get_symbol_user_info {
     printf "#"
   else
     if id -Gn "$USER" | grep -qw wheel; then
-      printf "$"
+      printf "🌟"
     else
       printf "%"
     fi

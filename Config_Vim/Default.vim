@@ -34,11 +34,12 @@ set signcolumn=yes "Muestra la columna de signos
 set relativenumber "Muestra el numero de linea relativo
 " copy paste to system clipboard 
 set clipboard^=unnamed,unnamedplus
-set foldmethod=indent "Permite que se puedan colapsar las lineas de codigo
-set foldlevel=1 "Nivel de colapso de las lineas de codigo
 set lazyredraw "Permite que se actualice el archivo sin tener que cerrarlo
+set colorcolumn=120 "Muestra una linea vertical en la columna 80
+set mouse= "Desactiva el uso del mouse
+set foldmethod=syntax "Permite que se puedan colapsar las lineas de codigo
+set foldlevel=1 "Nivel de colapso de las lineas de codigo
 set foldenable "Permite que se puedan colapsar las lineas de codigo
 set foldlevelstart=0 "Nivel de colapso de las lineas de codigo 0 es que colapse automaticamente todo
 set foldnestmax=10 "Nivel de colapso de las lineas de codigo
-set colorcolumn=120 "Muestra una linea vertical en la columna 80
-set mouse= "Desactiva el uso del mouse
+
