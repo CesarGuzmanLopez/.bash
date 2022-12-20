@@ -11,7 +11,13 @@ source $OHS/Config_Vim/Aparience.vim
 source $OHS/Config_Vim/NerdTree.vim
 source $OHS/Config_Vim/FZF.vim
 source $OHS/Config_Vim/Coc.vim
-
+"source $OHS/Config_Vim/YCM.vim
 
 source $OHS/Config_Vim/AutoCompletePairs.vim
 source $OHS/Config_Vim/KeyBindings.vim
+source $OHS/Config_Vim/keybindingsCoc.vim
+"source $OHS/Config_Vim/KeyBindingsYCM.vim
+"
+
+
+

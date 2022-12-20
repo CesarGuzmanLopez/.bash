@@ -1,5 +1,5 @@
 call plug#begin('~/.vim/plugged')
-    "   Plug 'ycm-core/YouCompleteMe', { 'do': './install.py --all' }
+    "Plug 'ycm-core/YouCompleteMe', { 'do': './install.py --all' }
     Plug 'sainnhe/gruvbox-material'
     Plug 'sheerun/vim-polyglot'
     Plug 'maximbaz/lightline-ale'

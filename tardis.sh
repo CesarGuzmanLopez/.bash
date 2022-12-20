@@ -15,11 +15,11 @@ echo "  |  |BAD |  |  |    |  |˚  || Date: " $(date)
 echo "  |  |WOLF|  |  |    |  |   || Kernel: " $(uname -r)
 echo "  |  ------  |O ------  |   || Time: " $(date +"%H:%M:%S")
 echo "  |  ------  |° ------  |   || CPU USAGE: " $(top -bn1 | grep load | awk '{printf "%.2f%%\t\t", $(NF-2)}')
-echo "˚ |  |    |  |  |    |  |   || Disk usage: " $(df -h | awk '$NF=="/"{printf "%d/%dGB (%s)", $3,$2,$5}')
+echo "♥ |  |    |  |  |    |  |   || Disk usage: " $(df -h | awk '$NF=="/"{printf "%d/%dGB (%s)", $3,$2,$5}')
 echo "L |  |    |  |  |    |  |•˛ || Uptime: $(uptime -p)"
 echo "A |  ------  |  ------  |。 || "
 echo "U |  ------  |  ------  |•  || "
-echo "  |  |    |  |  |    |  |˚• || "
+echo "♥ |  |    |  |  |    |  |˚• || "
 echo "˚ |  |    |  |  |    |  |•˚ || "
 echo "  |  ------  |  ------  |   || "
 echo " _|_____________________|_  || "
