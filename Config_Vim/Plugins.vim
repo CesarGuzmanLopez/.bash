@@ -40,5 +40,11 @@ call plug#begin('~/.vim/plugged')
     Plug 'christoomey/vim-quicklink'
     Plug 'christoomey/vim-quicklink'
     Plug 'tmsvg/pear-tree'
+    "Plug 'luukvbaal/nnn.nvim'    
+    Plug 'ryanoasis/vim-devicons'
 call plug#end()
+
+
+
+
 

@@ -37,7 +37,7 @@ function _user_info {
 function get_symbol_user_info {
   local user_symbol=
   if [ "$(id -u)" = 0 ]; then
-    printf "#"
+    printf "💀"
   else
     if id -Gn "$USER" | grep -qw wheel; then
       printf "🌟"

@@ -75,6 +75,9 @@ endfunction
 
 function JavaDebug()
   execute "cexpr! 'Java debug maven project'"
+
   call CocActionAsync('runCommand', function('JavaDebugCallback'))
+
+
 endfunction
 

@@ -24,8 +24,8 @@ noremap <silent> <C-F> :set foldlevel=99<CR>
 "map cf to open all folds
 noremap <silent> <C-f> :set foldlevel=0<CR>
 
-    " Map NerdTree
-    nnoremap <C-E> :NERDTreeToggle<CR>
+" Map NerdTree
+nnoremap <C-E> :NERDTreeToggle<CR>
 
 " map of FZF
 nnoremap <leader>e :FZF <CR>
