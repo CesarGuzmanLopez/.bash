@@ -103,7 +103,10 @@ nnoremap <silent><nowait> <space>k  :<C-u>CocPrev<CR>
 nnoremap <silent><nowait> <space>p  :<C-u>CocListResume<CR>
 
 "Maps for running java
-autocmd FileType java nmap <F5> :call JavaRun()<CR>
-autocmd FileType java nmap <leader><F5> :call JavaDebug()<CR>
-autocmd FileType java nmap <F1> :caDutocmd FileType java nmap <leader><F5> :call JavaStopDebug()<CR>
+
+autocmd FileType java nmap <F1> :call JavaRun()<CR>
+autocmd FileType java nmap <leader><F1> :call JavaDebug()<CR>
+autocmd FileType java nmap <F3> :call JavaStartDebug()<CR>
+autocmd FileType java nmap <leader><F3> :call JavaStopDebug()<CR>
+
 

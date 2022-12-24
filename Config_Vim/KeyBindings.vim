@@ -28,4 +28,23 @@ noremap <silent> <C-f> :set foldlevel=0<CR>
 nnoremap <C-E> :NERDTreeToggle<CR>
 
 " map of FZF
-nnoremap <leader>e :FZF <CR>
+nnoremap gfz :FZF <CR>
+nnoremap gfh :History<CR>
+nnoremap gff :Files<CR>
+nnoremap gfb :Buffers<CR>
+nnoremap gft :Tags<CR>
+nnoremap gfc :Commands<CR>
+nnoremap gfm :Marks<CR>
+nnoremap gfl :Lines<CR>
+nnoremap gfo :BLines<CR>
+
+
+" map of Goyo
+nnoremap <c-z>o :Goyo <CR>
+"Esto que hace
+nmap <F1>           :call Debug()<CR>
+nmap <leader><F1>   :call DebugCode()<CR>
+nmap <F5>           :call RunProject()<CR>
+nmap <leader><F5>   :call RunCode()<CR>
+
+
