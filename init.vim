@@ -15,10 +15,10 @@ source $OHS/Config_Vim/Goyo.vim
 
 if(&filetype == 'java')
     source $OHS/Config_Vim/Functions_Java.vim
-elseif(&filetype == 'c')
+elseif(&filetype == 'c' || &filetype == 'cpp')
     source $OHS/Config_Vim/Functions_C.vim
 endif
-    
+
 source $OHS/Config_Vim/KeyBindingsFunctions.vim
 
 source $OHS/Config_Vim/AutoCompletePairs.vim
