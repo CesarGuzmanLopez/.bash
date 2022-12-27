@@ -1,7 +1,7 @@
 " source  ~/.config/nvim/init.vim
 " echo stdpath('config')
 " Directorio de plugins
-
+" echo esto funciona perfect
 let $OHS = "/home/cesarguzmanlopez/.bash_vim/"
 set runtimepath^=$OHS/Config_Vim
 
@@ -20,9 +20,7 @@ elseif(&filetype == 'c' || &filetype == 'cpp')
 endif
 
 source $OHS/Config_Vim/KeyBindingsFunctions.vim
-
 source $OHS/Config_Vim/AutoCompletePairs.vim
 source $OHS/Config_Vim/KeyBindings.vim
 source $OHS/Config_Vim/keybindingsCoc.vim
-"source $OHS/Config_Vim/KeyBindingsYCM.vim
 

@@ -11,9 +11,8 @@ function! C_CompileCode(cpp_compile_input, extraArgs)
     :!g++ $args
     execute "Compiled!"
 endfunction
+
 function! C_RunCode(Cpp_Run_program, cpp_run_args)
     execute "Running .."
-    let 
 endfunction
-
 

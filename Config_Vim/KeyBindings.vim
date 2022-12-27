@@ -13,7 +13,7 @@ noremap <silent> <C-S>          :update<CR>
 vnoremap <silent> <C-S>         <C-C>:update<CR>
 inoremap <silent> <C-S>         <C-O>:update<CR>
 
-"Use Ctrl-z for undo
+"se Ctrl-z for undo
 noremap <silent> <C-z> :undo<CR>
 vnoremap <silent> <C-z> :undo<CR>
 
@@ -27,7 +27,6 @@ noremap <silent> <C-f> :set foldlevel=0<CR>
 " Map NerdTree
 nnoremap <C-E> :NERDTreeToggle<CR>
 
-" map of FZF
 nnoremap gfz :FZF <CR>
 nnoremap gfh :History<CR>
 nnoremap gff :Files<CR>
@@ -36,15 +35,24 @@ nnoremap gft :Tags<CR>
 nnoremap gfc :Commands<CR>
 nnoremap gfm :Marks<CR>
 nnoremap gfl :Lines<CR>
-nnoremap gfo :BLines<CR>
+nnoremap gfg :Grep<CR>
+nnoremap gfM :Maps<CR>
+
+nnoremap <leader>s :SSave
+nnoremap <leader>l :SLoad
+nnoremap <leader>h :SDelete
 
 
-" map of Goyo
 nnoremap <c-z>o :Goyo <CR>
 "Esto que hace
 nmap <F1>           :call Debug()<CR>
 nmap <leader><F1>   :call DebugCode()<CR>
 nmap <F5>           :call RunProject()<CR>
 nmap <leader><F5>   :call RunCode()<CR>
+"map para que la tecla C-down dezplace 7 lineas hacia abajo
+nmap <C-Down> 7j
+"map para que la tecla C-up dezplace 7 lineas hacia arriba
+nmap <C-Up> 7k
+
 
 
