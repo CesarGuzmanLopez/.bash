@@ -4,15 +4,13 @@ let mapleader = "f"
 noremap  <leader>n :tabnew <CR>
 
 " Don't pass messages to |ins-completion-menu|.
-imap <C-f> <Plug>(copilot-next)
-imap <C-d> <Plug>(copilot-previous)
 imap <silent><script><expr> <C-a> copilot#Accept("\<CR>")
+imap <silent><C-d> <Plug>(copilot-next) 
+imap <silent><C-S> <Plug>(copilot-previous)
 
 "Use Ctrl-S for save 
-noremap <silent> <C-S>          :update<CR>
-vnoremap <silent> <C-S>         <C-C>:update<CR>
-inoremap <silent> <C-S>         <C-O>:update<CR>
-
+noremap  <silent> <C-S> :update<CR>
+vnoremap <silent> <C-S> :update<CR>
 "se Ctrl-z for undo
 noremap <silent> <C-z> :undo<CR>
 vnoremap <silent> <C-z> :undo<CR>
@@ -42,7 +40,6 @@ nnoremap <leader>s :SSave
 nnoremap <leader>l :SLoad
 nnoremap <leader>h :SDelete
 
-
 nnoremap <c-z>o :Goyo <CR>
 "Esto que hace
 nmap <F1>           :call Debug()<CR>
@@ -50,9 +47,8 @@ nmap <leader><F1>   :call DebugCode()<CR>
 nmap <F5>           :call RunProject()<CR>
 nmap <leader><F5>   :call RunCode()<CR>
 "map para que la tecla C-down dezplace 7 lineas hacia abajo
-nmap <C-Down> 7j
-"map para que la tecla C-up dezplace 7 lineas hacia arriba
-nmap <C-Up> 7k
-
-
+map <C-Down> 7j
+imap <C-Down> <Esc>7j
+map <C-Up> 7k
+imap <C-Up> <Esc>7k
 

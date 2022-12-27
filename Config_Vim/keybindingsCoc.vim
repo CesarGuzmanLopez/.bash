@@ -1,5 +1,5 @@
 " map for Coc
-inoremap <silent><expr> <TAB>
+inoremap <expr> <TAB>
       \ coc#pum#visible() ? coc#pum#next(1) :
       \ CheckBackspace() ? "\<Tab>" :
       \ coc#refresh()
@@ -101,12 +101,4 @@ nnoremap <silent><nowait> <space>j  :<C-u>CocNext<CR>
 nnoremap <silent><nowait> <space>k  :<C-u>CocPrev<CR>
 " Resume latest coc list
 nnoremap <silent><nowait> <space>p  :<C-u>CocListResume<CR>
-
-"Maps for running java
-
-autocmd FileType java nmap <F1> :call JavaRun()<CR>
-autocmd FileType java nmap <leader><F1> :call JavaDebug()<CR>
-autocmd FileType java nmap <F3> :call JavaStartDebug()<CR>
-autocmd FileType java nmap <leader><F3> :call JavaStopDebug()<CR>
-
 

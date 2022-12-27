@@ -40,5 +40,12 @@ call plug#begin('~/.vim/plugged')
    " Plug 'vim-airline/vim-airline'  " almileszs/ack.vimt.: lightline; manually build statusline (see below)
     Plug 'w0rp/ale'
     Plug 'mhinz/vim-startify'
+    if has('nvim') || has('patch-8.0.902')
+        Plug 'mhinz/vim-signify'
+    else
+        Plug 'mhinz/vim-signify', { 'tag': 'legacy' }
+    endif
+    Plug 'mhinz/vim-janah'
+    Plug 'easymotion/vim-easymotion'
 call plug#end()
 
