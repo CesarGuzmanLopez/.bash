@@ -1,4 +1,4 @@
-function! JavaStartVimDebugCallback(err, port)
+function! JavaSgartVimDebugCallback(err, port)
   execute "cexpr! 'Java debug started on port: " . a:port . "'"
   call vimspector#LaunchWithSettings({ "configuration": "Java Attach", "AdapterPort": a:port })
 endfunction

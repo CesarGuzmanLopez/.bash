@@ -6,8 +6,8 @@ set cmdheight=1
 set cursorline "Resalta la linea en la que se encuentra el cursor
 set encoding=utf-8 "Codificacion de caracteres
 set expandtab "Reemplaza los tabuladores por espacios
-set fcs=eob:\ 
-set fileformat=unix "Formato de archivo
+set modifiable
+"set fileformat=unix "Formato de archivo
 set foldlevel=1 "Nivel de colapso de las lineas de codigo
 set foldlevelstart=0 "Nivel de colapso de las lineas de codigo 0 es que colapse automaticamente todo
 set foldmethod=syntax "Permite que se puedan colapsar las lineas de codigo
@@ -36,7 +36,7 @@ set tabstop=4 "Ancho de tabulacion
 set undodir=~/.vim/undodir
 set undofile "Permite que se pueda desacer en el achivo aun aun cuando se haya cerrado
 set updatetime=200 "Tiempo de espera para que se actualice el archivo
-set wrap "Permite que el texto se ajuste al tamaño de la pantalla
+set nowrap "Permite que el texto se ajuste al tamaño de la pantalla
 set wrapmargin=0 "Margen de ajuste de texto
 "hacer que la tecla pg Up y pg Dn se muevan por pantalla al 90% de la pantalla
-
+set fcs=eob:\ 

@@ -37,7 +37,7 @@ nnoremap gfg :Grep<CR>
 nnoremap gfM :Maps<CR>
 
 nnoremap <leader>s :SSave
-nnoremap <leader>l :SLoad    
+nnoremap <leader>l :SLoad
 nnoremap <leader>h :SDelete
 
 nnoremap <c-z>o :Goyo <CR>
@@ -51,7 +51,4 @@ map <C-Down> 7j
 imap <C-Down> <Esc>7j i
 map <C-Up> 7k 
 imap <C-Up> <Esc>7k i
-
-nnoremap f+ :vertical resize +5<CR>
-nnoremap f- :vertical resize -5<CR>
 

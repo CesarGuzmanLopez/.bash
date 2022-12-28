@@ -1,5 +1,3 @@
-
-
 function! C_CompileCode(cpp_compile_input, extraArgs)
     execute "Compiling ..."
     let args = "-std=c++11 -Wall -Wextra -Werror -pedantic -O2  ". a:extraArgs ."-o " . a:cpp_compile_output . " " . a:cpp_compile_input
@@ -14,5 +12,7 @@ endfunction
 
 function! C_RunCode(Cpp_Run_program, cpp_run_args)
     execute "Running .."
+    let args = a:cpp_run_args
+    :!./$a:Cpp_Run_program $args
 endfunction
 
