@@ -41,11 +41,8 @@ nnoremap <leader>l :SLoad
 nnoremap <leader>h :SDelete
 
 nnoremap <c-z>o :Goyo <CR>
-"Esto que hace
-nmap <F1>           :call Debug()<CR>
-nmap <leader><F1>   :call DebugCode()<CR>
-nmap <F5>           :call RunProject()<CR>
-nmap <leader><F5>   :call RunCode()<CR>
+
+
 "map para que la tecla C-down dezplace 7 lineas hacia abajo
 map <C-Down> 7j
 imap <C-Down> <Esc>7j i
@@ -54,4 +51,4 @@ imap <C-Up> <Esc>7k i
 
 nnoremap f+ :vertical resize +5<CR>
 nnoremap f- :vertical resize -5<CR>
-
+nnoremap f= :vertical resize =<CR>

@@ -52,4 +52,9 @@ function! StopDebug()
         call StopJavaDebug()
     endif
 endfunction
-
+if(&filetype == "java")
+    nmap <F1>           :call Debug()<CR>
+    nmap <leader><F1>   :call DebugCode()<CR>
+    nmap <F5>           :call RunProject()<CR>
+    nmap <leader><F5>   :call RunCode()<CR>
+endif

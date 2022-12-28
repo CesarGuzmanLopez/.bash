@@ -4,6 +4,7 @@ function! JavaSgartVimDebugCallback(err, port)
 endfunction
 
 function JavaStartDebug()
+  
   call CocActionAsync('runCommand', 'vscode.java.startDebugSession', function('JavaStartVimDebugCallback'))
 endfunction
 
@@ -18,11 +19,11 @@ endfunction
 
 function! JavaRunCallback(err, port)
   execute "cexpr! 'Java run maven project'"
-  term mvn compile exec:java 
+  term mvn clean all
+  term mvn compile exec:java
 endfunction
 
-function RunJavaProject()
-Config_Vim/KeyBindingsFunctions.vim
+function! RunJavaProject()
   call CocActionAsync('runCommand', function('JavaRunCallback'))
 endfunction
 

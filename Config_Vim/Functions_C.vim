@@ -16,3 +16,18 @@ function! C_RunCode(Cpp_Run_program, cpp_run_args)
     :!./$a:Cpp_Run_program $args
 endfunction
 
+function! C_Complie_Make()
+    execute "Compiling ..."
+    :!make
+    execute "Compiled!"
+endfunction
+
+function! C_Run_Make( args)
+    execute "Running .."
+    :!make run ARGS=$a:args
+endfunction
+function! C_Debug_Make()
+    execute "Debugging .."
+    :!make debug
+endfunction
+
