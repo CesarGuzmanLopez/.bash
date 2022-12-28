@@ -1,20 +1,19 @@
-function! JavaSgartVimDebugCallback(err, port)
+function! JavaStartVimDebugCallback(err, port)
   execute "cexpr! 'Java debug started on port: " . a:port . "'"
   call vimspector#LaunchWithSettings({ "configuration": "Java Attach", "AdapterPort": a:port })
 endfunction
 
 function JavaStartDebug()
-  
   call CocActionAsync('runCommand', 'vscode.java.startDebugSession', function('JavaStartVimDebugCallback'))
 endfunction
 
-function! JavaStopDebugCallback(err, port)
-  execute "cexpr! 'Java debug stopped'"
-  call vimspector#Reset()
+function! CompileJavaDebugCallback(err, port)
+  term mvn clean all
+  term mvnDebug compile exec:java 
 endfunction
 
-function JavaStopDebug()
-  call CocActionAsync('runCommand', 'vscode.java.stopDebugSession', function('JavaStopDebugCallback'))
+function! CompileJavaDebug() 
+    call CocActionAsync('runCommand', function('CompileJavaDebugCallback'))
 endfunction
 
 function! JavaRunCallback(err, port)
@@ -32,28 +31,16 @@ function! JavaTestCallback(err, port)
   term mvn test
 endfunction
 
-function JavaTest()
+function! JavaTest()
   call CocActionAsync('runCommand', function('JavaTestCallback'))
 endfunction
-
-function! JavaDebugCallback(err, port)
-  execute "cexpr! 'Java debug maven project'"
-  term mvnDebug compile exec:java  
-  call CocActionAsync('runCommand', 'vscode.java.startDebugSession', function('JavaStartVimDebugCallback'))
-endfunction
-
-function JavaDebug()
-  execute "cexpr! 'Java debug maven project'"
-  call CocActionAsync('runCommand', function('JavaDebugCallback'))
-endfunction
-
 
 function! RunJavaCodeCallback(err, port)
   !javac %
   !java -cp  %:p:h %:t:r
 endfunction
 
-function RunJavaCode()
+function! RunJavaCode()
   call CocActionAsync('runCommand', function('RunJavaCodeCallback'))
 endfunction
 
@@ -63,7 +50,7 @@ function! JavaDebugCodeCallback()
   call CocActionAsync('runCommand', 'vscode.java.startDebugSession', function('JavaStartVimDebugCallback'))
 endfunction
 
-function DebugJavaCode()
+function! JavaDebugCode()
   call CocActionAsync('runCommand', function('JavaDebugCodeCallback'))
 endfunction
 

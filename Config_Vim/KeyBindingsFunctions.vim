@@ -9,7 +9,7 @@ function! RunCode()
     endif
 endfunction
 
-function! RunProject()
+function! Run()
     if !exists("g:loaded_run_project") || !g:loaded_run_project
         let g:loaded_run_project = 1
     else
@@ -31,30 +31,27 @@ function! CompileCode()
     endif
 endfunction
 
-function! DebugCode()
-    if !exists("g:loaded_debug_code") || !g:loaded_debug_code
-        let g:loaded_debug_code = 1
+function CompileDebug()
+    if !exists("g:loaded_compile_debug") || !g:loaded_compile_debug
+        let g:loaded_compile_debug = 1
     else
-        let g:loaded_debug_code = 0
+        let g:loaded_compile_debug = 0
     endif
     if(&filetype == "java")
-        call DebugJavaCode()
+        call CompileJavaDebug()
+    endif
+endfunction
+function RunTest()
+    if !exists("g:loaded_run_test") || !g:loaded_run_test
+        let g:loaded_run_test = 1
+    else
+        let g:loaded_run_test = 0
+    endif
+    if(&filetype == "java")
+        call JavaTest()
     endif
 endfunction
 
-function! StopDebug()
-    if !exists("g:loaded_stop_debug") || !g:loaded_stop_debug
-        let g:loaded_stop_debug = 1
-    else
-        let g:loaded_stop_debug = 0
-    endif
-    if(&filetype == "java")
-        call StopJavaDebug()
-    endif
-endfunction
 if(&filetype == "java")
-    nmap <F1>           :call Debug()<CR>
-    nmap <leader><F1>   :call DebugCode()<CR>
-    nmap <F5>           :call RunProject()<CR>
-    nmap <leader><F5>   :call RunCode()<CR>
+    nmap <F5>:call JavaStartDebug()<CR>
 endif
