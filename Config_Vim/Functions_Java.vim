@@ -3,7 +3,7 @@ function! JavaStartVimDebugCallback(err, port)
   call vimspector#LaunchWithSettings({ "configuration": "Java Attach", "AdapterPort": a:port })
 endfunction
 
-function JavaStartDebug()
+function! JavaStartDebug()
   call CocActionAsync('runCommand', 'vscode.java.startDebugSession', function('JavaStartVimDebugCallback'))
 endfunction
 
@@ -53,4 +53,3 @@ endfunction
 function! JavaDebugCode()
   call CocActionAsync('runCommand', function('JavaDebugCodeCallback'))
 endfunction
-

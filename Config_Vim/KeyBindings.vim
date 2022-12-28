@@ -50,7 +50,6 @@ map <C-Up> 7k
 imap <C-Up> <Esc>7k i
 nnoremap f+ :vertical resize +5<CR>
 nnoremap f- :vertical resize -5<CR>
-nnoremap f= :vertical resize =<CR>
 
 
 "Map of fucntions developed by me
@@ -73,6 +72,4 @@ nnoremap <leader><F3> :VimspectorReset<CR>
 nnoremap <leader><F2> :call CompileDebug()<CR>
 nnoremap <F2>         :call Run()<CR>
 nnoremap <F7>         :call RunCode()<CR>
-noremap <leader><F7>  :call DebugCode()<CR>
 nnoremap <leader>t    :call RunTest()<CR>
-

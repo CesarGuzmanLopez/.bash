@@ -13,25 +13,21 @@ source $OHS/Config_Vim/Coc.vim
 source $OHS/Config_Vim/Goyo.vim
 source $OHS/Config_Vim/AutoCompletePairs.vim
 
-if(&filetype == 'java')
-    source $OHS/Config_Vim/Functions_Java.vim
-elseif(&filetype == 'c' || &filetype == 'cpp')
-    source $OHS/Config_Vim/Functions_C.vim
-endif
+source $OHS/Config_Vim/Functions_Java.vim
+source $OHS/Config_Vim/Functions_C.vim
 
-
-source $OHS/Config_Vim/vimspector.vim
 source $OHS/Config_Vim/KeyBindingsFunctions.vim
 source $OHS/Config_Vim/keybindingsCoc.vim
+source $OHS/Config_Vim/vimspector.vim
 source $OHS/Config_Vim/KeyBindings.vim
-
-if !exists("g:loaded_vimballPlugin") 
-    function LoadVimballPlugin()
-        for i in range(1, 2)
-            so $MYVIMRC
-        endfor
-    endfunction
-    au Filetype,FileType * call LoadVimballPlugin()
-    let g:loaded_vimballPlugin = 1
-    let timerid = timer_start(200, {-> execute("call LoadVimballPlugin()")})
-endif
+au BufRead,BufNewFile * source $OHS/Config_Vim/KeyBindingsFunctions.vim 
+au BufRead,BufNewFile * source $OHS/Config_Vim/KeyBindings.vim
+"if !exists("g:loaded_vimballPlugin") 
+"    function LoadVimballPlugin()
+"        for i in range(1, 2)
+"            so $MYVIMRC
+"        endfor
+"    endfunction
+"    let g:loaded_vimballPlugin = 1
+"    let timerid = timer_start(200, {-> execute("call LoadVimballPlugin()")})
+"endif

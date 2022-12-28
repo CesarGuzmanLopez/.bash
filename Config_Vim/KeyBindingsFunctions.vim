@@ -38,7 +38,7 @@ function CompileDebug()
         let g:loaded_compile_debug = 0
     endif
     if(&filetype == "java")
-        call CompileJavaDebug()
+f       call CompileJavaDebug()
     endif
 endfunction
 function RunTest()
@@ -51,7 +51,6 @@ function RunTest()
         call JavaTest()
     endif
 endfunction
-
 if(&filetype == "java")
     nmap <F5>:call JavaStartDebug()<CR>
 endif
