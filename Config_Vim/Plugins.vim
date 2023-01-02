@@ -47,5 +47,9 @@ call plug#begin('~/.vim/plugged')
     endif
     Plug 'mhinz/vim-janah'
     Plug 'easymotion/vim-easymotion'
+    Plug 'mboughaba/i3config.vim'
 call plug#end()
-
+aug i3config_ft_detection
+  au!
+  au BufNewFile,BufRead ~/.config/i3/config set filetype=i3config
+aug end
