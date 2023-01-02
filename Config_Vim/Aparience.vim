@@ -4,7 +4,7 @@ endif
 let g:gruvbox_material_background = 'dark'
 let g:gruvbox_material_transparent_background = 1
 let g:gruvbox_material_better_performance = 1
-
+let g:gruvbox_material_enable_italic = 1
 colorscheme gruvbox-material
 autocmd VimEnter * hi Normal ctermbg=none
 let g:spaceline_seperate_style = 'none'
@@ -94,30 +94,30 @@ let g:hammy = [
 
 
 let g:tardis = [
-            \'。★  ˚ •    -   ˚ •。★˚˛˚ ',
-            \'    _______|@|_________  •',
-            \'   --------------------- ˚',
-            \'  ||  POLICE ---- BOX  || ',
-            \'  -----------------------C',
-            \'  |  ______  |  ______  |É',
-            \'  |  |####|  |  |####|  |S',
-            \'  |  |####|  |  |####|  |A',
-            \'  |  |####|  |  |####|  |R',
-            \'% |  ------  |  ------  |˚',
-            \'  |  |BAD |  |  |    |  |˚',
-            \'  |  |WOLF|  |  |    |  | ',
-            \'  |  ------  |O ------  | ',
-            \'  |  ------  |° ------  | ',
-            \'˚ |  |    |  |  |    |  | ',
-            \'L |  |    |  |  |    |  |•',
-            \'A |  ------  |  ------  | ',
-            \'U |  ------  |  ------  |•',
-            \'  |  |    |  |  |    |  |˚',
-            \'˚ |  |    |  |  |    |  |•',
-            \'  |  ------  |  ------  | ',
-            \' _|_____________________|_',
-            \' |_______________________|'
-            \]
+      \'。★  ˚ •    -   ˚ •。★˚˛˚ ',
+      \'    _______|@|_________  •',
+      \'   --------------------- ˚',
+      \'  ||  POLICE ---- BOX  || ',
+      \'  -----------------------C',
+      \'  |  ______  |  ______  |É',
+      \'  |  |####|  |  |####|  |S',
+      \'  |  |####|  |  |####|  |A',
+      \'  |  |####|  |  |####|  |R',
+      \'% |  ------  |  ------  |˚',
+      \'  |  |BAD |  |  |    |  |˚',
+      \'  |  |WOLF|  |  |    |  | ',
+      \'  |  ------  |O ------  | ',
+      \'  |  ------  |° ------  | ',
+      \'˚ |  |    |  |  |    |  | ',
+      \'L |  |    |  |  |    |  |•',
+      \'A |  ------  |  ------  | ',
+      \'U |  ------  |  ------  |•',
+      \'  |  |    |  |  |    |  |˚',
+      \'˚ |  |    |  |  |    |  |•',
+      \'  |  ------  |  ------  | ',
+      \' _|_____________________|_',
+      \' |_______________________|'
+      \]
 "obtengo un nunmero aleatorio entre 0 y 4
 
 let g:rnd = localtime() % 0x10000
@@ -130,13 +130,13 @@ endfunction
 let aleatorio = Random(5)
 
 if aleatorio == 0  && BufWidth() > 85
-    let g:startify_custom_header = 
+  let g:startify_custom_header = 
         \startify#pad(g:hammy)
 elseif aleatorio == 1 
-    let g:startify_custom_header = startify#pad( startify#fortune#boxed())
+  let g:startify_custom_header = startify#pad( startify#fortune#boxed())
 elseif aleatorio == 2
-    let g:startify_custom_header =
+  let g:startify_custom_header =
         \startify#pad(split(system('figlet -w 80 Cesar-Lau'), '\n') )
 elseif aleatorio == 3
-    let g:startify_custom_header = startify#pad(g:tardis)
+  let g:startify_custom_header = startify#pad(g:tardis)
 endif
