@@ -7,7 +7,7 @@ esac
 
 # Path to your oh-my-bash installation.
 
-export OSH=/home/cesarguzmanlopez/.bash_vim
+export OSH=/home/cesarguzman/.bash_vim
 
 
 alias neofetch="neofetch --config $OSH/neofetch.conf --ascii "$OSH"/tardis.txt"
