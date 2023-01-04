@@ -5,7 +5,7 @@
  */
 
 configuration {
-modi: "window,drun,run,ssh";
+modi: "window,drun,run,ssh,combi";
 terminal: "konsole";
       combi-modi: "drun,run,ssh";
       matching: "fuzzy";
@@ -16,6 +16,7 @@ terminal: "konsole";
       show-icons: true;
       combi-hide-mode-prefix: true;
       levenshtein-sort: true;
+      run-shell-command: "konsole --hold {cmd}";
 }
 
 /* global settings and color variables */
@@ -35,17 +36,7 @@ font: "DejaVu Sans Mono Regular 14";
       background-color: @blackdarkest;
 
 }
-textbox-prompt-colon {
-	expand: false;
-	str: ":";
-	margin: 0 1ch 0 0;
-}
 window {
-   background-color: @blackdarkest;
-anchor: north;
-location: north;
-          y-offset: 20%;
-width:900px; 
 }
 
 mainbox {
@@ -176,16 +167,21 @@ padding:6px 10px;
 	spacing: 0;
 	background-color: transparent;
 
-	font: "Roboto 13";
+	font: "";
 }
 
 window {
 	/*fullscreen: true;*/
-	background-color: #383838;
+	width: 90%;
+    background-color: #383838;
+
+    anchor: north;
+    location: north;
+    y-offset: 20%;
 }
 
 inputbar {
-	padding: 0 30px;
+	padding: 0 0px;
 	children: [textbox-prompt-colon, entry, case-indicator];
 }
 
@@ -195,8 +191,8 @@ prompt {
 
 textbox-prompt-colon {
 	expand: false;
-	str: ":";
-	margin: 0 1ch 0 0;
+	str: "";
+	margin: 0 0 0 0;
 	text-color: @base03;
 }
 

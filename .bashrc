@@ -115,6 +115,7 @@ export LANG=en_US.UTF-8
 # Compilation flags
 # export ARCHFLAGS="-arch x86_64"
 
+
 # ssh
 # export SSH_KEY_PATH=".ssh/rsa_id"
 
@@ -143,6 +144,7 @@ alias c-ssh-sqm="ssh -o ServerAliveInterval=30 -o TCPKeepAlive=yes sqmorg1@173.2
 alias c-ssh-cggl="ssh -6 -o  ServerAliveInterval=30 -o TCPKeepAlive=yes cesarguzmanlopez@cggl1.duckdns.org -v"
 alias conn-ssh="netstat -at | grep ssh && who"
 force_color_prompt=yes
+
 
 alias a-grep='grep -lirs --exclude-dir=".git;.svn" --color=always'
 
