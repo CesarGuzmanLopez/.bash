@@ -38,5 +38,6 @@ set undofile "Permite que se pueda desacer en el achivo aun aun cuando se haya c
 set updatetime=200 "Tiempo de espera para que se actualice el archivo
 set nowrap "Permite que el texto se ajuste al tamaño de la pantalla
 set wrapmargin=0 "Margen de ajuste de texto
-"hacer que la tecla pg Up y pg Dn se muevan por pantalla al 90% de la pantalla
+
+
 set fcs=eob:\ 

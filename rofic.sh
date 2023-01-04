@@ -1,3 +1,3 @@
 #!/bin/bash
 #
-rofi -show combi  -config $@
+rofi -config $@

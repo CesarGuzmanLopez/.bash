@@ -1,4 +1,5 @@
 " Globao configuration keybindings
+" 
 let mapleader = "f"
 
 noremap  <leader>n :tabnew <CR>
@@ -13,8 +14,8 @@ noremap  <silent> <C-S> :update<CR>
 vnoremap <silent> <C-S> :update<CR>
 
 "se Ctrl-z for undo
-noremap <silent> <C-z> :undo<CR>
-vnoremap <silent> <C-z> :undo<CR>
+noremap <silent> <C-z> :<CR>
+vnoremap <silent> <C-z> :<CR>
 
 "map cF to close all folds
 noremap <silent> <C-F> :set foldlevel=99<CR>
@@ -42,6 +43,7 @@ nnoremap <leader>h :SDelete
 
 nnoremap <c-z>o :Goyo <CR>
 
+
 "map para que la tecla C-down dezplace 7 lineas hacia abajo
 map <C-Down> 7j
 imap <C-Down> <Esc> 7j i
@@ -68,4 +70,3 @@ nnoremap <leader><F2> :call CompileDebug()<CR>
 nnoremap <F2>         :call Run()<CR>
 nnoremap <F7>         :call RunCode()<CR>
 nnoremap <leader>t    :call RunTest()<CR>
-
