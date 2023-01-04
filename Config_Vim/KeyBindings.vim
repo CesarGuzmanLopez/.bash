@@ -1,13 +1,17 @@
 " Globao configuration keybindings
-" 
+"
 let mapleader = "f"
 
 noremap  <leader>n :tabnew <CR>
 
 " Don't pass messages to |ins-completion-menu|.
-imap <silent><script><expr> <C-a> copilot#Accept("\<CR>")
-imap <silent><C-d> <Plug>(copilot-next) 
-imap <silent><C-S> <Plug>(copilot-previous)
+inoremap <silent><script><expr> <C-a> copilot#Accept("\<CR>")
+inoremap <silent><C-s> <Plug>(copilot-next) 
+inoremap <silent><C-d> <Plug>(copilot-previous)
+
+inoremap <silent><script><expr> <c-a> copilot#Accept("\<CR>")
+inoremap <silent><c-s> <Plug>(copilot-next) 
+inoremap <silent><c-d> <Plug>(copilot-previous)
 
 "Use Ctrl-S for save 
 noremap  <silent> <C-S> :update<CR>

@@ -18,8 +18,8 @@ source $OHS/Config_Vim/AutoCompletePairs.vim
 source $OHS/Config_Vim/Functions_Java.vim
 source $OHS/Config_Vim/Functions_C.vim
 
-source $OHS/Config_Vim/KeyBindingsFunctions.vim
 source $OHS/Config_Vim/keybindingsCoc.vim
+source $OHS/Config_Vim/KeyBindingsFunctions.vim
 source $OHS/Config_Vim/KeyBindings.vim
 
 if exists("g:loaded_vimballPlugin") 

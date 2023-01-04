@@ -1,6 +1,7 @@
+let g:copilot_no_tab_map = 1
 call plug#begin('~/.vim/plugged')
     "Plug 'ycm-core/YouCompleteMe', { 'do': './install.py --all' }
-    Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'
+    "Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'
     Plug 'Yggdroot/indentLine'
     Plug 'akaron/vim-markdown-fold'
     Plug 'chrisbra/NrrwRgn'
