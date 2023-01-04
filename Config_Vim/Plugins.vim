@@ -27,7 +27,7 @@ call plug#begin('~/.vim/plugged')
     Plug 'sainnhe/gruvbox-material'
     Plug 'sheerun/vim-polyglot'
     Plug 'skywind3000/asyncrun.vim'
-    Plug 'glepnir/spaceline.vim'
+"    Plug 'glepnir/spaceline.vim'
     Plug 'tmhedberg/SimpylFold'     " for python
     Plug 'tmsvg/pear-tree'
     Plug 'tpope/vim-commentary'
@@ -46,6 +46,7 @@ call plug#begin('~/.vim/plugged')
     else
         Plug 'mhinz/vim-signify', { 'tag': 'legacy' }
     endif
+    Plug 'vim-airline/vim-airline'
     Plug 'mhinz/vim-janah'
     Plug 'easymotion/vim-easymotion'
     Plug 'mboughaba/i3config.vim'
@@ -54,5 +55,4 @@ aug i3config_ft_detection
   au!
   au BufNewFile,BufRead ~/.config/i3/config set filetype=i3config
 aug end
-
 let g:copilot_node_command = "~/.nvm/versions/node/v17.9.1/bin/node"
