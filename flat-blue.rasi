@@ -5,49 +5,54 @@
  */
 
 configuration {
-modi: "window,drun,run,ssh,combi";
-terminal: "konsole";
-      combi-modi: "drun,run,ssh";
-      matching: "fuzzy";
-      fake-transparency: true;
-      width: 1900;
-      lines: 15;
-      hide-scrollbar: true;
-      show-icons: true;
-      combi-hide-mode-prefix: true;
-      levenshtein-sort: true;
-      run-shell-command: "konsole --hold {cmd}";
+    modi: "window,drun,run,ssh,combi";
+    terminal: "konsole";
+    combi-modi: "drun,run,ssh";
+    matching: "fuzzy";
+    fake-transparency: true;
+    width: 1900;
+    lines: 15;
+    hide-scrollbar: true;
+    show-icons: true;
+    combi-hide-mode-prefix: true;
+    levenshtein-sort: true;
+    run-shell-command: "konsole --hold {cmd}";
 }
 
-/* global settings and color variables */
+
 * {
-maincolor:        #5da8f455;
-highlight:        bold #5da8f4;
-urgentcolor:      #E53935;
-
-fgwhite:          #cfcfcf;
-blackdarkest:     #1d1d1d55;
-blackwidget:      #262626;
-blackentry:       #29292955;
-blackselect:      #303030;
-darkgray:         #848484;
-scrollbarcolor:   #505050;
-font: "DejaVu Sans Mono Regular 14";
-      background-color: @blackdarkest;
-
-}
-window {
+   maincolor:      #5da8f455;
+   highlight:      bold #5da8f4;
+   urgentcolor:    #E53935;
+   fgwhite:       #cfcfcf;
+   blackdarkest:    #2d2d2d;
+   blackwidget:    #262626;
+   blackentry:     #393939;
+   blackselect:    #202020;
+   darkgray:      #848484;
+   scrollbarcolor:  #505050;
+   font: "DejaVu Sans Mono Regular 14";
+   background-color: @blackdarkest;
+   base00: #909090;
+   base02: #383838;
+   base03: #FFFFFF;
+   base0A: #C3E88D;
+   base0B: #282828;
+   base0C: #FF5370;
+   /*base0B: #00BCD4;*/
+   spacing: 0;
+   background-color: transparent;
 }
 
 mainbox {
    background-color: @blackdarkest;
-spacing:0px;
-children: [inputbar, message, sidebar, listview];
+   spacing:0px;
+   children: [inputbar, message, sidebar, listview];
 }
 
 message {
 padding: 6px 10px;
-         background-color:@blackwidget;
+   background-color:@blackwidget;
 }
 
 textbox {
@@ -57,11 +62,11 @@ textbox {
 
 listview {
    fixed-height: false;
-dynamic: true;
-spacing: 0px;
-padding: 1px 0px 0px 0px;
-margin: 0px 0px 0px 0px;
-background: @blackdarkest;
+   dynamic: true;
+   spacing: 0px;
+   padding: 1px 0px 0px 0px;
+   margin: 0px 0px 0px 0px;
+   background: @blackdarkest;
 }
 
 element {
@@ -70,8 +75,8 @@ padding: 2px 15px;
 
 element normal.normal {
 padding: 0px 15px;
-         background-color: @blackentry;
-         text-color: @fgwhite;
+       background-color: @blackentry;
+       text-color: @fgwhite;
 }
 
 element normal.urgent {
@@ -86,32 +91,32 @@ element normal.active {
 
 element selected.normal {
    background-color: @blackselect;
-   text-color:       @fgwhite;
+   text-color:     @fgwhite;
 }
 
 element selected.urgent {
    background-color: @urgentcolor;
-   text-color:       @blackdarkest;
+   text-color:     @blackdarkest;
 }
 
 element selected.active {
    background-color: @maincolor;
-   text-color:       @blackdarkest;
+   text-color:     @blackdarkest;
 }
 
 element alternate.normal {
    background-color: @blackentry;
-   text-color:       @fgwhite;
+   text-color:     @fgwhite;
 }
 
 element alternate.urgent {
    background-color: @blackentry;
-   text-color:       @urgentcolor;
+   text-color:     @urgentcolor;
 }
 
 element alternate.active {
    background-color: @blackentry;
-   text-color:       @maincolor;
+   text-color:     @maincolor;
 }
 
 scrollbar {
@@ -126,54 +131,36 @@ sidebar {
 
 button {
    background-color: @blackwidget;
-   text-color:       @darkgray;
+   text-color:     @darkgray;
 }
 
 button selected {
-   text-color:       @maincolor;
+   text-color:     @maincolor;
 }
 
 inputbar {
    background-color: @blackdarkest;
-spacing: 0px;
+   spacing: 0px;
 }
 
 
 entry {
 padding:6px 10px;
-        background-color:@blackwidget;
-        text-color:@fgwhite;
-placeholder: "";
-
+   background-color:@blackwidget;
+   text-color:@fgwhite;
+   placeholder: "";
 }
 
 case-indicator {
 padding:6px 10px;
-        text-color:@maincolor;
-        background-color:@blackwidget;
-}
-
-
-* {
-	base00: #383838;
-	base02: #383838;
-	base03: #FFFFFF;
-	base0A: #C3E88D;
-	base0B: #282828;
-	base0C: #FF5370;
-
-	/*base0B: #00BCD4;*/
-
-	spacing: 0;
-	background-color: transparent;
-
-	font: "";
+       text-color:@maincolor;
+       background-color:@blackwidget;
 }
 
 window {
-	/*fullscreen: true;*/
-	width: 90%;
-    background-color: #383838;
+    /*fullscreen: true;*/
+    width: 90%;
+    background-color: #38383811;
 
     anchor: north;
     location: north;
@@ -181,70 +168,70 @@ window {
 }
 
 inputbar {
-	padding: 0 0px;
-	children: [textbox-prompt-colon, entry, case-indicator];
+    padding: 0 0px;
+    children: [textbox-prompt-colon, entry, case-indicator];
 }
 
 prompt {
-	text-color: @base0B;
+    text-color: @base0B;
 }
 
 textbox-prompt-colon {
-	expand: false;
-	str: "";
-	margin: 0 0 0 0;
-	text-color: @base03;
+    expand: false;
+    str: "";
+    margin: 0 0 0 0;
+    text-color: @base03;
 }
 
 entry {
-	text-color: @base03;
+    text-color: @base03;
 }
 
 case-indicator {
-	text-color: @base0C;
+    text-color: @base0C;
 }
 
 sidebar, message {
-	border: 1px 0;
-	border-color: @base0B;
+    border: 1px 0;
+    border-color: @base0B;
 }
 
 button, textbox {
-	background-color: @base02;
-	text-color: @base03;
-	padding: 5px;
+    background-color: @base02;
+    text-color: @base03;
+    padding: 5px;
 }
 
 button selected {
-	background-color: @base0B;
+    background-color: @base0B;
 }
 
 
 element {
-	padding: 5px;
-	highlight: bold underline;
+    padding: 5px;
+    highlight: bold underline;
 }
 
 element normal {
-	background-color: transparent;
+    background-color: transparent;
 }
 
 element selected {
-	background-color: @base0B;
+    background-color: @base0B;
 }
 
 element alternate {
-	/*background-color: @base02;*/
+    /*background-color: @base02;*/
 }
 
 element normal normal, element selected normal, element alternate normal {
-	text-color: @base03;
+    text-color: @base03;
 }
 
 element normal urgent, element selected urgent, element alternate urgent {
-	text-color: @base0C;
+    text-color: @base0C;
 }
 
 element normal active, element selected active, element alternate active {
-	text-color: @base0A;
+    text-color: @base0A;
 }

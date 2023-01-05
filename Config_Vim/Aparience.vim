@@ -1,12 +1,20 @@
 if has('termguicolors')
     set termguicolors
 endif
-let g:gruvbox_material_background = 'dark'
-let g:gruvbox_material_transparent_background = 1
-let g:gruvbox_material_better_performance = 1
-let g:gruvbox_material_enable_italic = 1
-colorscheme gruvbox-material
+
+"verifico su estamos en un fondo claro u oscuro
+
+if (has('termguicolors') && &background == 'dark')
+    let g:gruvbox_material_background = 'hard'
+    let g:gruvbox_material_transparent_background = 1
+    let g:gruvbox_material_better_performance = 1
+    let g:gruvbox_material_enable_italic = 1
+    colorscheme gruvbox-material
+else
+  color zellner
+endif
 autocmd VimEnter * hi Normal ctermbg=none
+
 let g:spaceline_seperate_style = 'none'
 " returns all modified files of the current git repo
 " `2>\dev/null` makes the command fail quietly, so that when we are not
@@ -18,7 +26,7 @@ endfunction
 
 " same as above, but show untracked files, honouring .gitignore
 function! s:gitUntracked()
-    let files = systemlist('git ls-files -o --exclude-standard 2>\dev/null')
+    let files = systemlist('git ls-files -o --exclude-standard 1>\dev/null')
     return map(files, "{'line': v:val, 'path': v:val}")
 endfunction
 
@@ -56,6 +64,7 @@ let g:startify_session_persistence = 1
 let g:startify_change_to_dir = 0
 
 let g:hammy = [
+\    '                              ▓▓▓▓██▓▓▓░░░                          ',
 \    '                        ░░░░▓▓▓▓▓▓▓▓██▓▓▓▓░░░░                          ',
 \    '                  ░░██▒▒░░  ██████████████░░░░████▒▒                    ',
 \    '                 ▓▓░░▒▒████              ████░░▒▒▒▒                    ',
@@ -140,3 +149,4 @@ elseif aleatorio == 2
 elseif aleatorio == 3
   let g:startify_custom_header = startify#pad(g:tardis)
 endif
+
