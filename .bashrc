@@ -132,8 +132,6 @@ export LANG=en_US.UTF-8
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
 mkdir -p ~/.vim/undodir
 alias cls=clear
-alias vim=nvim
-alias vi=nvim
 alias c-ssh-gabrielsan="ssh -o ServerAliveInterval=30 root@198.71.49.57 -v"
 alias c-ssh-personal="ssh -o ServerAliveInterval=30 root@74.208.211.146 -v"
 alias c-ssh-generico="ssh -o ServerAliveInterval=30 root@198.71.50.22 -v"
@@ -145,9 +143,28 @@ alias c-ssh-cggl="ssh -6 -o  ServerAliveInterval=30 -o TCPKeepAlive=yes cesarguz
 alias conn-ssh="netstat -at | grep ssh && who"
 force_color_prompt=yes
 
+bg_color=$(echo "$COLORFGBG" | cut -d ";" -f2)
+
+
+function wallpaper_color() {
+  # Obtener el color del fondo de pantalla de la variable $COLORFGBG
+  bg_color=$(echo "$COLORFGBG" | cut -d ";" -f2)
+
+  # Determine si el color es claro o oscuro
+  if [[ $bg_color -ge 8 ]]; then
+    echo "dark"
+  else
+    echo "light"
+  fi
+}
+
+if [[ $(wallpaper_color) == "dark" ]]; then
+  alias nvim="nvim -c\"colo zellner\" -c\"hi Normal guibg=NONE ctermbg=NONE\""
+fi
+alias vim=nvim
+alias vi=nvim
 
 alias a-grep='grep -lirs --exclude-dir=".git;.svn" --color=always'
-
 function a-find () {
   find $1 -type f -not -path "*/\.git/*"
 }
