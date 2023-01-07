@@ -149,4 +149,7 @@ elseif aleatorio == 2
 elseif aleatorio == 3
   let g:startify_custom_header = startify#pad(g:tardis)
 endif
-
+autocmd WinEnter,FocusGained * :setlocal number relativenumber
+autocmd WinLeave,FocusLost   * :setlocal number norelativenumber
+autocmd InsertEnter * :setlocal number
+autocmd InsertLeave * :setlocal relativenumber

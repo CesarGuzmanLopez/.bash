@@ -2,9 +2,8 @@
 " echo stdpath('config')
 " Directorio de plugins
 " echo esto funciona perfect
-
-
-let $OHS = "/home/cesarguzman/.bash_vim/"
+"
+let $OHS = "/home/cesarguzmanlopez/.bash_vim/"
 set runtimepath^=$OHS/Config_Vim
 source $OHS/Config_Vim/Default.vim
 source $OHS/Config_Vim/Plugins.vim
@@ -24,7 +23,6 @@ source $OHS/Config_Vim/KeyBindings.vim
 
 if exists("g:loaded_vimballPlugin") 
     function LoadNVIMAllPlugin()
-
 "        so $MYVIMRC
     endfunction
     let g:loaded_vimballPlugin = 1

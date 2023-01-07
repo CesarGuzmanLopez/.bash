@@ -384,3 +384,14 @@ function! DebugDissassemble()
         call vimspector#Dissassemble()
     endif
 endfunction
+
+
+function! CopyFormatted(line1, line2)
+    execute a:line1 . "," . a:line2 . "TOhtml"
+    %yank *
+    !start /min powershell -noprofile "gcb | scb -as"
+    bwipeout!
+endfunction
+
+command! -range=% HtmlClip silent call CopyFormatted(<line1>,<line2>)
+
