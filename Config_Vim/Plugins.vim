@@ -20,14 +20,16 @@ call plug#begin('~/.vim/plugged')
     Plug 'mikelue/vim-maven-plugin'
     Plug 'nanotech/jellybeans.vim'
     Plug 'neoclide/coc.nvim', {'branch': 'release'}
-    Plug 'preservim/nerdtree'
+    "Plug 'preservim/nerdtree'
+    
+    Plug 'nvim-tree/nvim-tree.lua'
     Plug 'puremourning/vimspector'
     Plug 'rbgrouleff/bclose.vim'
     Plug 'ryanoasis/vim-devicons'
     Plug 'sainnhe/gruvbox-material'
     Plug 'sheerun/vim-polyglot'
     Plug 'skywind3000/asyncrun.vim'
-"    Plug 'glepnir/spaceline.vim'
+"   Plug 'glepnir/spaceline.vim'
     Plug 'tmhedberg/SimpylFold'     " for python
     Plug 'tmsvg/pear-tree'
     Plug 'tpope/vim-commentary'
@@ -50,6 +52,7 @@ call plug#begin('~/.vim/plugged')
     Plug 'mhinz/vim-janah'
     Plug 'easymotion/vim-easymotion'
     Plug 'mboughaba/i3config.vim'
+    Plug 'b0o/incline.nvim'
 call plug#end()
 aug i3config_ft_detection
   au!

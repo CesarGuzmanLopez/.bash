@@ -22,9 +22,13 @@ if (has('termguicolors') && &background == 'dark')
     autocmd ColorScheme zellner   hi SignColumn guibg=#ffffff
 
 endif
+
+set fillchars+=vert:\ 
+hi foldcolumn guibg=bg
+autocmd VimEnter hi foldcolumn guibg=bg
 autocmd VimEnter * hi Normal ctermbg=none
 autocmd VimEnter * hi Normal guibg=none
-
+set laststatus=3
 
 
 autocmd ColorScheme gruvbox-material   hi LineNr guifg=#bdbfbd
@@ -34,7 +38,7 @@ autocmd ColorScheme gruvbox-material   hi SignColumn guibg=#3c3836
 autocmd ColorScheme gruvbox-material   hi CursorLineNr guibg=#3c3836
 
 autocmd ColorScheme zellner   hi LineNr guifg=#010001
-
+set display=lastline
 
 let g:spaceline_seperate_style = 'none'
 " returns all modified files of the current git repo
@@ -78,6 +82,7 @@ function! s:goyo_leave()
   set fcs=eob:\ 
   set spell
   set cmdheight=1
+set fillchars+=vert:\ 
 endfunction
 
 autocmd! User GoyoEnter nested call <SID>goyo_enter()
@@ -214,7 +219,8 @@ augroup numbertoggle
 augroup END
 "autocmd InsertEnter * :setlocal number
 "autocmd InsertLeave * :setlocal relativenumber
-let g:indentLine_char_list = ['|', '¦', '┆', '┊']
+let g:indentLine_char_list = ['│','|', '¦', '┆', '┊']
+
 let g:indentLine_color_term = 139
 let g:indentLine_defaultGroup = 'SpecialKey'
 

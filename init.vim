@@ -11,7 +11,7 @@ let mapleader = "/"
 source $OHS/Config_Vim/Default.vim
 source $OHS/Config_Vim/Plugins.vim
 source $OHS/Config_Vim/Aparience.vim
-source $OHS/Config_Vim/NerdTree.vim
+"source $OHS/Config_Vim/NerdTree.vim
 source $OHS/Config_Vim/FZF.vim
 source $OHS/Config_Vim/Coc.vim
 source $OHS/Config_Vim/AutoCompletePairs.vim
@@ -30,3 +30,6 @@ if exists("g:loaded_vimballPlugin")
     let g:loaded_vimballPlugin = 1
     call timer_start(100, {-> execute("call LoadNVIMAllPlugin()")})
 endif
+
+luafile $OHS/Config_Vim/tree.lua
+
