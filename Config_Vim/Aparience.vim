@@ -10,10 +10,31 @@ if (has('termguicolors') && &background == 'dark')
     let g:gruvbox_material_better_performance = 1
     let g:gruvbox_material_enable_italic = 1
     colorscheme gruvbox-material
-else
-  color zellner
+    hi LineNr guifg=#bdbfbd      
+    hi CursorLineNr guifg=#ffffff
+    hi CursorLine guibg=#3c3836  
+    hi SignColumn guibg=#3c3836  
+    hi CursorLineNr guibg=#3c3836
+  else
+    color zellner
+    hi LineNr guifg=#010001
+    autocmd ColorScheme zellner   hi CursorLine guibg=#ffffff
+    autocmd ColorScheme zellner   hi SignColumn guibg=#ffffff
+
 endif
 autocmd VimEnter * hi Normal ctermbg=none
+autocmd VimEnter * hi Normal guibg=none
+
+
+
+autocmd ColorScheme gruvbox-material   hi LineNr guifg=#bdbfbd
+autocmd ColorScheme gruvbox-material   hi CursorLineNr guifg=#ffffff
+autocmd ColorScheme gruvbox-material   hi CursorLine guibg=#3c3836
+autocmd ColorScheme gruvbox-material   hi SignColumn guibg=#3c3836
+autocmd ColorScheme gruvbox-material   hi CursorLineNr guibg=#3c3836
+
+autocmd ColorScheme zellner   hi LineNr guifg=#010001
+
 
 let g:spaceline_seperate_style = 'none'
 " returns all modified files of the current git repo
@@ -26,9 +47,42 @@ endfunction
 
 " same as above, but show untracked files, honouring .gitignore
 function! s:gitUntracked()
-    let files = systemlist('git ls-files -o --exclude-standard 1>\dev/null')
-    return map(files, "{'line': v:val, 'path': v:val}")
+  let files = systemlist('git ls-files -o --exclude-standard 1>\dev/null')
+  return map(files, "{'line': v:val, 'path': v:val}")
 endfunction
+
+
+"let g:airline#extensions#tabline#enabled = 1
+"Confiuracion de goyo 
+let g:goyo_width = '90%'
+let g:goyo_height = '100%'
+
+
+function! s:goyo_enter()
+  if executable('tmux') && strlen($TMUX)
+    silent !tmux set status off
+    silent !tmux list-panes -F '\#F' | grep -q Z || tmux resize-pane -Z
+  endif
+  SignifyDisable
+  IndentLinesDisable
+  set nospell
+  set cmdheight=0
+endfunction
+function! s:goyo_leave()
+  if executable('tmux') && strlen($TMUX)
+    silent !tmux set status on
+    silent !tmux list-panes -F '\#F' | grep -q Z && tmux resize-pane -Z
+  endif
+  SignifyEnable
+  IndentLinesEnable
+  set fcs=eob:\ 
+  set spell
+  set cmdheight=1
+endfunction
+
+autocmd! User GoyoEnter nested call <SID>goyo_enter()
+autocmd! User GoyoLeave nested call <SID>goyo_leave()
+
 
 
 function! BufWidth()
@@ -149,7 +203,19 @@ elseif aleatorio == 2
 elseif aleatorio == 3
   let g:startify_custom_header = startify#pad(g:tardis)
 endif
-autocmd WinEnter,FocusGained * :setlocal number relativenumber
-autocmd WinLeave,FocusLost   * :setlocal number norelativenumber
-autocmd InsertEnter * :setlocal number
-autocmd InsertLeave * :setlocal relativenumber
+
+"autocmd WinEnter,FocusGained * :setlocal number relativenumber
+"autocmd WinLeave,FocusLost   * :setlocal norelativenumber
+
+augroup numbertoggle
+  autocmd!
+  autocmd BufEnter,FocusGained,InsertLeave,WinEnter * if &nu && mode() != "i" | set rnu   | endif
+  autocmd BufLeave,FocusLost,InsertEnter,WinLeave   * if &nu                  | set nornu | endif
+augroup END
+"autocmd InsertEnter * :setlocal number
+"autocmd InsertLeave * :setlocal relativenumber
+let g:indentLine_char_list = ['|', '¦', '┆', '┊']
+let g:indentLine_color_term = 139
+let g:indentLine_defaultGroup = 'SpecialKey'
+
+

@@ -1,33 +1,46 @@
-function! C_CompileCode(cpp_compile_input, extraArgs)
-    execute "Compiling ..."
-    let args = "-std=c++11 -Wall -Wextra -Werror -pedantic -O2  ". a:extraArgs ."-o " . a:cpp_compile_output . " " . a:cpp_compile_input
+function! C_CompileCode(...)
+    let b:args =""
+    let b:compile = ""
     if (&filetype == "cpp")
-        let args = "-std=c++11 -Wall -Wextra -Werror -pedantic -O2 -o " . a:cpp_compile_output . " " . a:cpp_compile_input
+        let b:args = "-std=c++11 -Wall -Wextra -pedantic -O2"
+        let b:compile = "g++"
     elseif (&filetype == "c")
-        let args = "-Wall -Wextra -Werror -pedantic -O2 -o " . a:cpp_compile_output . " " . a:cpp_compile_input
+        let b:args = "-Wall -Wextra -pedantic -O2 "
+        let b:compile = "gcc"
     endif
-    :!g++ $args
-    execute "Compiled!"
+    let b:command = b:compile . " " . b:args . " " . expand("%") . " -o " . expand("%:r")
+    if a:0 > 0
+        for i in a:000
+            let b:command = b:command . " " . i
+        endfor
+    endif
+    call asyncrun#run('', {'mode':'terminal', 'pos':'tab'}, b:command)
 endfunction
 
-function! C_RunCode(Cpp_Run_program, cpp_run_args)
-    execute "Running .."
-    let args = a:cpp_run_args
-    :!./$a:Cpp_Run_program $args
+
+command! -nargs=* CompileCOnly call C_CompileCode(<f-args>)
+
+function! C_RunCode(...)
+    let b:Comand ="./". expand('%:r')
+    if a:0 > 0
+        for i in a:000
+            let b:Comand = b:Comand . " " . i
+        endfor
+    endif
+    echo b:Comand
+    call asyncrun#run('', {'mode':'terminal', 'cwd': "$(VIM_ROOT)", 'pos':'tab', 'reuse':'1'}, b:Comand)
 endfunction
+
+command! -nargs=* RunCOnly call C_RunCode(<f-args>)
 
 function! C_Complie_Make()
-    execute "Compiling ..."
     :!make
-    execute "Compiled!"
 endfunction
 
 function! C_Run_Make( args)
-    execute "Running .."
     :!make run ARGS=$a:args
 endfunction
 function! C_Debug_Make()
-    execute "Debugging .."
     :!make debug
 endfunction
 

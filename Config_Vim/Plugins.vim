@@ -55,5 +55,4 @@ aug i3config_ft_detection
   au!
   au BufNewFile,BufRead ~/.config/i3/config set filetype=i3config
 aug end
-
 let g:copilot_node_command = "~/.nvm/versions/node/v17.9.1/bin/node"

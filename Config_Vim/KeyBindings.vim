@@ -1,6 +1,5 @@
 " Globao configuration keybindings
 "
-let mapleader = "f"
 
 noremap  <leader>n :tabnew <CR>
 
@@ -55,7 +54,7 @@ map <C-Up> 7k
 imap <C-Up> <Esc>7k i
 nnoremap f+ :vertical resize +5<CR>
 nnoremap f- :vertical resize -5<CR>
-
+nnoremap <S-w> :qa<CR>
 "  nmap <F5>         <Plug>VimspectorContinue
 "  nmap <S-F5>       <Plug>VimspectorStop
 "  nmap <C-S-F5>     <Plug>VimspectorRestart
@@ -69,8 +68,13 @@ nnoremap f- :vertical resize -5<CR>
 "  nmap <S-F11>      <Plug>VimspectorStepOut
 "  nmap <M-8>        <Plug>VimspectorDisassemble
 
-nnoremap <leader><F3> :VimspectorReset<CR>
-nnoremap <leader><F2> :call CompileDebug()<CR>
-nnoremap <F2>         :call Run()<CR>
-nnoremap <F7>         :call RunCode()<CR>
-nnoremap <leader>t    :call RunTest()<CR>
+nnoremap <leader>qi :VimspectorReset<CR>
+nnoremap <leader>1 :call CompileDebug()<CR>
+nnoremap <leader>2 :call Run()<CR>
+nnoremap <leader>& :call CompileOnlyCode()<CR>
+nnoremap <leader>7 :call RunOnlyCode()<CR>
+nnoremap <leader>t :call RunTest()<CR>
+
+
+
+

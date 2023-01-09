@@ -159,7 +159,7 @@ function wallpaper_color() {
 }
 
 if [[ $(wallpaper_color) == "dark" ]]; then
-  alias nvim="nvim -c\"colo zellner\" -c\"hi Normal guibg=NONE ctermbg=NONE\""
+  alias nvim="nvim -c\"colo zellner\" -c\"hi Normal guibg=NONE ctermbg=NONE\" -c\":hi LineNr guifg=#010001\" "
 fi
 alias vim=nvim
 alias vi=nvim

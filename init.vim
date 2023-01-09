@@ -5,13 +5,15 @@
 "
 let $OHS = "/home/cesarguzmanlopez/.bash_vim/"
 set runtimepath^=$OHS/Config_Vim
+
+let mapleader = "/"
+
 source $OHS/Config_Vim/Default.vim
 source $OHS/Config_Vim/Plugins.vim
 source $OHS/Config_Vim/Aparience.vim
 source $OHS/Config_Vim/NerdTree.vim
 source $OHS/Config_Vim/FZF.vim
 source $OHS/Config_Vim/Coc.vim
-source $OHS/Config_Vim/Goyo.vim
 source $OHS/Config_Vim/AutoCompletePairs.vim
 
 source $OHS/Config_Vim/Functions_Java.vim
@@ -26,5 +28,5 @@ if exists("g:loaded_vimballPlugin")
 "        so $MYVIMRC
     endfunction
     let g:loaded_vimballPlugin = 1
-    let timerid = timer_start(300, {-> execute("call LoadNVIMAllPlugin()")})
+    call timer_start(100, {-> execute("call LoadNVIMAllPlugin()")})
 endif

@@ -6,6 +6,8 @@ function! CompileOnlyCode()
     endif
     if(&filetype == "java")
         call CompileJavaCode()
+    elseif(&filetype == "c" || &filetype == "cpp")
+        :CompileCOnly  
     else
         echo "Not implemented yet for this filetype"
     endif
@@ -19,6 +21,8 @@ function! RunOnlyCode()
     endif
     if(&filetype == "java")
         call RunJavaCode()
+    elseif(&filetype == "c" || &filetype == "cpp")
+        :RunCOnly
     else
         echo "Not implemented yet for this filetype"
     endif
