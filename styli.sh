@@ -496,10 +496,9 @@ while :; do
         ;;
     -y | --sway)
         SWAY=true
-        shift
         ;;
     -- | '')
-        shift
+        SWAY=true
         break
         ;;
     *)

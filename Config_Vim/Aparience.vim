@@ -23,7 +23,7 @@ if (has('termguicolors') && &background == 'dark')
 
 endif
 
-set fillchars+=vert:\ 
+set display=lastline "Muestra la ultima linea
 hi foldcolumn guibg=bg
 autocmd VimEnter hi foldcolumn guibg=bg
 autocmd VimEnter * hi Normal ctermbg=none
@@ -54,41 +54,6 @@ function! s:gitUntracked()
   let files = systemlist('git ls-files -o --exclude-standard 1>\dev/null')
   return map(files, "{'line': v:val, 'path': v:val}")
 endfunction
-
-
-"let g:airline#extensions#tabline#enabled = 1
-"Confiuracion de goyo 
-let g:goyo_width = '90%'
-let g:goyo_height = '100%'
-
-
-function! s:goyo_enter()
-  if executable('tmux') && strlen($TMUX)
-    silent !tmux set status off
-    silent !tmux list-panes -F '\#F' | grep -q Z || tmux resize-pane -Z
-  endif
-  SignifyDisable
-  IndentLinesDisable
-  set nospell
-  set cmdheight=0
-endfunction
-function! s:goyo_leave()
-  if executable('tmux') && strlen($TMUX)
-    silent !tmux set status on
-    silent !tmux list-panes -F '\#F' | grep -q Z && tmux resize-pane -Z
-  endif
-  SignifyEnable
-  IndentLinesEnable
-  set fcs=eob:\ 
-  set spell
-  set cmdheight=1
-set fillchars+=vert:\ 
-endfunction
-
-autocmd! User GoyoEnter nested call <SID>goyo_enter()
-autocmd! User GoyoLeave nested call <SID>goyo_leave()
-
-
 
 function! BufWidth()
   let width = winwidth(0)

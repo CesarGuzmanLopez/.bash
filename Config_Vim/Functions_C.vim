@@ -14,6 +14,11 @@ function! C_CompileCode(...)
             let b:command = b:command . " " . i
         endfor
     endif
+    "elimino el archivo ejecutable
+    if filereadable(expand("%:r"))
+        call delete(expand("%:r"))
+    endif
+    w | silent !clear
     call asyncrun#run('', {'mode':'terminal', 'pos':'tab'}, b:command)
 endfunction
 

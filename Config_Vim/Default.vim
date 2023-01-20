@@ -10,7 +10,8 @@ set modifiable
 "set fileformat=unix "Formato de archivo
 set foldlevel=1 "Nivel de colapso de las lineas de codigo
 set foldlevelstart=0 "Nivel de colapso de las lineas de codigo 0 es que colapse automaticamente todo
-set foldmethod=syntax "Permite que se puedan colapsar las lineas de codigo
+set foldmethod=manual "Permite que se puedan colapsar las lineas de codigo
+
 set foldnestmax=10 "Nivel de colapso de las lineas de codigo
 set hidden
 set ignorecase "No distingue entre mayusculas y minusculas
@@ -37,10 +38,12 @@ set tabstop=4 "Ancho de tabulacion
 set undodir=~/.vim/undodir
 set undofile "Permite que se pueda desacer en el achivo aun aun cuando se haya cerrado
 set updatetime=200 "Tiempo de espera para que se actualice el archivo
-set nowrap "Permite que el texto se ajuste al tamaño de la pantalla
+set nowrap "Permite que: el texto se ajuste al tamaño de la pantalla
 set wrapmargin=0 "Margen de ajuste de texto
 set fcs=eob:\ 
+set fillchars+=vert:\ ,
 set wrap
+set display=lastline "Muestra la ultima linea
 " enable indentation
 set breakindent
 set linebreak
@@ -57,8 +60,8 @@ set infercase " Smart case when doing keyword completion
 set smartcase " Use case-sensitive search if there is a capital letter
 
 set autoread
-set display+=lastline
 
+set display=lastline
 
   " Consolidate temporary files into a central spot
   if has("patch-8.1.0251")
