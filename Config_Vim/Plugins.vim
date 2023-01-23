@@ -1,8 +1,3 @@
-let g:copilot_no_tab_map = 1
-let g:lastplace_ignore = "gitcommit,gitrebase,svn,hgcommit"
-let g:lastplace_ignore_buftype = "quickfix,nofile,help"
-let g:lastplace_open_folds = 0
-
 function! TSInstalAll(info)
   " info is a dictionary with 3 fields
   " - name:   name of the plugin
@@ -13,16 +8,20 @@ function! TSInstalAll(info)
 endfunction
 
 call plug#begin('~/.vim/plugged')
-    Plug 'Yggdroot/indentLine'
+
+    Plug 'lukas-reineke/indent-blankline.nvim'
     Plug 'akaron/vim-markdown-fold'
     Plug 'chrisbra/NrrwRgn'
     Plug 'christoomey/vim-quicklink'
     Plug 'christoomey/vim-quicklink'
+    let g:copilot_no_tab_map = 1
+    let g:lastplace_ignore = "gitcommit,gitrebase,svn,hgcommit"
+    let g:lastplace_ignore_buftype = "quickfix,nofile,help"
+    let g:lastplace_open_folds = 0
     Plug 'github/copilot.vim'
     Plug 'iberianpig/tig-explorer.vim'
     Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
     Plug 'junegunn/fzf.vim'
-    Plug 'junegunn/limelight.vim'   " spotlight on cursorline
     Plug 'majutsushi/tagbar'
     Plug 'matze/vim-tex-fold'
     Plug 'mikelue/vim-maven-plugin'
@@ -78,9 +77,12 @@ call plug#begin('~/.vim/plugged')
     Plug 'numToStr/Comment.nvim'
     Plug 'nvim-telescope/telescope.nvim'
     Plug 'folke/which-key.nvim'
+    Plug 'lervag/vimtex'	
+	let g:tex_flavor='latex'
+	let g:vimtex_quickfix_mode=0
+	set conceallevel=1
+	let g:tex_conceal='abdmg'
 call plug#end()
-
-
 
 aug i3config_ft_detection
   au!
@@ -88,4 +90,7 @@ aug i3config_ft_detection
 aug end
 let g:copilot_node_command = "~/.nvm/versions/node/v17.9.1/bin/node"
 lua require('impatient')
+
 set foldexpr=nvim_treesitter#foldexpr()
+
+
