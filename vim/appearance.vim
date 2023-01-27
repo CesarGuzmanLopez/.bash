@@ -72,7 +72,7 @@ function! BufWidth()
   endif
   return width - numwidth - foldwidth - signwidth
 endfunction
-hi clear Conceal
+
 let g:startify_lists = [
         \ { 'type': 'dir',       'header': ['   My most recently used files:' . getcwd()] },
         \ { 'type' : 'files',       'header' : ['   My most recently used files:']},

@@ -6,7 +6,7 @@ echo "    _______|@|_________  •  ====================================="
 echo "   --------------------- ˚  || Hostname: "$HOSTNAME"  "
 echo "  ||  POLICE ---- BOX  ||   || User" $USER 
 echo "  -----------------------C  || IP local: " $iplocal
-echo "  |  ______  |  ______  |É  || IP public: " $(curl -s http://ipecho.net/plain)
+echo "  |  ______  |  ______  |É  ||" 
 echo "  |  |####|  |  |####|  |S  || CPU: " $(cat /proc/cpuinfo | grep "model name" | head -1 | cut -d ":" -f2)   
 echo "  |  |####|  |  |####|  |A  || RAM: " $(free -m | awk 'NR==2{printf "%.2f%%\t\t", $3*100/$2 }')
 echo "  |  |####|  |  |####|  |R  || Processes: " $(ps -A | wc -l)

@@ -89,6 +89,13 @@ aug i3config_ft_detection
   au BufNewFile,BufRead ~/.config/i3/config set filetype=i3config
 aug end
 let g:copilot_node_command = "~/.nvm/versions/node/v17.9.1/bin/node"
+let g:copilot_no_tab_map = 1
+let g:lastplace_ignore = "gitcommit,gitrebase,svn,hgcommit"
+let g:lastplace_ignore_buftype = "quickfix,nofile,help"
+let g:lastplace_open_folds = 0
+ 
+
+
 lua require('impatient')
 
 set foldexpr=nvim_treesitter#foldexpr()
