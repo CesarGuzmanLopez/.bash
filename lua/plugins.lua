@@ -4,6 +4,7 @@ vim.cmd [[packadd packer.nvim]]
 return require('packer').startup(function(use)
   -- Packer can manage itself
   use 'wbthomason/packer.nvim'
+  use 'lewis6991/impatient.nvim'
   use { 'junegunn/fzf', run = ":call fzf#install()" }
   use { 'junegunn/fzf.vim' }
   use "lukas-reineke/indent-blankline.nvim"
@@ -13,20 +14,16 @@ return require('packer').startup(function(use)
   use 'github/copilot.vim'
   use 'iberianpig/tig-explorer.vim'
   use 'majutsushi/tagbar'
-  use 'matze/vim-tex-fold'
   use 'mikelue/vim-maven-plugin'
-  use 'nanotech/jellybeans.vim'
   use {'neoclide/coc.nvim', branch = 'release'}
   use 'nvim-tree/nvim-tree.lua'
   use 'puremourning/vimspector'
   use 'https://github.com/CesarGuzmanLopez/true-zen.nvim'
   use 'rbgrouleff/bclose.vim'
   use 'ryanoasis/vim-devicons'
-  use 'sainnhe/gruvbox-material'
   use 'folke/tokyonight.nvim'
   use 'sheerun/vim-polyglot'
   use{"skywind3000/asyncrun.vim"}
-  use 'tmhedberg/SimpylFold'     
   use 'tmsvg/pear-tree'
   use 'tpope/vim-commentary'
   use 'tpope/vim-eunuch'  
@@ -54,33 +51,16 @@ return require('packer').startup(function(use)
   use 'SmiteshP/nvim-navic'
   use 'nvim-tree/nvim-web-devicons'
   use 'mfussenegger/nvim-treehopper'
-  use {
-    'nvim-treesitter/nvim-treesitter',
-    config = function()
-      vim.cmd [[TSInstall all]]
-      vim.cmd [[TSUpdate]]
-    end
-  }
-  use 'lewis6991/impatient.nvim'
   use 'lewis6991/gitsigns.nvim'
   use 'nvim-lua/popup.nvim'
   use 'rafamadriz/friendly-snippets' 
   use 'akinsho/toggleterm.nvim'
-  use {
-   'numToStr/Comment.nvim',
-    config = function()
-    require('Comment').setup()
-    end
-  } 
+  use {'numToStr/Comment.nvim'} 
   use 'nvim-telescope/telescope.nvim'
   use 'folke/which-key.nvim'
   use 'lervag/vimtex'
   use { 'nvim-lualine/lualine.nvim',
       requires = { 'kyazdani42/nvim-web-devicons', opt = true }
   }
-use {
-    "williamboman/mason.nvim",
-    "williamboman/mason-lspconfig.nvim",
-}
-
+  use {'nvim-treesitter/nvim-treesitter', run = ':TSUpdate',config = 'vim.cmd[[TSInstall all]]'  }
 end)

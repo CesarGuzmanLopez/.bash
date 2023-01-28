@@ -7,7 +7,9 @@ keyset("i", "<TAB>", 'coc#pum#visible() ? coc#pum#next(1) : v:lua.check_back_spa
 keyset("i", "<S-TAB>", [[coc#pum#visible() ? coc#pum#prev(1) : "\<C-h>"]], opts)
 keyset("i", "<cr>", [[coc#pum#visible() ? coc#pum#confirm() : "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"]], opts)
 keyset("i", "<c-j>", "<Plug>(coc-snippets-expand-jump)")
-keyset("i", "<c-space>", "coc#refresh()", {silent = true, expr = true})
+
+keyset("i", "<c-space>", 'coc#pum#visible() ? coc#_select_confirm() : coc#expandableOrJumpable() ? "<C-r> = coc#rpc#request(\'doKeymap\',\
+  [\'snippets-expand-jump\',\'\'])<CR>" : v:lua.check_back_space() ? "<TAB>" : coc#refresh()', opts)
 keyset("n", "[g", "<Plug>(coc-diagnostic-prev)", {silent = true})
 keyset("n", "]g", "<Plug>(coc-diagnostic-next)", {silent = true})
 keyset("n", "gd", "<Plug>(coc-definition)", {silent = true})
@@ -52,3 +54,25 @@ keyset("n", "<space>s", ":<C-u>CocList -I symbols<cr>", opts)
 keyset("n", "<space>j", ":<C-u>CocNext<cr>", opts)
 keyset("n", "<space>k", ":<C-u>CocPrev<cr>", opts)
 keyset("n", "<space>p", ":<C-u>CocListResume<cr>", opts)
+
+-- Actions
+
+keyset("n", "<c-x>n", ":silent! TZNarrow<CR>", {})
+keyset("v", "<c-x>n", ":'<,'>TZNarrow<CR>", {})
+keyset("n", "<c-x>f", ":silent! TZFocus<CR>", {})
+keyset("n", "<c-x>o", ":silent! TZAtaraxis<CR>", {})
+
+vim.g.wk.register(mappings, opts)
+--vim.keymap.set('', 'f', function()
+--  hop.hint_char1({ direction = directions.AFTER_CURSOR, current_line_only = true })
+--end, {remap=true})
+--vim.keymap.set('', 'F', function()
+--  hop.hint_char1({ direction = directions.BEFORE_CURSOR, current_line_only = true })
+--end, {remap=true})
+--vim.keymap.set('', 't', function()
+--  hop.hint_char1({ direction = directions.AFTER_CURSOR, current_line_only = true, hint_offset = -1 })
+--end, {remap=true})
+--vim.keymap.set('', 'T', function()
+--  hop.hint_char1({ direction = directions.BEFORE_CURSOR, current_line_only = true, hint_offset = 1 })
+--end, {remap=true})
+--

@@ -1,4 +1,3 @@
-require("mason").setup()
 require("auto-save").setup {}
 require('nvim-lastplace').setup{}
 require("winshift").setup{}
@@ -6,13 +5,11 @@ require('gitsigns').setup()
 require("toggleterm").setup{}
 require('Comment').setup()
 require'hop'.setup { keys = 'etovxqpdygfblzhckisuran' }
+require('Comment').setup()
+
 local hop = require('hop')
 local directions = require('hop.hint').HintDirection
 
-require("mason-lspconfig").setup({
-    ensure_installed = servers,
-    automatic_installation = true
-})
 
 -- examples for your init.lua
 vim.g.copilot_node_command = "~/.nvm/versions/node/v17.9.1/bin/node"
@@ -28,10 +25,7 @@ api.nvim_create_autocmd("TextYankPost", {
     command = "silent! silent! lua vim.highlight.on_yank { higroup='IncSearch', timeout=200 }",
     group = yankGrp,
 })
-vim.api.nvim_create_autocmd("FileType", {
-    pattern = "*",
-    command = "TSInstall all"
-})
+
 -- disable netrw at the very start of your init.lua (strongly advised)
 vim.g.loaded_netrw = 1
 vim.g.loaded_netrwPlugin = 1
@@ -187,9 +181,8 @@ opts = {
 }
 vim.o.timeout = true
 vim.o.timeoutlen = 300
-local wk = require("which-key")
-wk.register(mappings, opts)
-
+vim.g.wk = require("which-key")
+vim.g.ale_linters_ignore = { 'lacheck' }
 --vim.keymap.set('', 'f', function()
 --  hop.hint_char1({ direction = directions.AFTER_CURSOR, current_line_only = true })
 --end, {remap=true})
