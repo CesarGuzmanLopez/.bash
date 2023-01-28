@@ -19,10 +19,11 @@ return require('packer').startup(function(use)
   use {'neoclide/coc.nvim', branch = 'release'}
   use 'nvim-tree/nvim-tree.lua'
   use 'puremourning/vimspector'
-  use 'CesarGuzmanLopez/true-zen.nvim'
+  use 'https://github.com/CesarGuzmanLopez/true-zen.nvim'
   use 'rbgrouleff/bclose.vim'
   use 'ryanoasis/vim-devicons'
   use 'sainnhe/gruvbox-material'
+  use 'folke/tokyonight.nvim'
   use 'sheerun/vim-polyglot'
   use{"skywind3000/asyncrun.vim"}
   use 'tmhedberg/SimpylFold'     
@@ -38,7 +39,6 @@ return require('packer').startup(function(use)
   use 'w0rp/ale'
   use 'mhinz/vim-startify'
   use {'mhinz/vim-signify',  tag= 'legacy' }
-  use 'vim-airline/vim-airline'
   use 'mhinz/vim-janah'
   use 'easymotion/vim-easymotion'
   use 'mboughaba/i3config.vim'
@@ -56,11 +56,13 @@ return require('packer').startup(function(use)
   use 'mfussenegger/nvim-treehopper'
   use {
     'nvim-treesitter/nvim-treesitter',
-    run = ':TSUpdate'
+    config = function()
+      vim.cmd [[TSInstall all]]
+      vim.cmd [[TSUpdate]]
+    end
   }
   use 'lewis6991/impatient.nvim'
   use 'lewis6991/gitsigns.nvim'
-  use 'williamboman/mason.nvim' 
   use 'nvim-lua/popup.nvim'
   use 'rafamadriz/friendly-snippets' 
   use 'akinsho/toggleterm.nvim'
@@ -73,4 +75,12 @@ return require('packer').startup(function(use)
   use 'nvim-telescope/telescope.nvim'
   use 'folke/which-key.nvim'
   use 'lervag/vimtex'
+  use { 'nvim-lualine/lualine.nvim',
+      requires = { 'kyazdani42/nvim-web-devicons', opt = true }
+  }
+use {
+    "williamboman/mason.nvim",
+    "williamboman/mason-lspconfig.nvim",
+}
+
 end)

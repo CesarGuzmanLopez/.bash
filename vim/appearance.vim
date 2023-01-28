@@ -1,46 +1,11 @@
 if has('termguicolors')
     set termguicolors
 endif
-
-"verifico su estamos en un fondo claro u oscuro
-
-if (has('termguicolors') && &background == 'dark')
-    let g:gruvbox_material_background = 'hard'
-    let g:gruvbox_material_transparent_background = 1
-    let g:gruvbox_material_better_performance = 1
-    let g:gruvbox_material_enable_italic = 1
-    colorscheme gruvbox-material
-    hi LineNr guifg=#bdbfbd      
-    hi CursorLineNr guifg=#ffffff
-    hi CursorLine guibg=#3c3836  
-    hi SignColumn guibg=#3c3836  
-    hi CursorLineNr guibg=#3c3836
-  else
-    color zellner
-    hi LineNr guifg=#010001
-    autocmd ColorScheme zellner   hi CursorLine guibg=#ffffff
-    autocmd ColorScheme zellner   hi SignColumn guibg=#ffffff
-
-endif
-
-set display=lastline "Muestra la ultima linea
 hi foldcolumn guibg=bg
 autocmd VimEnter hi foldcolumn guibg=bg
 autocmd VimEnter * hi Normal ctermbg=none
 autocmd VimEnter * hi Normal guibg=none
-set laststatus=3
-
-
-autocmd ColorScheme gruvbox-material   hi LineNr guifg=#bdbfbd
-autocmd ColorScheme gruvbox-material   hi CursorLineNr guifg=#ffffff
-autocmd ColorScheme gruvbox-material   hi CursorLine guibg=#3c3836
-autocmd ColorScheme gruvbox-material   hi SignColumn guibg=#3c3836
-autocmd ColorScheme gruvbox-material   hi CursorLineNr guibg=#3c3836
-
-autocmd ColorScheme zellner   hi LineNr guifg=#010001
-set display=lastline
-
-let g:spaceline_seperate_style = 'none'
+let g:lightline = {'colorscheme': 'tokyonight'}
 " returns all modified files of the current git repo
 " `2>\dev/null` makes the command fail quietly, so that when we are not
 " in a git repo, the list will be empty
@@ -48,7 +13,6 @@ function! s:gitModified()
     let files = systemlist('git ls-files -m 2>\dev/null')
     return map(files, "{'line': v:val, 'path': v:val}")
 endfunction
-
 " same as above, but show untracked files, honouring .gitignore
 function! s:gitUntracked()
   let files = systemlist('git ls-files -o --exclude-standard 1>\dev/null')
@@ -184,7 +148,3 @@ augroup numbertoggle
 augroup END
 "autocmd InsertEnter * :setlocal number
 "autocmd InsertLeave * :setlocal relativenumber
-let g:indentLine_char_list = ['│','|', '¦', '┆', '┊']
-
-let g:indentLine_color_term = 139
-let g:indentLine_defaultGroup = 'SpecialKey'
