@@ -1,4 +1,4 @@
-﻿local keyset = vim.keymap.set
+﻿﻿local keyset = vim.keymap.set
 local opts = { silent = true, noremap = true, expr = true, replace_keycodes = false }
 local opts_silent = { noremap = true, silent = true }
 
