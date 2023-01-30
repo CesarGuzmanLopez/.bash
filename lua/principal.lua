@@ -1,6 +1,11 @@
 require("auto-save").setup {}
 require('nvim-lastplace').setup{}
-require("winshift").setup{}
+
+vim.g.wk = require("which-key")
+
+vim.g.wk.setup{}
+
+
 require('gitsigns').setup()
 require("toggleterm").setup{}
 --require("nvim-surround").setup()
@@ -178,7 +183,6 @@ opts = {
 }
 vim.o.timeout = true
 vim.o.timeoutlen = 300
-vim.g.wk = require("which-key")
 vim.g.ale_linters_ignore = { 'lacheck' }
 --vim.keymap.set('', 'f', function()
 --  hop.hint_char1({ direction = directions.AFTER_CURSOR, current_line_only = true })
