@@ -48,8 +48,9 @@ vim.api.nvim_create_user_command("OR", "call CocActionAsync('runCommand', 'edito
 -- provide custom statusline: lightline.vim, vim-airline
 vim.opt.statusline:prepend("%{coc#status()}%{get(b:,'coc_current_function','')}")
 
-vim.g.coc_global_extensions = {'coc-markdownlint',
--- 'coc-bibtex',
+vim.g.coc_global_extensions = {
+   'coc-markdownlint',
+   'coc-bibtex',
    'coc-calc',
    'coc-clangd',
    'coc-explorer',
@@ -86,6 +87,11 @@ vim.g.coc_global_extensions = {'coc-markdownlint',
    'coc-vetur',
    'coc-vimlsp',          
    'coc-vimtex',
+   'coc-lua',
+   'coc-stylua'           ,
+   '@statiolake/coc-stylua',
+   'coc-sumneko-lua'     ,
+   'coc-nelua',
    'coc-marketplace'
 }
 vim.g.coc_config_home = vim.g.OSH 

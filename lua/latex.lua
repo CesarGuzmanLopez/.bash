@@ -7,4 +7,10 @@ g.vimtex_quickfix_mode=0
 g.tex_conceal='abdmg'
 g.tex_flavor='latex'
 g.vimtex_quickfix_mode=0
+vim.cmd [[
+  silent !inkscape-figures watch
+]]
+vim.cmd [[
+  hi clear Conceal              
+]]
 

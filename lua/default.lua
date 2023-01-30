@@ -1,7 +1,6 @@
 local opt = vim.opt
 local g = vim.g
-
-g.mapleader = '/'
+g.mapleader = ' '
 opt.autoindent = true
 opt.autoread = true
 opt.autoread = true
@@ -28,7 +27,7 @@ opt.lazyredraw = true
 opt.linebreak = true
 opt.list = true
 opt.modifiable = true
-opt.mouse = 'vi'
+opt.mouse = 'vir'
 opt.number = true
 opt.numberwidth = 1
 opt.relativenumber = true

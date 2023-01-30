@@ -1,4 +1,3 @@
-
 -- Only required if you have packer configured as `opt`
 vim.cmd [[packadd packer.nvim]]
 return require('packer').startup(function(use)
@@ -25,14 +24,12 @@ return require('packer').startup(function(use)
   use 'sheerun/vim-polyglot'
   use{"skywind3000/asyncrun.vim"}
   use 'tmsvg/pear-tree'
-  use 'tpope/vim-commentary'
   use 'tpope/vim-eunuch'  
   use 'tpope/vim-fugitive'
   use 'tpope/vim-repeat'
   use 'tpope/vim-rhubarb'
   use 'tpope/vim-sensible'
-  use 'tpope/vim-surround'
-  use 'tpope/vim-unimpaired'
+  use 'nvim-treesitter/nvim-treesitter-textobjects'
   use 'w0rp/ale'
   use 'mhinz/vim-startify'
   use {'mhinz/vim-signify',  tag= 'legacy' }
@@ -63,4 +60,5 @@ return require('packer').startup(function(use)
       requires = { 'kyazdani42/nvim-web-devicons', opt = true }
   }
   use {'nvim-treesitter/nvim-treesitter', run = ':TSUpdate',config = 'vim.cmd[[TSInstall all]]'  }
+  use{"kylechui/nvim-surround"}
 end)

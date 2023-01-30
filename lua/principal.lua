@@ -3,12 +3,9 @@ require('nvim-lastplace').setup{}
 require("winshift").setup{}
 require('gitsigns').setup()
 require("toggleterm").setup{}
-require('Comment').setup()
+--require("nvim-surround").setup()
 require'hop'.setup { keys = 'etovxqpdygfblzhckisuran' }
-require('Comment').setup()
-
 local hop = require('hop')
-local directions = require('hop.hint').HintDirection
 
 
 -- examples for your init.lua
