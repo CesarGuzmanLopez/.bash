@@ -24,7 +24,7 @@ return require('packer').startup(function(use)
   use 'sheerun/vim-polyglot'
   use{"skywind3000/asyncrun.vim"}
   use 'tmsvg/pear-tree'
-  use 'tpope/vim-eunuch'  
+  use 'tpope/vim-eunuch'
   use 'tpope/vim-fugitive'
   use 'tpope/vim-repeat'
   use 'tpope/vim-rhubarb'
@@ -50,9 +50,9 @@ return require('packer').startup(function(use)
   use 'mfussenegger/nvim-treehopper'
   use 'lewis6991/gitsigns.nvim'
   use 'nvim-lua/popup.nvim'
-  use 'rafamadriz/friendly-snippets' 
+  use 'rafamadriz/friendly-snippets'
   use 'akinsho/toggleterm.nvim'
-  use {'numToStr/Comment.nvim'} 
+  use {'numToStr/Comment.nvim'}
   use 'nvim-telescope/telescope.nvim'
   use 'folke/which-key.nvim'
   use 'lervag/vimtex'
@@ -61,5 +61,12 @@ return require('packer').startup(function(use)
   }
   use {'nvim-treesitter/nvim-treesitter', run = ':TSUpdate',config = 'vim.cmd[[TSInstall all]]'  }
   use{"kylechui/nvim-surround"}
-
+  use "scrooloose/syntastic"
+  use "dbeniamine/cheat.sh-vim"
 end)
+
+
+
+
+
+

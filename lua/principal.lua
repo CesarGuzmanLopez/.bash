@@ -7,7 +7,7 @@ require("toggleterm").setup({})
 
 --require("nvim-surround").setup()
 require("hop").setup({ keys = "etovxqpdygfblzhckisuran" })
-local hop = require("hop")
+
 -- examples for your init.lua
 vim.g.copilot_node_command = "~/.nvm/versions/node/v17.9.1/bin/node"
 vim.g.copilot_no_tab_map = 1
@@ -15,7 +15,12 @@ vim.g.lastplace_ignore = "gitcommit,gitrebase,svn,hgcommit"
 vim.g.lastplace_ignore_buftype = "quickfix,nofile,help"
 vim.g.lastplace_open_folds = 0
 --vim.g.CheatSheetDoNotMap=1
+vim.g.ale_linters_ignore = { "lacheck" }
+
+
+--vim.g.CheatSheetDoNotMap=1
 local api = vim.api
+
 -- Highlight on yank
 local yankGrp = api.nvim_create_augroup("YankHighlight", { clear = true })
 api.nvim_create_autocmd("TextYankPost", {
@@ -26,10 +31,11 @@ api.nvim_create_autocmd("TextYankPost", {
 -- disable netrw at the very start of your init.lua (strongly advised)
 vim.g.loaded_netrw = 1
 vim.g.loaded_netrwPlugin = 1
--- set termguicolors to enable highlight groups
 vim.opt.termguicolors = true
+
 -- empty setup using defaults
 -- OR setup with some options
+
 require("nvim-tree").setup({
 	sort_by = "case_sensitive",
 	view = {
@@ -193,7 +199,6 @@ vim.g.nrrw_rgn_nomap_Nr = 1
 
 vim.o.timeout = true
 vim.o.timeoutlen = 300
-vim.g.ale_linters_ignore = { "lacheck" }
 --vim.keymap.set('', 'f', function()
 --  hop.hint_char1({ direction = directions.AFTER_CURSOR, current_line_only = true })
 --end, {remap=true})

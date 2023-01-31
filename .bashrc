@@ -225,6 +225,9 @@ _fzf_comprun() {
   esac
 }
 
+cheat() { curl cheat.sh/"$1" | less; }
+
+
 __get_first_arg() {
   echo "$1"
 }

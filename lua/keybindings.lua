@@ -7,8 +7,59 @@ local temp = {}
 --local hop = require('hop')
 --Go  To
 
+
+
+
 keyset({ "v", "x" }, "<RightMouse>", "y", opts_silent)
 keyset({ "v", "x", "i" }, "<MiddleMouse>", "p", opts_silent)
+
+--control of the functions language
+keyset("n", "<F1>", "", opts)
+
+keyset("n", "<F2>", "", opts)
+keyset("n", "<F3>", "", opts)
+
+keyset("n", "<F4>", "", opts)
+
+keyset("n", "<F5>", "", opts)
+
+keyset("n", "<F6>", "", opts)
+
+keyset("n", "<F7>", "", opts)
+
+keyset("n", "<F8>", "", opts)
+
+keyset("n", "<F9>", "", opts)
+
+keyset("n", "<F10>", "", opts)
+
+keyset("n", "<F11>", "", opts)
+
+keyset("n", "<F12>", "", opts)
+
+
+--personalice tareas
+keyset(
+	"n",
+	"<C-f>i",
+	"<cmd>exec '!inkscape-figures edit \"'.b:vimtex.root.'/figures/\" > /dev/null 2>&1 &'<CR><CR>:redraw!<CR>",
+	opts_silent
+)
+
+keyset(
+	"i",
+	"<C-f>i",
+	"<Esc><cmd> silent exec '.!inkscape-figures create \"'.getline('.').'\" \"'.b:vimtex.root.'/figures/\"'<CR><CR>:w<CR>",
+	opts_silent
+)
+
+temp = {
+	["<C-f>"] = {
+		name = "+Functions_Languages",
+	},
+}
+vim.g.wk.register(temp,{})
+
 
 keyset("n", "gd", "<Plug>(coc-definition)", opts_silent)
 keyset("n", "gt", "<Plug>(coc-type-definition)", opts_silent)
@@ -152,28 +203,6 @@ temp = {
 	},
 }
 
---personalice tareas
-keyset(
-	"n",
-	"<C-f>i",
-	"<cmd>exec '!inkscape-figures edit \"'.b:vimtex.root.'/figures/\" > /dev/null 2>&1 &'<CR><CR>:redraw!<CR>",
-	opts_silent
-)
-
-keyset(
-	"i",
-	"<C-f>i",
-	"<Esc><cmd> silent exec '.!inkscape-figures create \"'.getline('.').'\" \"'.b:vimtex.root.'/figures/\"'<CR><CR>:w<CR>",
-	opts_silent
-)
-
-temp = {
-	["<C-f>"] = {
-		name = "+Functions_Languages",
-	},
-}
-vim.g.wk.register(temp,{})
-
 --navigation of the code
 keyset({ "o", "x" }, "<C-x>s", "<cmd>lua require('tsht').nodes()<CR>", opts_silent)
 keyset({ "n", "i" }, "<C-x>a", "<cmd>lua require('tsht').move({ side = 'start' })<CR>", opts_silent)
@@ -220,7 +249,7 @@ temp = {
 		R = { "<cmd>'<,'>NR<CR>", "Region in a new narrowed window" },
 		V = { "<cmd>NRV<CR>", "Open the narrowed window for the region that was last visually selected" },
 		D = { "<cmd>NUD<CR>", "Open the selected diff in 2 Narrowed windows" },
-		P = { "<cmd>'<,'>NRP<CR><Esc>", "Mark a region" },
+		P = { "<cmd>'<,'>NRP<CR>", "Mark a region" },
 		M = { "<cmd>NRM<CR>", "Multi narrowed window (after :NRP)" },
 		L = { "<cmd>NRL<CR>", "Reselect the last selected region" },
 		s = { "<cmd>lua require('tsht').nodes()<CR>", "Select content function" },
@@ -235,15 +264,7 @@ temp = {
 	},
 }
 vim.g.wk.register(temp,{})
---control of the functions language
-keyset("n", "<leader>1", "CompileDebug()", opts)
-keyset("n", "<leader>2", "Run()", opts)
-keyset("n", "<leader>&", "CompileOnlyCode()", opts)
-keyset("n", "<leader>7", "RunOnlyCode()", opts)
-keyset("n", "<leader>t", "RunTest()", opts)
-
 --window control
-keyset({ "n", "v", "x" }, "<C-s>", "<cmd>update<CR>", opts_silent)
 keyset({ "n", "x" }, "<C-o>", "<cmd>NvimTreeToggle<CR>", opts_silent)
 keyset({ "v", "n", "i", "x" }, "<C-z>", "<Esc>:", opts_silent)
 keyset({ "n", "v", "x", "i" }, "<C-c>", "<cmd>yank<CR>", opts_silent)
@@ -283,6 +304,33 @@ keyset("i", "<C-j>", "<Plug>(coc-snippets-expand-jump)")
 keyset("i", "<C-a>", 'copilot#Accept("<CR>")', opts)
 keyset("i", "<C-s>s", "copilot#Next()", opts)
 keyset("i", "<C-s>c", "copilot#Previous() ", opts)
+
+keyset({"n","i"}, "<C-s>P", "<cmd>cheat#cheat(\"\", getcurpos()[0], getcurpos()[1], 0, 4, '!')<CR>", opts)
+keyset("v", "<C-s>P", "<cmd>cheat#cheat(\"\", -2, -1, 4, 1, '!')<CR>", opts)
+keyset({"n","i"}, "<C-s>R", "<cmd>cheat#cheat(\"\", getcurpos()[0], getcurpos()[1], 0, 1, '!')<CR>", opts)
+keyset("v", "<C-s>R", "<cmd>cheat#cheat(\"\", -2, -1, 2, 1, '!')<CR>", opts)
+keyset({"n","i"}, "<C-s>K", "<cmd>cheat#cheat(\"\", getcurpos()[0], getcurpos()[1], 0, 2, '!')<CR>", opts)
+keyset("v", "<C-s>K", "<cmd>cheat#cheat(\"\", -2, -1, 2, 2, '!')<CR>", opts)
+keyset({"n","i"}, "<C-s>B", "<cmd>cheat#cheat(\"\", getcurpos()[0], getcurpos()[1], 0, 0, '!')<CR>", opts)
+keyset("v", "<C-s>B", "<cmd>cheat#cheat(\"\", -2, -1, 2, 0, '!')<CR>", opts)
+keyset({"n","v"}, "<C-s>L", "<cmd>cheat#session#last()<CR>", opts)
+keyset({"n","v"}, "<C-s>T", "<cmd>cheat#frameworks#autodetect(1)<CR>", opts)
+
+temp = {
+	["<C-s>"] = {
+		name = "copilot cheat",
+		s = { "copilot#Next()", "Copilot Next" },
+		c = { "copilot#Previous()", "Copilot previous" },
+		P = { "<cmd>cheat#cheat(\"\", getcurpos()[0], getcurpos()[1], 0, 4, '!')<CR>", "Paste Doc" },
+		R = { "<cmd>cheat#cheat(\"\", getcurpos()[0], getcurpos()[1], 0, 1, '!')<CR>", "Replace Text in line" },
+		K = { "<cmd>cheat#cheat(\"\", getcurpos()[0], getcurpos()[1], 0, 2, '!')<CR>", "Open in new Pager" },
+		B = { "<cmd>cheat#cheat(\"\", getcurpos()[0], getcurpos()[1], 0, 0, '!')<CR>", "New Buffer" },
+		L = { "<cmd>cheat#session#last()<CR>", "Last Answer" },
+		A = { "<cmd>cheat#frameworks#autodetect(1)<CR>", "Autodetect" },
+	},
+}
+
+vim.g.wk.register(temp, {})
 
 keyset(
 	"i",
