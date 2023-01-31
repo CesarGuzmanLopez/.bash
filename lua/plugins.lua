@@ -61,4 +61,5 @@ return require('packer').startup(function(use)
   }
   use {'nvim-treesitter/nvim-treesitter', run = ':TSUpdate',config = 'vim.cmd[[TSInstall all]]'  }
   use{"kylechui/nvim-surround"}
+
 end)

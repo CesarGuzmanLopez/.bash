@@ -7,8 +7,8 @@ local temp = {}
 --local hop = require('hop')
 --Go  To
 
-keyset({ "n", "v", "x", "i" }, "<RightMouse>", "", opts_silent)
-keyset({ "n", "v", "x", "i" }, "<RightMouse>", "", opts_silent)
+keyset({ "v", "x" }, "<RightMouse>", "y", opts_silent)
+keyset({ "v", "x", "i" }, "<MiddleMouse>", "p", opts_silent)
 
 keyset("n", "gd", "<Plug>(coc-definition)", opts_silent)
 keyset("n", "gt", "<Plug>(coc-type-definition)", opts_silent)
@@ -89,12 +89,10 @@ temp = {
 			b = { "<cmd>Buffers<CR>", "Buffers" },
 			n = { "<cmd>bnext<CR>", "Next Buffer" },
 			p = { "<cmd>bprevious<CR>", "Previous Buffer" },
-			d = { "<cmd>bdelete<CR>", "Delete Buffer" },
 		},
 	},
 }
 vim.g.wk.register(temp,{})
-
 
 keyset("n", "\\z", "<cmd>FZF<CR>", opts_silent)
 keyset("n", "\\h", "<cmd>History<CR>", opts_silent)
@@ -131,7 +129,6 @@ temp = {
 }
 vim.g.wk.register(temp,{})
 
-
 keyset("n", "/d", "<cmd><C-u>CocList diagnostics<cr>", opts_silent)
 keyset("n", "/e", "<cmd><C-u>CocList extensions<cr>", opts_silent)
 keyset("n", "/c", "<cmd><C-u>CocList commands<cr>", opts_silent)
@@ -166,7 +163,7 @@ keyset(
 keyset(
 	"i",
 	"<C-f>i",
-	"<Esc>: silent exec '.!inkscape-figures create \"'.getline('.').'\" \"'.b:vimtex.root.'/figures/\"'<CR><CR>:w<CR>",
+	"<Esc><cmd> silent exec '.!inkscape-figures create \"'.getline('.').'\" \"'.b:vimtex.root.'/figures/\"'<CR><CR>:w<CR>",
 	opts_silent
 )
 
@@ -188,25 +185,53 @@ keyset({ "n", "i", "x" }, "<C-x>b", "<cmd>HopChar2<CR>", opts_silent)
 keyset({ "n", "i", "x" }, "<C-x>A", "<cmd>HopAnywhere<CR>", opts_silent)
 keyset({ "n", "i", "x" }, "<C-x>h", "<cmd>HopCurrentLine<CR>", opts_silent)
 keyset({ "n", "i", "x" }, "<C-x>p", "<cmd>HopPattern<CR>", opts_silent)
-keyset("n", "<C-x>n", ":silent! TZNarrow<CR>", opts_silent)
-keyset("v", "<C-x>n", ":'<,'>TZNarrow<CR>", opts_silent)
-keyset("n", "<C-x>f", ":silent! TZFocus<CR>", opts_silent)
-keyset("n", "<C-x>o", ":silent! TZAtaraxis<CR>", opts_silent)
+
+--:NR  - Open the selected region in a new narrowed window
+--:NW  - Open the current visual window in a new narrowed window
+--:WR  - (In the narrowed window) write the changes back to the original buffer.
+--:NRV - Open the narrowed window for the region that was last visually selected.
+--:NUD - (In a unified diff) open the selected diff in 2 Narrowed windows
+--:NRP - Mark a region for a Multi narrowed window
+--:NRM - Create a new Multi narrowed window (after :NRP) - experimental!
+--:NRS - Enable Syncing the buffer content back (default on)
+--:NRN - Disable Syncing the buffer content back
+--:NRL - Reselect the last selected region and open it again in a narrowed window
+
+
+
+keyset("n", "<C-x>n", "<cmd>silent! TZNarrow<CR>", opts_silent)
+keyset("v", "<C-x>n", "<cmd>'<,'>TZNarrow<CR>", opts_silent)
+keyset("n", "<C-x>f", "<cmd>silent! TZFocus<CR>", opts_silent)
+keyset("n", "<C-x>o", "<cmd>silent! TZAtaraxis<CR>", opts_silent)
+
+keyset({"n","x","v"}, "<C-x>R", "<cmd>'<,'>NR<CR>", opts_silent)
+keyset({"n","x","v"}, "<C-x>V", "<cmd>NRV<CR>", opts_silent)
+keyset({"n","x","v"}, "<C-x>D", "<cmd>NUD<CR>", opts_silent)
+keyset({"n","x","v"}, "<C-x>P", "<cmd>'<,'>NRP<CR>", opts_silent)
+keyset({"n","x","v"}, "<C-x>M", "<cmd>NRM<CR>", opts_silent)
+keyset({"n","x","v"}, "<C-x>L", "<cmd>NRL<CR>", opts_silent)
 
 temp = {
 	["<C-x>"] = {
 		name = "navigation of the code and Show",
-		a = { "<cmd>lua require('tsht').nodes()<CR>", "move index function" },
-		w = { "<cmd>lua require('tsht').move({ side = 'start' })<CR>", "Move word" },
-		v = { "<cmd>HopVertical<CR>", "Hop Vertical" },
-		c = { "<cmd>HopChar1<CR>", "Hop Char1" },
-		b = { "<cmd>HopChar2<CR>", "Hop Char2" },
-		A = { "<cmd>HopAnywhere<CR>", "Hop Anywhere" },
-		h = { "<cmd>HopCurrentLine<CR>", "Hop Current Line" },
-		p = { "<cmd>HopPattern<CR>", "Hop Pattern" },
-		n = { ":silent! TZNarrow<CR>", "Zen Mode" },
-		f = { ":silent! TZFocus<CR>", "Zen focus Mode" },
-		o = { ":silent! TZAtaraxis<CR>", "Zen Ataraxis Mode" },
+		n = { "<cmd>silent! TZNarrow<CR>", "Zen Mode" },
+		f = { "<cmd>silent! TZFocus<CR>", "Zen focus Mode" },
+		o = { "<cmd>silent! TZAtaraxis<CR>", "Zen Ataraxis Mode" },
+		R = { "<cmd>'<,'>NR<CR>", "Region in a new narrowed window" },
+		V = { "<cmd>NRV<CR>", "Open the narrowed window for the region that was last visually selected" },
+		D = { "<cmd>NUD<CR>", "Open the selected diff in 2 Narrowed windows" },
+		P = { "<cmd>'<,'>NRP<CR><Esc>", "Mark a region" },
+		M = { "<cmd>NRM<CR>", "Multi narrowed window (after :NRP)" },
+		L = { "<cmd>NRL<CR>", "Reselect the last selected region" },
+		s = { "<cmd>lua require('tsht').nodes()<CR>", "Select content function" },
+		a = { "<cmd>lua require('tsht').move({ side = 'start' })<CR>", "Select all function" },
+		w = { "<cmd>HopWord<CR>", "HopWord" },
+		v = { "<cmd>HopVertical<CR>", "HopVertical" },
+		c = { "<cmd>HopChar1<CR>", "HopChar1" },
+		b = { "<cmd>HopChar2<CR>", "HopChar2" },
+		A = { "<cmd>HopAnywhere<CR>", "HopAnywhere" },
+		h = { "<cmd>HopCurrentLine<CR>", "HopCurrentLine" },
+		p = { "<cmd>HopPattern<CR>", "HopPattern" },
 	},
 }
 vim.g.wk.register(temp,{})
@@ -226,12 +251,13 @@ keyset({ "n", "v", "x", "i" }, "<C-c>", "<cmd>yank<CR>", opts_silent)
 keyset({"n","t"}, "<C-w>m", "<Cmd>WinShift<CR>", opts_silent)
 keyset({"n","t"}, "<C-w><C-Left>", "<Cmd>vertical resize -5<CR>", opts_silent)
 keyset({"n","t"}, "<C-w><C-Right>", "<Cmd>vertical resize +5<CR>", opts_silent)
-keyset({"n","t"}, "<C-w><C-Up>", "<Cmd>resize -5<CR>", opts_silent)
-keyset({"n","t"}, "<C-w><C-Down>", "<Cmd>resize +5<CR>", opts_silent)
+keyset({"n","t"}, "<C-w><C-Up>", "<Cmd>resize -3<CR>", opts_silent)
+keyset({"n","t"}, "<C-w><C-Down>", "<Cmd>resize +3<CR>", opts_silent)
 
 keyset({ "n", "v", "i" }, "<C-q>q", "<cmd>q<CR>", opts_silent)
 keyset({ "n", "v", "i" }, "<C-q>a", "<cmd>qa<CR>", opts_silent)
 keyset({ "n", "v", "i" }, "<C-q>v", "<cmd>VimspectorReset<CR>", opts_silent)
+
 temp = {
 	["<C-q>"] = {
 		name = "Close windows",
@@ -240,6 +266,7 @@ temp = {
 		v = { "<cmd>VimspectorReset<CR>", "close Vimspector Reset" },
 	}  ,
 }
+
 vim.g.wk.register(temp, {})
 
 keyset({ "n", "v" }, "<C-Down>", 'coc#float#has_scroll() ? coc#float#scroll(1) : "<C-Down>"', opts)
@@ -256,13 +283,16 @@ keyset("i", "<C-j>", "<Plug>(coc-snippets-expand-jump)")
 keyset("i", "<C-a>", 'copilot#Accept("<CR>")', opts)
 keyset("i", "<C-s>s", "copilot#Next()", opts)
 keyset("i", "<C-s>c", "copilot#Previous() ", opts)
+
 keyset(
 	"i",
 	"<C-Space>",
-	"coc#pum#visible() ? coc#r_select_confirm() : coc#expandableOrJumpable() ? \"<C-r> = coc#rpc#request('doKeymap',\
-  ['snippets-expand-jump',''])<CR>\" : v:lua.check_back_space() ? \"<c-\\>\" : coc#refresh()",
-	opts
+	"coc#pum#visible() ? coc#_select_confirm(): coc#expandableOrJumpable()?"..
+	" \"<C-r>= coc#rpc#request('doKeymap',['snippets-expand-jump',''])<CR>\" "..
+	": v:lua.check_back_space() ? \"<c-\\>\" : coc#refresh()", opts
 )
+
 keyset({"n","o","i","v"}, "<C-t>", "<Cmd>ToggleTerm<CR>", opts_silent)
 keyset({"t"}, "<C-t>", "<C-\\><C-n><Cmd>ToggleTerm<CR>", opts_silent)
+
 

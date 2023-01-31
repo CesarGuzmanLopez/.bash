@@ -27,7 +27,7 @@ opt.lazyredraw = true
 opt.linebreak = true
 opt.list = true
 opt.modifiable = true
-opt.mouse = 'vir'
+opt.mouse = 'virc'
 opt.number = true
 opt.numberwidth = 1
 opt.relativenumber = true
@@ -46,3 +46,4 @@ opt.updatetime = 300
 opt.wrap = false
 opt.writebackup = false
 opt.conceallevel = 1
+

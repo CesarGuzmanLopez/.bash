@@ -92,6 +92,9 @@ vim.g.coc_global_extensions = {
    '@statiolake/coc-stylua',
    'coc-sumneko-lua'     ,
    'coc-nelua',
-   'coc-marketplace'
+   'coc-marketplace',
+   'coc-tabnine'
+   
 }
+
 vim.g.coc_config_home = vim.g.OSH 
