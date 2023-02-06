@@ -1,5 +1,21 @@
 
 local M = {}
+M.f0 = function() end
+M.f1 = function() end
+M.f2 = function() 
+	print("f2")
+end
+M.f3 = function() end
+M.f4 = function() end
+M.f5 = function() end
+M.f6 = function() end
+M.f7 = function() end
+M.f8 = function() end
+M.f9 = function() end
+
+
+
+
 M.__index = M
 setmetatable(M, {
 	__call = function(cls, ...)

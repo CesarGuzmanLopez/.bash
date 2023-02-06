@@ -10,7 +10,6 @@ local temp = {}
 --local directions = require('hop.hint').HintDirection
 --local hop = require('hop')
 --Go  To
-
 keyset({ "v", "x" }, "<RightMouse>", "y", opts_silent)
 keyset({ "v", "x", "i" }, "<MiddleMouse>", "p", opts_silent)
 
@@ -42,12 +41,26 @@ keyset(
 	opts_silent
 )
 
+keyset(
+	"n",
+	"<C-p>2",
+	k	
+	,
+	opts_silent
+)
+
 temp = {
 	["<C-p>"] = {
 		name = "+Functions_Languages",
 	},
 }
+
 vim.g.wk.register(temp,{})
+
+
+
+
+
 --git mappings
 keyset("n", "<C-G>c", "<cmd>LazyGitCurrentFile<cr>", opts_silent)
 keyset("n", "<C-G>l", "<cmd>LazyGit<cr>", opts_silent)
