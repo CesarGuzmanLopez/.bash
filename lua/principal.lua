@@ -4,18 +4,19 @@ vim.g.wk = require("which-key")
 vim.g.wk.setup({})
 require("gitsigns").setup()
 require("toggleterm").setup({})
-
+require('Comment').setup()
 --require("nvim-surround").setup()
 require("hop").setup({ keys = "etovxqpdygfblzhckisuran" })
-
+local navic = require("nvim-navic")
 -- examples for your init.lua
 vim.g.copilot_node_command = "~/.nvm/versions/node/v17.9.1/bin/node"
 vim.g.copilot_no_tab_map = 1
 vim.g.lastplace_ignore = "gitcommit,gitrebase,svn,hgcommit"
 vim.g.lastplace_ignore_buftype = "quickfix,nofile,help"
 vim.g.lastplace_open_folds = 0
---vim.g.CheatSheetDoNotMap=1
+vim.g.CheatSheetDoNotMap=1
 vim.g.ale_linters_ignore = { "lacheck" }
+
 
 
 --vim.g.CheatSheetDoNotMap=1
@@ -199,16 +200,7 @@ vim.g.nrrw_rgn_nomap_Nr = 1
 
 vim.o.timeout = true
 vim.o.timeoutlen = 300
---vim.keymap.set('', 'f', function()
---  hop.hint_char1({ direction = directions.AFTER_CURSOR, current_line_only = true })
---end, {remap=true})
---vim.keymap.set('', 'F', function()
---  hop.hint_char1({ direction = directions.BEFORE_CURSOR, current_line_only = true })
---end, {remap=true})
---vim.keymap.set('', 't', function()
---  hop.hint_char1({ direction = directions.AFTER_CURSOR, current_line_only = true, hint_offset = -1 })
---end, {remap=true})
---vim.keymap.set('', 'T', function()
---  hop.hint_char1({ direction = directions.BEFORE_CURSOR, current_line_only = true, hint_offset = 1 })
---end, {remap=true})
---
+
+vim.g.translator_window_type = 'popup'
+vim.g.translator_target_lang = 'es'
+

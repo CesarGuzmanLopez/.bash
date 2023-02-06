@@ -11,6 +11,7 @@ vim.cmd [[
   silent !inkscape-figures watch
 ]]
 vim.cmd [[
-  hi clear Conceal              
+  hi clear Conceal 
+  autocmd BufRead,BufNewFile *.tex highlight clear Conceal
 ]]
 

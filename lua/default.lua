@@ -1,8 +1,6 @@
 local opt = vim.opt
-local g = vim.g
-g.mapleader = ' '
+vim.g.mapleader = ' '
 opt.autoindent = true
-opt.autoread = true
 opt.autoread = true
 opt.backup = false
 opt.backupdir = vim.fn.stdpath('config') .. '/backupdir'
@@ -46,4 +44,3 @@ opt.updatetime = 300
 opt.wrap = false
 opt.writebackup = false
 opt.conceallevel = 1
-

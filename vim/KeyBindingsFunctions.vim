@@ -13,6 +13,8 @@ function! CompileOnlyCode()
     endif
 endfunction
 
+"waht is <SNR> ?
+
 function! RunOnlyCode()
     if !exists("g:loaded_run_code") || !g:loaded_run_code
         let g:loaded_run_code = 1
@@ -67,7 +69,7 @@ function! CompileToTest()
     endif
 endfunction
 
-function RunTest()
+function! RunTest()
     if !exists("g:loaded_run_test") || !g:loaded_run_test
         let g:loaded_run_test = 1
     else

@@ -2,63 +2,69 @@
 local opts = { silent = true, noremap = true, expr = true, replace_keycodes = false }
 local opts_silent = { noremap = true, silent = true }
 
+
+local KF = require('functionsKeyBindings') 
+KF = KF:new()
+
 local temp = {}
 --local directions = require('hop.hint').HintDirection
 --local hop = require('hop')
 --Go  To
 
-
-
-
 keyset({ "v", "x" }, "<RightMouse>", "y", opts_silent)
 keyset({ "v", "x", "i" }, "<MiddleMouse>", "p", opts_silent)
 
+
 --control of the functions language
-keyset("n", "<F1>", "", opts)
+keyset({"n","i","v","x","t"}, "<F2>" , "", opts)
+keyset({"n","i","v","x","t"}, "<F3>" , "", opts)
+keyset({"n","i","v","x","t"}, "<F4>" , "", opts)
+keyset({"n","i","v","x","t"}, "<F5>" , "", opts)
+keyset({"n","i","v","x","t"}, "<F6>" , "", opts)
+keyset({"n","i","v","x","t"}, "<F7>" , "", opts)
+keyset({"n","i","v","x","t"}, "<F8>" , "", opts)
+keyset({"n","i","v","x","t"}, "<F9>" , "", opts)
+keyset({"n","i","v","x","t"}, "<F10>", "", opts)
+keyset({"n","i","v","x","t"}, "<F11>", "", opts)
+keyset({"n","i","v","x","t"}, "<F12>", "", opts)
 
-keyset("n", "<F2>", "", opts)
-keyset("n", "<F3>", "", opts)
-
-keyset("n", "<F4>", "", opts)
-
-keyset("n", "<F5>", "", opts)
-
-keyset("n", "<F6>", "", opts)
-
-keyset("n", "<F7>", "", opts)
-
-keyset("n", "<F8>", "", opts)
-
-keyset("n", "<F9>", "", opts)
-
-keyset("n", "<F10>", "", opts)
-
-keyset("n", "<F11>", "", opts)
-
-keyset("n", "<F12>", "", opts)
-
-
---personalice tareas
 keyset(
-	"n",
-	"<C-f>i",
-	"<cmd>exec '!inkscape-figures edit \"'.b:vimtex.root.'/figures/\" > /dev/null 2>&1 &'<CR><CR>:redraw!<CR>",
+"n",
+	"<C-o>1",
+	"<cmd>exec '!inkscape-figures edit \"'.b:vimtex.root.'/figures/\" > /dev/null 3>&1 &'<CR><CR>:redraw!<CR>",
 	opts_silent
 )
 
 keyset(
 	"i",
-	"<C-f>i",
+	"<C-o>1",
 	"<Esc><cmd> silent exec '.!inkscape-figures create \"'.getline('.').'\" \"'.b:vimtex.root.'/figures/\"'<CR><CR>:w<CR>",
 	opts_silent
 )
 
 temp = {
-	["<C-f>"] = {
+	["<C-o>"] = {
 		name = "+Functions_Languages",
 	},
 }
 vim.g.wk.register(temp,{})
+--git mappings
+keyset("n", "<C-G>c", "<cmd>LazyGitCurrentFile<cr>", opts_silent)
+keyset("n", "<C-G>l", "<cmd>LazyGit<cr>", opts_silent)
+keyset("n", "<C-G>g", ":Git", opts_silent)
+keyset("n", "<C-G>d", ":Gdiffsplit<CR>", opts_silent)
+keyset("n", "<C-G>h", ":Gdiffsplit", opts_silent)
+temp = {
+	["<C-G>"] = {
+		name = "+Git",
+		c = { "<cmd>LazyGitCurrentFile<cr>", "Git Current File" },
+		l = { "<cmd>LazyGit<cr>", "Git" },
+		g = { ":Git", "Git" },
+		d = { ":Gdiffsplit<CR>", "Git Diff" },
+		h = { ":Gdiffsplit", "Git Diff hilo" },
+	},
+}
+
 
 
 keyset("n", "gd", "<Plug>(coc-definition)", opts_silent)
@@ -80,6 +86,7 @@ temp = {
 }
 
 vim.g.wk.register(temp,{})
+
 keyset({ "x", "o" }, "cfi", "<Plug>(coc-funcobj-i)", opts_silent)
 keyset({ "x", "o" }, "cfa", "<Plug>(coc-funcobj-a)", opts_silent)
 keyset({ "x", "o" }, "cci", "<Plug>(coc-classobj-i)", opts_silent)
@@ -180,28 +187,31 @@ temp = {
 }
 vim.g.wk.register(temp,{})
 
-keyset("n", "/d", "<cmd><C-u>CocList diagnostics<cr>", opts_silent)
-keyset("n", "/e", "<cmd><C-u>CocList extensions<cr>", opts_silent)
-keyset("n", "/c", "<cmd><C-u>CocList commands<cr>", opts_silent)
-keyset("n", "/o", "<cmd><C-u>CocList outline<cr>", opts_silent)
-keyset("n", "/s", "<cmd><C-u>CocList -I symbols<cr>", opts_silent)
-keyset("n", "/n", "<cmd><C-u>CocNext<cr>", opts_silent)
-keyset("n", "/p", "<cmd><C-u>CocPrev<cr>", opts_silent)
-keyset("n", "/r", "<cmd><C-u>CocListResume<cr>", opts_silent)
+keyset("n", "/d", "<cmd>CocList diagnostics<cr>", opts_silent)
+keyset("n", "/e", "<cmd>CocList extensions<cr>", opts_silent)
+keyset("n", "/c", "<cmd>CocList commands<cr>", opts_silent)
+keyset("n", "/o", "<cmd>CocList outline<cr>", opts_silent)
+keyset("n", "/s", "<cmd>CocList -I symbols<cr>", opts_silent)
+keyset("n", "/n", "<cmd>CocNext<cr>", opts_silent)
+keyset("n", "/p", "<cmd>CocPrev<cr>", opts_silent)
+keyset("n", "/r", "<cmd>CocListResume<cr>", opts_silent)
 
+keyset("n", "/i", ":ASToggle<CR>", {})
 temp = {
 	["/"] = {
 		name = "+Coc",
-		d = { "<cmd><C-u>CocList diagnostics<cr>", "Diagnostics" },
-		e = { "<cmd><C-u>CocList extensions<cr>", "Extensions" },
-		c = { "<cmd><C-u>CocList commands<cr>", "Commands" },
-		o = { "<cmd><C-u>CocList outline<cr>", "Outline" },
-		s = { "<cmd><C-u>CocList -I symbols<cr>", "Symbols" },
-		n = { "<cmd><C-u>CocNext<cr>", "Next" },
-		p = { "<cmd><C-u>CocPrev<cr>", "Prev" },
-		r = { "<cmd><C-u>CocListResume<cr>", "Resume" },
+		d = { "<cmd>CocList diagnostics<cr>", "Diagnostics" },
+		e = { "<cmd>CocList extensions<cr>", "Extensions" },
+		c = { "<cmd>CocList commands<cr>", "Commands" },
+		o = { "<cmd>CocList outline<cr>", "Outline" },
+		s = { "<cmd>CocList -I symbols<cr>", "Symbols" },
+		n = { "<cmd>CocNext<cr>", "Next" },
+		p = { "<cmd>CocPrev<cr>", "Prev" },
+		r = { "<cmd>CocListResume<cr>", "Resume" },
+		i = { ":ASToggle<CR>", "Toggle autosave" },
 	},
 }
+vim.g.wk.register(temp,{})
 
 --navigation of the code
 keyset({ "o", "x" }, "<C-x>s", "<cmd>lua require('tsht').nodes()<CR>", opts_silent)
@@ -265,7 +275,7 @@ temp = {
 }
 vim.g.wk.register(temp,{})
 --window control
-keyset({ "n", "x" }, "<C-o>", "<cmd>NvimTreeToggle<CR>", opts_silent)
+keyset({ "n", "x" }, "<C-f>", "<cmd>NvimTreeToggle<CR>", opts_silent)
 keyset({ "v", "n", "i", "x" }, "<C-z>", "<Esc>:", opts_silent)
 keyset({ "n", "v", "x", "i" }, "<C-c>", "<cmd>yank<CR>", opts_silent)
 
@@ -305,33 +315,21 @@ keyset("i", "<C-a>", 'copilot#Accept("<CR>")', opts)
 keyset("i", "<C-s>s", "copilot#Next()", opts)
 keyset("i", "<C-s>c", "copilot#Previous() ", opts)
 
-keyset({"n","i"}, "<C-s>P", "<cmd>cheat#cheat(\"\", getcurpos()[0], getcurpos()[1], 0, 4, '!')<CR>", opts)
-keyset("v", "<C-s>P", "<cmd>cheat#cheat(\"\", -2, -1, 4, 1, '!')<CR>", opts)
-keyset({"n","i"}, "<C-s>R", "<cmd>cheat#cheat(\"\", getcurpos()[0], getcurpos()[1], 0, 1, '!')<CR>", opts)
-keyset("v", "<C-s>R", "<cmd>cheat#cheat(\"\", -2, -1, 2, 1, '!')<CR>", opts)
-keyset({"n","i"}, "<C-s>K", "<cmd>cheat#cheat(\"\", getcurpos()[0], getcurpos()[1], 0, 2, '!')<CR>", opts)
-keyset("v", "<C-s>K", "<cmd>cheat#cheat(\"\", -2, -1, 2, 2, '!')<CR>", opts)
-keyset({"n","i"}, "<C-s>B", "<cmd>cheat#cheat(\"\", getcurpos()[0], getcurpos()[1], 0, 0, '!')<CR>", opts)
-keyset("v", "<C-s>B", "<cmd>cheat#cheat(\"\", -2, -1, 2, 0, '!')<CR>", opts)
-keyset({"n","v"}, "<C-s>L", "<cmd>cheat#session#last()<CR>", opts)
-keyset({"n","v"}, "<C-s>T", "<cmd>cheat#frameworks#autodetect(1)<CR>", opts)
+keyset("v", "<C-s>B", ": call cheat#cheat(\"\", -1, -1, 2, 0, '!')<CR>", opts_silent)
+keyset("n", "<C-s>S", ": call cheat#frameworks#autodetect(0) <CR>", opts_silent)
 
 temp = {
 	["<C-s>"] = {
 		name = "copilot cheat",
 		s = { "copilot#Next()", "Copilot Next" },
 		c = { "copilot#Previous()", "Copilot previous" },
-		P = { "<cmd>cheat#cheat(\"\", getcurpos()[0], getcurpos()[1], 0, 4, '!')<CR>", "Paste Doc" },
-		R = { "<cmd>cheat#cheat(\"\", getcurpos()[0], getcurpos()[1], 0, 1, '!')<CR>", "Replace Text in line" },
-		K = { "<cmd>cheat#cheat(\"\", getcurpos()[0], getcurpos()[1], 0, 2, '!')<CR>", "Open in new Pager" },
-		B = { "<cmd>cheat#cheat(\"\", getcurpos()[0], getcurpos()[1], 0, 0, '!')<CR>", "New Buffer" },
-		L = { "<cmd>cheat#session#last()<CR>", "Last Answer" },
-		A = { "<cmd>cheat#frameworks#autodetect(1)<CR>", "Autodetect" },
+		a = { "copilot#Accept('<CR>')", "Copilot Accept" },
+		M = { ":Cheat ", "get Manual : " },
 	},
 }
 
-vim.g.wk.register(temp, {})
 
+vim.g.wk.register(temp, {})
 keyset(
 	"i",
 	"<C-Space>",
@@ -342,5 +340,21 @@ keyset(
 
 keyset({"n","o","i","v"}, "<C-t>", "<Cmd>ToggleTerm<CR>", opts_silent)
 keyset({"t"}, "<C-t>", "<C-\\><C-n><Cmd>ToggleTerm<CR>", opts_silent)
+keyset({"n","o","i","v"}, "<C-O>", "<cmd>Tagbar<CR>", opts_silent)
+
+--vim.keymap.set('', 'f', function()
+--  hop.hint_char1({ direction = directions.AFTER_CURSOR, current_line_only = true })
+--end, {remap=true})
+--vim.keymap.set('', 'F', function()
+--  hop.hint_char1({ direction = directions.BEFORE_CURSOR, current_line_only = true })
+--end, {remap=true})
+--vim.keymap.set('', 't', function()
+--  hop.hint_char1({ direction = directions.AFTER_CURSOR, current_line_only = true, hint_offset = -1 })
+--end, {remap=true})
+--vim.keymap.set('', 'T', function()
+--  hop.hint_char1({ direction = directions.BEFORE_CURSOR, current_line_only = true, hint_offset = 1 })
+--end, {remap=true})
+
+
 
 
