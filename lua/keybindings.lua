@@ -30,20 +30,20 @@ keyset({"n","i","v","x","t"}, "<F12>", "", opts)
 
 keyset(
 "n",
-	"<C-j>1",
+	"<C-p>1",
 	"<cmd>exec '!inkscape-figures edit \"'.b:vimtex.root.'/figures/\" > /dev/null 3>&1 &'<CR><CR>:redraw!<CR>",
 	opts_silent
 )
 
 keyset(
 	"i",
-	"<C-j>1",
+	"<C-p>1",
 	"<Esc><cmd> silent exec '.!inkscape-figures create \"'.getline('.').'\" \"'.b:vimtex.root.'/figures/\"'<CR><CR>:w<CR>",
 	opts_silent
 )
 
 temp = {
-	["<C-j>"] = {
+	["<C-p>"] = {
 		name = "+Functions_Languages",
 	},
 }
