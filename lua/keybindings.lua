@@ -4,7 +4,6 @@ local opts_silent = { noremap = true, silent = true }
 
 
 local KF = require('functionsKeyBindings') 
-KF = KF:new()
 
 local temp = {}
 --local directions = require('hop.hint').HintDirection
@@ -15,28 +14,28 @@ keyset({ "v", "x", "i" }, "<MiddleMouse>", "p", opts_silent)
 
 
 --control of the functions language
-keyset({"n","i","v","x","t"}, "<F2>" , "", opts)
-keyset({"n","i","v","x","t"}, "<F3>" , "", opts)
-keyset({"n","i","v","x","t"}, "<F4>" , "", opts)
-keyset({"n","i","v","x","t"}, "<F5>" , "", opts)
-keyset({"n","i","v","x","t"}, "<F6>" , "", opts)
-keyset({"n","i","v","x","t"}, "<F7>" , "", opts)
-keyset({"n","i","v","x","t"}, "<F8>" , "", opts)
-keyset({"n","i","v","x","t"}, "<F9>" , "", opts)
-keyset({"n","i","v","x","t"}, "<F10>", "", opts)
-keyset({"n","i","v","x","t"}, "<F11>", "", opts)
-keyset({"n","i","v","x","t"}, "<F12>", "", opts)
-
-keyset({"n","i","v","x","t"}, "<C-p>1",KF.A1 ,opts)
-keyset({"n","i","v","x","t"}, "<C-p>2",KF.A2 ,opts)
-keyset({"n","i","v","x","t"}, "<C-p>3",KF.A3 ,opts)
-keyset({"n","i","v","x","t"}, "<C-p>4",KF.A4 ,opts)
-keyset({"n","i","v","x","t"}, "<C-p>5",KF.A5 ,opts)
-keyset({"n","i","v","x","t"}, "<C-p>6",KF.A6 ,opts)
-keyset({"n","i","v","x","t"}, "<C-p>7",KF.A7 ,opts)
-keyset({"n","i","v","x","t"}, "<C-p>8",KF.A8 ,opts)
-keyset({"n","i","v","x","t"}, "<C-p>9",KF.A9 ,opts)
-keyset({"n","i","v","x","t"}, "<C-p>0",KF.A0 ,opts)
+--keyset({"n","i","v","x","t"}, "<F2>" , "", opts)
+--keyset({"n","i","v","x","t"}, "<F3>" , "", opts)
+--keyset({"n","i","v","x","t"}, "<F4>" , "", opts)
+--keyset({"n","i","v","x","t"}, "<F5>" , "", opts)
+--keyset({"n","i","v","x","t"}, "<F6>" , "", opts)
+--keyset({"n","i","v","x","t"}, "<F7>" , "", opts)
+--keyset({"n","i","v","x","t"}, "<F8>" , "", opts)
+--keyset({"n","i","v","x","t"}, "<F9>" , "", opts)
+--keyset({"n","i","v","x","t"}, "<F10>", "", opts)
+--keyset({"n","i","v","x","t"}, "<F11>", "", opts)
+--keyset({"n","i","v","x","t"}, "<F12>", "", opts)
+--
+--keyset({"n","i","v","x","t"}, "<C-p>1",KF.A1 ,opts)
+--keyset({"n","i","v","x","t"}, "<C-p>2",KF.A2 ,opts)
+--keyset({"n","i","v","x","t"}, "<C-p>3",KF.A3 ,opts)
+--keyset({"n","i","v","x","t"}, "<C-p>4",KF.A4 ,opts)
+--keyset({"n","i","v","x","t"}, "<C-p>5",KF.A5 ,opts)
+--keyset({"n","i","v","x","t"}, "<C-p>6",KF.A6 ,opts)
+--keyset({"n","i","v","x","t"}, "<C-p>7",KF.A7 ,opts)
+--keyset({"n","i","v","x","t"}, "<C-p>8",KF.A8 ,opts)
+--keyset({"n","i","v","x","t"}, "<C-p>9",KF.A9 ,opts)
+--keyset({"n","i","v","x","t"}, "<C-p>0",KF.A0 ,opts)
 
 --keyset(
 --"n",
@@ -51,17 +50,14 @@ keyset({"n","i","v","x","t"}, "<C-p>0",KF.A0 ,opts)
 --	opts
 --)
 
+
+KF = KF:new("<C-p>")
 temp = {
 	["<C-p>"] = {
 		name = "+Functions_Languages",
 	},
 }
-
 vim.g.wk.register(temp,{})
-
-
-
-
 
 --git mappings
 keyset("n", "<C-G>c", "<cmd>LazyGitCurrentFile<cr>", opts_silent)

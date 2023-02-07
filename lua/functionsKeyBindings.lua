@@ -7,13 +7,10 @@ M.A1 = function()
 	end
 end
 
-
 M.GetMode = function ()
 	return vim.api.nvim_get_mode()["mode"]
 	
 end
-
-
 M.A2 = function()
 	-- local mode = M.GetMode()
 	-- if(mode == "i") then
@@ -55,19 +52,22 @@ setmetatable(M, {
 	  return cls.new(...)
 	end,
 })
-function M.new()
+function M.new(KeyPrincipal)
 	local self = setmetatable({}, M)
-	
-	self.NameFileFunction = "functions_"..vim.bo.filetype
-	vim.api.nvim_create_autocmd("WinEnter",{	
-		callback = function ()
-			self.NameFileFunction = "functions_"..vim.bo.filetype
-			self.F = require(self.NameFileFunction)
-	end,
+	self.KeyPrincipal = KeyPrincipal
+	self.NameFileFunction = "functions_" .. vim.bo.filetype
+	vim.api.nvim_create_autocmd("WinEnter", {
+		callback = function()
+			self.NameFileFunction = "functions_" .. vim.bo.filetype
+			--self.F = require(self.NameFileFunction)
+		end,
 	})
+	
+	temp = {
+	
+	}
 	return self
 end
-
 M.CompileOnlyCode = function() 
 	F.CompileOnlyCode()
 end
