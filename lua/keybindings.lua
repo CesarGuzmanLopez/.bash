@@ -2,63 +2,16 @@
 local opts = { silent = true, noremap = true, expr = true, replace_keycodes = false }
 local opts_silent = { noremap = true, silent = true }
 
-
-local KF = require('functionsKeyBindings') 
-
 local temp = {}
+local KF = require("keyBidingLang")
+
 --local directions = require('hop.hint').HintDirection
 --local hop = require('hop')
 --Go  To
 keyset({ "v", "x" }, "<RightMouse>", "y", opts_silent)
 keyset({ "v", "x", "i" }, "<MiddleMouse>", "p", opts_silent)
 
-
---control of the functions language
---keyset({"n","i","v","x","t"}, "<F2>" , "", opts)
---keyset({"n","i","v","x","t"}, "<F3>" , "", opts)
---keyset({"n","i","v","x","t"}, "<F4>" , "", opts)
---keyset({"n","i","v","x","t"}, "<F5>" , "", opts)
---keyset({"n","i","v","x","t"}, "<F6>" , "", opts)
---keyset({"n","i","v","x","t"}, "<F7>" , "", opts)
---keyset({"n","i","v","x","t"}, "<F8>" , "", opts)
---keyset({"n","i","v","x","t"}, "<F9>" , "", opts)
---keyset({"n","i","v","x","t"}, "<F10>", "", opts)
---keyset({"n","i","v","x","t"}, "<F11>", "", opts)
---keyset({"n","i","v","x","t"}, "<F12>", "", opts)
---
---keyset({"n","i","v","x","t"}, "<C-p>1",KF.A1 ,opts)
---keyset({"n","i","v","x","t"}, "<C-p>2",KF.A2 ,opts)
---keyset({"n","i","v","x","t"}, "<C-p>3",KF.A3 ,opts)
---keyset({"n","i","v","x","t"}, "<C-p>4",KF.A4 ,opts)
---keyset({"n","i","v","x","t"}, "<C-p>5",KF.A5 ,opts)
---keyset({"n","i","v","x","t"}, "<C-p>6",KF.A6 ,opts)
---keyset({"n","i","v","x","t"}, "<C-p>7",KF.A7 ,opts)
---keyset({"n","i","v","x","t"}, "<C-p>8",KF.A8 ,opts)
---keyset({"n","i","v","x","t"}, "<C-p>9",KF.A9 ,opts)
---keyset({"n","i","v","x","t"}, "<C-p>0",KF.A0 ,opts)
-
---keyset(
---"n",
---	"<C-p>1",
---	"<cmd>exec '!inkscape-figures edit \"'.b:vimtex.root.'/figures/\" > /dev/null 3>&1 &'<CR><CR>:redraw!<CR>",
---	opts_silent
---)
---
---keyset(
---	"i","<C-p>1",
---	"<Esc><cmd> silent exec '.!inkscape-figures create \"'.getline('.').'\" \"'.b:vimtex.root.'/figures/\"'<CR><CR>:w<CR>",
---	opts
---)
-
-
 KF = KF:new("<C-p>")
-temp = {
-	["<C-p>"] = {
-		name = "+Functions_Languages",
-	},
-}
-vim.g.wk.register(temp,{})
-
 --git mappings
 keyset("n", "<C-G>c", "<cmd>LazyGitCurrentFile<cr>", opts_silent)
 keyset("n", "<C-G>l", "<cmd>LazyGit<cr>", opts_silent)
@@ -75,9 +28,6 @@ temp = {
 		h = { ":Gdiffsplit", "Git Diff hilo" },
 	},
 }
-
-
-
 keyset("n", "gd", "<Plug>(coc-definition)", opts_silent)
 keyset("n", "gt", "<Plug>(coc-type-definition)", opts_silent)
 keyset("n", "gi", "<Plug>(coc-implementation)", opts_silent)

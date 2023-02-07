@@ -2,15 +2,14 @@
 local M = {}
 M.A0 = function() end
 M.A1 = function()
-	if(mode == "i") then
-		vim.api.nvim_input("")
-	end
+	-- if(mode == "i") then
+	-- 	vim.api.nvim_input("")
+	-- end
 end
-
 M.GetMode = function ()
 	return vim.api.nvim_get_mode()["mode"]
-	
 end
+
 M.A2 = function()
 	-- local mode = M.GetMode()
 	-- if(mode == "i") then
@@ -35,7 +34,6 @@ M.A2 = function()
 	-- 	vim.api.nvim_input("<Esc>i select block mode")
 	-- end
 end
-
 M.A3 = function() end
 M.A4 = function() end
 M.A5 = function() end
@@ -43,38 +41,9 @@ M.A6 = function() end
 M.A7 = function() end
 M.A8 = function() end
 M.A9 = function() end
+M.CompileOnlyCode = function() end
 
-
-
-M.__index = M
-setmetatable(M, {
-	__call = function(cls, ...)
-	  return cls.new(...)
-	end,
-})
-function M.new(KeyPrincipal)
-	local self = setmetatable({}, M)
-	self.KeyPrincipal = KeyPrincipal
-	self.NameFileFunction = "functions_" .. vim.bo.filetype
-	vim.api.nvim_create_autocmd("WinEnter", {
-		callback = function()
-			self.NameFileFunction = "functions_" .. vim.bo.filetype
-			--self.F = require(self.NameFileFunction)
-		end,
-	})
-	
-	temp = {
-	
-	}
-	return self
-end
-M.CompileOnlyCode = function() 
-	F.CompileOnlyCode()
-end
-
-M.Compile = function() 
-	F.Compile()
-end
+M.Compile = function() end
 
 M.CompileDebug = function() end
 
