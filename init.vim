@@ -3,7 +3,7 @@
 " Directorio de plugins
 " echo esto funciona perfect
 "
-let $OHS = "/home/cesarguzmanlopez/.bash_vim/"
+let $OHS = "/home/cesarguzman/.bash_vim/"
 set runtimepath^=$OHS/Config_Vim
 
 let mapleader = "/"

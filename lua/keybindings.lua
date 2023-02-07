@@ -27,27 +27,29 @@ keyset({"n","i","v","x","t"}, "<F10>", "", opts)
 keyset({"n","i","v","x","t"}, "<F11>", "", opts)
 keyset({"n","i","v","x","t"}, "<F12>", "", opts)
 
-keyset(
-"n",
-	"<C-p>1",
-	"<cmd>exec '!inkscape-figures edit \"'.b:vimtex.root.'/figures/\" > /dev/null 3>&1 &'<CR><CR>:redraw!<CR>",
-	opts_silent
-)
+keyset({"n","i","v","x","t"}, "<C-p>1",KF.A1 ,opts)
+keyset({"n","i","v","x","t"}, "<C-p>2",KF.A2 ,opts)
+keyset({"n","i","v","x","t"}, "<C-p>3",KF.A3 ,opts)
+keyset({"n","i","v","x","t"}, "<C-p>4",KF.A4 ,opts)
+keyset({"n","i","v","x","t"}, "<C-p>5",KF.A5 ,opts)
+keyset({"n","i","v","x","t"}, "<C-p>6",KF.A6 ,opts)
+keyset({"n","i","v","x","t"}, "<C-p>7",KF.A7 ,opts)
+keyset({"n","i","v","x","t"}, "<C-p>8",KF.A8 ,opts)
+keyset({"n","i","v","x","t"}, "<C-p>9",KF.A9 ,opts)
+keyset({"n","i","v","x","t"}, "<C-p>0",KF.A0 ,opts)
 
-keyset(
-	"i",
-	"<C-p>1",
-	"<Esc><cmd> silent exec '.!inkscape-figures create \"'.getline('.').'\" \"'.b:vimtex.root.'/figures/\"'<CR><CR>:w<CR>",
-	opts_silent
-)
-
-keyset(
-	"n",
-	"<C-p>2",
-	k	
-	,
-	opts_silent
-)
+--keyset(
+--"n",
+--	"<C-p>1",
+--	"<cmd>exec '!inkscape-figures edit \"'.b:vimtex.root.'/figures/\" > /dev/null 3>&1 &'<CR><CR>:redraw!<CR>",
+--	opts_silent
+--)
+--
+--keyset(
+--	"i","<C-p>1",
+--	"<Esc><cmd> silent exec '.!inkscape-figures create \"'.getline('.').'\" \"'.b:vimtex.root.'/figures/\"'<CR><CR>:w<CR>",
+--	opts
+--)
 
 temp = {
 	["<C-p>"] = {
@@ -187,6 +189,7 @@ temp = {
 		f = { "<cmd>Files<CR>", "Files" },
 		t = { "<cmd>Tags<CR>", "Tags" },
 		c = { "<cmd>Commands<CR>", "Commands" },
+		b = { "<cmd>Buffers<CR>", "Buffers" },
 		m = { "<cmd>Marks<CR>", "Marks" },
 		l = { "<cmd>Lines<CR>", "Lines" },
 		g = { "<cmd>Grep<CR>", "Grep names files" },
@@ -367,7 +370,3 @@ keyset({"n","o","i","v"}, "<C-O>", "<cmd>Tagbar<CR>", opts_silent)
 --vim.keymap.set('', 'T', function()
 --  hop.hint_char1({ direction = directions.BEFORE_CURSOR, current_line_only = true, hint_offset = 1 })
 --end, {remap=true})
-
-
-
-

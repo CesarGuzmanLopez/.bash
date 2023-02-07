@@ -1,4 +1,3 @@
-
 ---@diagnostic disable-next-line: lowercase-global
 vim = vim
 vim.g.OSH   = os.getenv('OSH')
