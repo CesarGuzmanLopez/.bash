@@ -16,7 +16,7 @@ function M.new(...)
 	vim.api.nvim_create_autocmd("BufRead,BufEnter", {
 		callback = function()
 			self.NameFileFunction = "functions_" .. vim.bo.filetype
-		local status = pcall(require, self.NameFileFunction)
+			local status = pcall(require, self.NameFileFunction)
 			if status then
 				self.KF = require(self.NameFileFunction)
 				self.name = "+Functions_" .. vim.bo.filetype
@@ -32,12 +32,12 @@ end
 
 function M.register(self)
 	local opts = {
-		mode = { "n", "v", "i", "x"}, -- NORMAL mode
+		mode = { "n", "v", "i", "x" }, -- NORMAL mode
 		-- prefix: use "<leader>f" for example for mapping everything related to finding files
 		silent = true, -- use `silent` when creating keymaps
 		noremap = true, -- use `noremap` when creating keymaps
 		nowait = false, -- use `nowait` when creating keymaps
-   }
+	}
 	local temp = {
 		[self.Leader] = {
 			name = self.name,
@@ -50,57 +50,55 @@ function M.register(self)
 			["6"] = { self.KF.A6, self.KF.NamesOfStudio.A6 },
 			["7"] = { self.KF.A7, self.KF.NamesOfStudio.A7 },
 			["8"] = { self.KF.A8, self.KF.NamesOfStudio.A8 },
-			["9"] = { self.KF.A9, self.KF.NamesOfStudio.A9 }
-		}
+			["9"] = { self.KF.A9, self.KF.NamesOfStudio.A9 },
+		},
 	}
 	vim.g.wk.register(temp, opts)
-    --Compile
-    --CompileDebug
-    --CompileOnlyCode
-    --CompileToTest
-    --CopyFormatted
-    --DebugAddFunctionBreakpoint
-    --DebugBalloonEval0
-    --DebugBalloonEval1
-    --DebugBreakPoints
-    --DebugContinue
-    --DebugDissassemble
-    --DebugDownFrame
-    --DebugGoToCurrentLine
-    --DebugJumpToNextBreakpoint
-    --DebugJumpToPreviousBreakpoint
-    --DebugJumpToProgramCounter
-    --DebugPause
-    --DebugRestart
-    --DebugRunToCursor
-    --DebugStepInto
-    --DebugStepOut
-    --DebugStepOver
-    --DebugStop
-    --DebugToggleBreakpoint
-    --DebugToggleConditionalBreakpoint
-    --DebugUpFrame
-
-	--RunDebug
-   local temp = {
-		["<F2>"] = { self.KF.Compile,"Compile" },
-
-		["<F4>"] = {
+	temp = {
+		["<F2>"] = { self.KF.Compile, "Compile" },
+		["<F3>"] = {
+			name = "+Compile",
+			["c"] = { self.KF.Compile, "Compile" },
+			["t"] = { self.KF.CompileToTest, "Compile Test" },
+			["o"] = { self.KF.CompileOnlyCode, "Compile Code" },
+			["d"] = { self.KF.CompileDebug, "Compile Debug" },
+		},
+		["<F4>"] = { self.KF.RunTest, "Run Tests" },
+		["<F5>"] = { self.KF.Run, "Run Project" },
+		["<F6>"] = {
 			name = "+Run",
 			["r"] = { self.KF.Run, "Run Project" },
-			["t"] = { self.KF.RunTest, "RunToTest" },
-			["c"] = { self.KF.RunOnlyCode, "RunOnlyCode" },
-			["d"] = { self.KF.RunDebug, "RunDebug"}
+			["t"] = { self.KF.RunTest, "Run Test" },
+			["c"] = { self.KF.RunOnlyCode, "Run Code" },
+			["d"] = { self.KF.RunDebug, "Run Debug" },
 		},
-
-		["<F5>"] = { self.KF.Run, "Run Project" },
-		["<F6>"] = { self.KF.RunToTest, "Run RunToTest" },
- 		["<F7>"] = {
+		["<F7>"] = {
 			name = "+Debug",
-			["r"] = { self.KF.RunDebug, "Run" },
+			["<F5>"] = { self.KF.RunDebug, "Run Debug" },
+			["C"] = { self.KF.CompileDebug, "Compile Debug" },
+			["f"] = { self.KF.DebugAddFunctionBreakpoint, "Add function Break point" },
+			["z0"] = { self.KF.DebugBalloonEval0, "Add ballon 0" },
+			["z1"] = { self.KF.DebugBalloonEval1, "Add ballon 1" },
+			["b"] = { self.KF.DebugBreakPoints, "Break Points" },
+			["c"] = { self.KF.DebugContinue, "Continue" },
+			["d"] = { self.KF.DebugDissassemble, "Dissassemble" },
+			["<Down>"] = { self.KF.DebugDownFrame, "Down Frame" },
+			["g"] = { self.KF.DebugGoToCurrentLine, "Go To Current Line" },
+			["j"] = { self.KF.DebugJumpToNextBreakpoint, "Jump To Next Breakpoint" },
+			["k"] = { self.KF.DebugJumpToPreviousBreakpoint, "Jump To Previous Breakpoint" },
+			["J"] = { self.KF.DebugJumpToProgramCounter, "Jump To Program Counter" },
+			["p"] = { self.KF.DebugPause, "Pause" },
+			["r"] = { self.KF.DebugRestart, "Restart" },
+			["R"] = { self.KF.DebugRunToCursor, "Run To Cursor" },
+			["si"] = { self.KF.DebugStepInto, "Step Into" },
+			["so"] = { self.KF.DebugStepOut, "Step Out" },
+			["sv"] = { self.KF.DebugStepOver, "Step Over" },
+			["st"] = { self.KF.DebugStop, "Stop" },
+			["t"] = { self.KF.DebugToggleBreakpoint, "Toggle Breakpoint" },
+			["T"] = { self.KF.DebugToggleConditionalBreakpoint, "Toggle Conditional Breakpoint" },
+			["<Up>"] = { self.KF.DebugUpFrame, "Up Frame" },
 		},
 	}
 	vim.g.wk.register(temp, opts)
 end
-
 return M

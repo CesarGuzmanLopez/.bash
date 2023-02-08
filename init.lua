@@ -14,11 +14,9 @@ require('appearance')
 require('principal')
 require('CocConfig')
 require('functionsKeyBindings')
-
 cmd('source '..vim.g.OSH..'/vim/appearance.vim')
 cmd('source '..vim.g.OSH..'/vim/FZF.vim')
 cmd('source '..vim.g.OSH..'/vim/Functions_Java.vim')
 cmd('source '..vim.g.OSH..'/vim/Functions_C.vim')
---cmd('source '..vim.g.OSH..'/vim/KeyBindingsFunctions.vim')
 
 require('keybindings')
