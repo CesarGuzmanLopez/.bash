@@ -11,13 +11,17 @@ local KF = require("keyBidingLang")
 keyset({ "v", "x" }, "<RightMouse>", "y", opts_silent)
 keyset({ "v", "x", "i" }, "<MiddleMouse>", "p", opts_silent)
 
-KF = KF:new("<C-p>")
+KF = KF:new("<C-s>")
+
 --git mappings
 keyset("n", "<C-G>c", "<cmd>LazyGitCurrentFile<cr>", opts_silent)
 keyset("n", "<C-G>l", "<cmd>LazyGit<cr>", opts_silent)
 keyset("n", "<C-G>g", ":Git", opts_silent)
 keyset("n", "<C-G>d", ":Gdiffsplit<CR>", opts_silent)
 keyset("n", "<C-G>h", ":Gdiffsplit", opts_silent)
+
+
+
 temp = {
 	["<C-G>"] = {
 		name = "+Git",
@@ -176,16 +180,16 @@ temp = {
 vim.g.wk.register(temp,{})
 
 --navigation of the code
-keyset({ "o", "x" }, "<C-x>s", "<cmd>lua require('tsht').nodes()<CR>", opts_silent)
-keyset({ "n", "i" }, "<C-x>a", "<cmd>lua require('tsht').move({ side = 'start' })<CR>", opts_silent)
+keyset({ "o", "x" }, "<C-X>s", "<cmd>lua require('tsht').nodes()<CR>", opts_silent)
+keyset({ "n", "i" }, "<C-X>a", "<cmd>lua require('tsht').move({ side = 'start' })<CR>", opts_silent)
 
-keyset({ "n", "i", "x" }, "<C-x>w", "<cmd>HopWord<CR>", opts_silent)
-keyset({ "n", "i", "x" }, "<C-x>v", "<cmd>HopVertical<CR>", opts_silent)
-keyset({ "n", "i", "x" }, "<C-x>c", "<cmd>HopChar1<CR>", opts_silent)
-keyset({ "n", "i", "x" }, "<C-x>b", "<cmd>HopChar2<CR>", opts_silent)
-keyset({ "n", "i", "x" }, "<C-x>A", "<cmd>HopAnywhere<CR>", opts_silent)
-keyset({ "n", "i", "x" }, "<C-x>h", "<cmd>HopCurrentLine<CR>", opts_silent)
-keyset({ "n", "i", "x" }, "<C-x>p", "<cmd>HopPattern<CR>", opts_silent)
+keyset({ "n", "i", "x" }, "<C-X>w", "<cmd>HopWord<CR>", opts_silent)
+keyset({ "n", "i", "x" }, "<C-X>v", "<cmd>HopVertical<CR>", opts_silent)
+keyset({ "n", "i", "x" }, "<C-X>c", "<cmd>HopChar1<CR>", opts_silent)
+keyset({ "n", "i", "x" }, "<C-X>b", "<cmd>HopChar2<CR>", opts_silent)
+keyset({ "n", "i", "x" }, "<C-X>A", "<cmd>HopAnywhere<CR>", opts_silent)
+keyset({ "n", "i", "x" }, "<C-X>h", "<cmd>HopCurrentLine<CR>", opts_silent)
+keyset({ "n", "i", "x" }, "<C-X>p", "<cmd>HopPattern<CR>", opts_silent)
 
 --:NR  - Open the selected region in a new narrowed window
 --:NW  - Open the current visual window in a new narrowed window
@@ -200,20 +204,20 @@ keyset({ "n", "i", "x" }, "<C-x>p", "<cmd>HopPattern<CR>", opts_silent)
 
 
 
-keyset("n", "<C-x>n", "<cmd>silent! TZNarrow<CR>", opts_silent)
-keyset("v", "<C-x>n", "<cmd>'<,'>TZNarrow<CR>", opts_silent)
-keyset("n", "<C-x>f", "<cmd>silent! TZFocus<CR>", opts_silent)
-keyset("n", "<C-x>o", "<cmd>silent! TZAtaraxis<CR>", opts_silent)
+keyset("n", "<C-X>n", "<cmd>silent! TZNarrow<CR>", opts_silent)
+keyset("v", "<C-X>n", "<cmd>'<,'>TZNarrow<CR>", opts_silent)
+keyset("n", "<C-X>f", "<cmd>silent! TZFocus<CR>", opts_silent)
+keyset("n", "<C-X>o", "<cmd>silent! TZAtaraxis<CR>", opts_silent)
 
-keyset({"n","x","v"}, "<C-x>R", "<cmd>'<,'>NR<CR>", opts_silent)
-keyset({"n","x","v"}, "<C-x>V", "<cmd>NRV<CR>", opts_silent)
-keyset({"n","x","v"}, "<C-x>D", "<cmd>NUD<CR>", opts_silent)
-keyset({"n","x","v"}, "<C-x>P", "<cmd>'<,'>NRP<CR>", opts_silent)
-keyset({"n","x","v"}, "<C-x>M", "<cmd>NRM<CR>", opts_silent)
-keyset({"n","x","v"}, "<C-x>L", "<cmd>NRL<CR>", opts_silent)
+keyset({"n","x","v"}, "<C-X>R", "<cmd>'<,'>NR<CR>", opts_silent)
+keyset({"n","x","v"}, "<C-X>V", "<cmd>NRV<CR>", opts_silent)
+keyset({"n","x","v"}, "<C-X>D", "<cmd>NUD<CR>", opts_silent)
+keyset({"n","x","v"}, "<C-X>P", "<cmd>'<,'>NRP<CR>", opts_silent)
+keyset({"n","x","v"}, "<C-X>M", "<cmd>NRM<CR>", opts_silent)
+keyset({"n","x","v"}, "<C-X>L", "<cmd>NRL<CR>", opts_silent)
 
 temp = {
-	["<C-x>"] = {
+	["<C-X>"] = {
 		name = "navigation of the code and Show",
 		n = { "<cmd>silent! TZNarrow<CR>", "Zen Mode" },
 		f = { "<cmd>silent! TZFocus<CR>", "Zen focus Mode" },
@@ -237,22 +241,22 @@ temp = {
 }
 vim.g.wk.register(temp,{})
 --window control
-keyset({ "n", "x" }, "<C-f>", "<cmd>NvimTreeToggle<CR>", opts_silent)
+keyset({ "n", "x" }, "<C-F>", "<cmd>NvimTreeToggle<CR>", opts_silent)
 keyset({ "v", "n", "i", "x" }, "<C-z>", "<Esc>:", opts_silent)
 keyset({ "n", "v", "x", "i" }, "<C-c>", "<cmd>yank<CR>", opts_silent)
 
-keyset({"n","t"}, "<C-w>m", "<Cmd>WinShift<CR>", opts_silent)
-keyset({"n","t"}, "<C-w><C-Left>", "<Cmd>vertical resize -5<CR>", opts_silent)
-keyset({"n","t"}, "<C-w><C-Right>", "<Cmd>vertical resize +5<CR>", opts_silent)
-keyset({"n","t"}, "<C-w><C-Up>", "<Cmd>resize -3<CR>", opts_silent)
-keyset({"n","t"}, "<C-w><C-Down>", "<Cmd>resize +3<CR>", opts_silent)
+keyset({"n","t"}, "<C-W>m", "<Cmd>WinShift<CR>", opts_silent)
+keyset({"n","t"}, "<C-W><C-Left>", "<Cmd>vertical resize -5<CR>", opts_silent)
+keyset({"n","t"}, "<C-W><C-Right>", "<Cmd>vertical resize +5<CR>", opts_silent)
+keyset({"n","t"}, "<C-W><C-Up>", "<Cmd>resize -3<CR>", opts_silent)
+keyset({"n","t"}, "<C-W><C-Down>", "<Cmd>resize +3<CR>", opts_silent)
 
-keyset({ "n", "v", "i" }, "<C-q>q", "<cmd>q<CR>", opts_silent)
-keyset({ "n", "v", "i" }, "<C-q>a", "<cmd>qa<CR>", opts_silent)
-keyset({ "n", "v", "i" }, "<C-q>v", "<cmd>VimspectorReset<CR>", opts_silent)
+keyset({ "n", "v", "i" }, "<C-Q>q", "<cmd>q<CR>", opts_silent)
+keyset({ "n", "v", "i" }, "<C-Q>a", "<cmd>qa<CR>", opts_silent)
+keyset({ "n", "v", "i" }, "<C-Q>v", "<cmd>VimspectorReset<CR>", opts_silent)
 
 temp = {
-	["<C-q>"] = {
+	["<C-Q>"] = {
 		name = "Close windows",
 		q = { "<cmd>q<CR>", "close the window" },
 		a = { "<cmd>qa<CR>", "close all the windows" },
@@ -274,14 +278,14 @@ keyset("i", "<S-TAB>", [[coc#pum#visible() ? coc#pum#prev(1) : "\<C-h>"]], opts)
 keyset("i", "<C-j>", "<Plug>(coc-snippets-expand-jump)")
 
 keyset("i", "<C-a>", 'copilot#Accept("<CR>")', opts)
-keyset("i", "<C-s>s", "copilot#Next()", opts)
-keyset("i", "<C-s>c", "copilot#Previous() ", opts)
+keyset("i", "<C-S>s", "copilot#Next()", opts)
+keyset("i", "<C-S>c", "copilot#Previous() ", opts)
 
-keyset("v", "<C-s>B", ": call cheat#cheat(\"\", -1, -1, 2, 0, '!')<CR>", opts_silent)
-keyset("n", "<C-s>S", ": call cheat#frameworks#autodetect(0) <CR>", opts_silent)
+keyset("v", "<C-S>B", ": call cheat#cheat(\"\", -1, -1, 2, 0, '!')<CR>", opts_silent)
+keyset("n", "<C-S>S", ": call cheat#frameworks#autodetect(0) <CR>", opts_silent)
 
 temp = {
-	["<C-s>"] = {
+	["<C-S>"] = {
 		name = "copilot cheat",
 		s = { "copilot#Next()", "Copilot Next" },
 		c = { "copilot#Previous()", "Copilot previous" },
@@ -300,8 +304,8 @@ keyset(
 	": v:lua.check_back_space() ? \"<c-\\>\" : coc#refresh()", opts
 )
 
-keyset({"n","o","i","v"}, "<C-t>", "<Cmd>ToggleTerm<CR>", opts_silent)
-keyset({"t"}, "<C-t>", "<C-\\><C-n><Cmd>ToggleTerm<CR>", opts_silent)
+keyset({"n","o","i","v"}, "<C-T>", "<Cmd>ToggleTerm<CR>", opts_silent)
+keyset({"t"}, "<C-T>", "<C-\\><C-n><Cmd>ToggleTerm<CR>", opts_silent)
 keyset({"n","o","i","v"}, "<C-O>", "<cmd>Tagbar<CR>", opts_silent)
 
 --vim.keymap.set('', 'f', function()

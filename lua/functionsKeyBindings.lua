@@ -1,9 +1,35 @@
 local M = {}
+M.__index = M
+setmetatable(M, {
+	__call = function(cls, ...)
+		return cls.new(...)
+	end,
+})
+
+function M.new()
+	local self = setmetatable({}, M)
+
+	return self
+end
+
+M.NamesOfStudio = {
+	A1 = "Function 1",
+	A2 = "Function 2",
+	A3 = "Function 3",
+	A4 = "Function 4",
+	A5 = "Function 5",
+	A6 = "Function 6",
+	A7 = "Function 7",
+	A8 = "Function 8",
+	A9 = "Function 9",
+	A0 = "Function 0",
+}
+
 M.A0 = function()
-	vim.api.nvim_input("echo not implemented yet")
+	print("Not implemented yet")
 end
 M.A1 = function()
-	vim.api.nvim_input("echo not implemented yet")
+	print("Not implemented yet")
 end
 M.GetMode = function()
 	return vim.api.nvim_get_mode()["mode"]
@@ -31,134 +57,140 @@ M.A2 = function()
 	-- 	vim.api.nvim_input("<Esc>i select line mode")
 	-- elseif(mode == "") then
 	-- 	vim.api.nvim_input("<Esc>i select block mode")
-	-- end
+	-- ent d
 end
 M.A3 = function()
-	vim.api.nvim_input("echo not implemented yet")
+	print("Not implemented yet")
 end
 M.A4 = function()
-	vim.api.nvim_input("echo not implemented yet")
+	print("Not implemented yet")
 end
 M.A5 = function()
-	vim.api.nvim_input("echo not implemented yet")
+	print("Not implemented yet")
 end
 M.A6 = function()
-	vim.api.nvim_input("echo not implemented yet")
+	print("Not implemented yet")
 end
 M.A7 = function()
-	vim.api.nvim_input("echo not implemented yet")
+	print("Not implemented yet")
 end
 M.A8 = function()
-	vim.api.nvim_input("echo not implemented yet")
+	print("Not implemented yet")
 end
 M.A9 = function()
-	vim.api.nvim_input("echo not implemented yet")
+	print("Not implemented yet")
 end
 
 M.CompileOnlyCode = function()
-	vim.api.nvim_input("echo not implemented yet")
+	print("Not implemented yet")
 end
 
 M.Compile = function()
-	vim.api.nvim_input("echo not implemented yet")
+	print("Not implemented yet")
 end
 
 M.CompileDebug = function()
-	vim.api.nvim_input("echo not implemented yet")
+	print("Not implemented yet")
 end
 
 M.CompileToTest = function()
-	vim.api.nvim_input("echo not implemented yet")
+	print("Not implemented yet")
 end
 
 M.CopyFormatted = function(line1, line2) end
 
 M.DebugAddFunctionBreakpoint = function()
-	vim.api.nvim_input("echo not implemented yet")
+	print("Not implemented yet")
 end
 
 M.DebugBalloonEval0 = function()
-	vim.api.nvim_input("echo not implemented yet")
+	print("Not implemented yet")
 end
 
 M.DebugBalloonEval1 = function()
-	vim.api.nvim_input("echo not implemented yet")
+	print("Not implemented yet")
 end
 
 M.DebugBreakPoints = function()
-	vim.api.nvim_input("echo not implemented yet")
+	print("Not implemented yet")
 end
 
 M.DebugContinue = function()
-	vim.api.nvim_input("echo not implemented yet")
+	print("Not implemented yet")
 end
 
 M.DebugDissassemble = function()
-	vim.api.nvim_input("echo not implemented yet")
+	print("Not implemented yet")
 end
 
 M.DebugDownFrame = function()
-	vim.api.nvim_input("echo not implemented yet")
+	print("Not implemented yet")
 end
 
 M.DebugGoToCurrentLine = function()
-	vim.api.nvim_input("echo not implemented yet")
+	print("Not implemented yet")
 end
 
 M.DebugJumpToNextBreakpoint = function() end
 
-Mvim.api.nvim_input("echo not implemented yet").DebugJumpToPreviousBreakpoint = function() end
+M.DebugJumpToPreviousBreakpoint = function() 
+	print("Not implemented yet")
+end
 
 M.DebugJumpToProgramCounter = function() end
 
-Mvim.api.nvim_input("echo not implemented yet").DebugPause = function() end
+M.DebugPause = function() 
+	print("Not implemented yet")
+end
 
 M.DebugRestart = function()
-	vim.api.nvim_input("echo not implemented yet")
+	print("Not implemented yet")
 end
 
 M.DebugRunToCursor = function()
-	vim.api.nvim_input("echo not implemented yet")
+	print("Not implemented yet")
 end
 
 M.DebugStepInto = function()
-	vim.api.nvim_input("echo not implemented yet")
+	print("Not implemented yet")
 end
 
 M.DebugStepOut = function()
-	vim.api.nvim_input("echo not implemented yet")
+	print("Not implemented yet")
 end
 
 M.DebugStepOver = function()
-	vim.api.nvim_input("echo not implemented yet")
+	print("Not implemented yet")
 end
 --lua Class
 M.DebugStop = function()
-	vim.api.nvim_input("echo not implemented yet")
+	print("Not implemented yet")
 end
 
 M.DebugToggleBreakpoint = function()
-	vim.api.nvim_input("echo not implemented yet")
+	print("Not implemented yet")
 end
 
 M.DebugToggleConditionalBreakpoint = function() end
 
-Mvim.api.nvim_input("echo not implemented yet").DebugUpFrame = function() end
+M.DebugUpFrame = function()
+	print("Not implemented yet")
+end
 
 M.Run = function()
-	vim.api.nvim_input("echo not implemented yet")
+	print("Not implemented yet")
 end
 
 M.RunDebug = function()
-	vim.api.nvim_input("echo not implemented yet")
+	print("Not implemented yet")
 end
 
 M.RunOnlyCode = function()
-	vim.api.nvim_input("echo not implemented yet")
+	print("Not implemented yet")
 end
 
 M.RunTest = function()
-	vim.api.nvim_input("echo not implemented yet")
+	print("Not implemented yet")
 end
 
 return M
