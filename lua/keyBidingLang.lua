@@ -13,11 +13,8 @@ function M.new(...)
 	self.NameFileFunction = "functions_" .. vim.bo.filetype
 	self.Leader = args[2]
 	self.KF = {}
-
-	vim.api.nvim_create_autocmd("BufRead,BufEnter,WinEnter", {
+	vim.api.nvim_create_autocmd({ "WinEnter", "BufWinEnter"}, {
 		callback = function()
-
-			print("No found for : '" .. vim.bo.filetype .. "' use general")
 			self.NameFileFunction = "functions_" .. vim.bo.filetype
 			local status = pcall(require, self.NameFileFunction)
 			if status then
@@ -78,8 +75,8 @@ function M.register(self)
 		["<F7>"] = {
 			name = "+Debug",
 			["<F5>"] = { self.KF.RunDebug, "Run Debug" },
-			["C"] = { self.KF.CompileDebug, "Compile Debug" },
-			["f"] = { self.KF.DebugAddFunctionBreakpoint, "Add function Break point" },
+			["C"] = 	{ self.KF.CompileDebug, "Compile Debug" },
+			["f"] = { 	self.KF.DebugAddFunctionBreakpoint, "Add function Break point" },
 			["z0"] = { self.KF.DebugBalloonEval0, "Add ballon 0" },
 			["z1"] = { self.KF.DebugBalloonEval1, "Add ballon 1" },
 			["b"] = { self.KF.DebugBreakPoints, "Break Points" },
