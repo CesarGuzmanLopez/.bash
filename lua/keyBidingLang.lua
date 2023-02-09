@@ -13,8 +13,11 @@ function M.new(...)
 	self.NameFileFunction = "functions_" .. vim.bo.filetype
 	self.Leader = args[2]
 	self.KF = {}
-	vim.api.nvim_create_autocmd("BufRead,BufEnter", {
+
+	vim.api.nvim_create_autocmd("BufRead,BufEnter,WinEnter", {
 		callback = function()
+
+			print("No found for : '" .. vim.bo.filetype .. "' use general")
 			self.NameFileFunction = "functions_" .. vim.bo.filetype
 			local status = pcall(require, self.NameFileFunction)
 			if status then
