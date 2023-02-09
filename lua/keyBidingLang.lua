@@ -10,16 +10,23 @@ setmetatable(M, {
 function M.new(...)
 	local args = { ... }
 	local self = setmetatable({}, M)
-	self.NameFileFunction = "functions_" .. vim.bo.filetype
 	self.Leader = args[2]
 	self.KF = {}
-	vim.api.nvim_create_autocmd({ "WinEnter", "BufWinEnter"}, {
+	local active = false
+	self.NameFileFunction = "Functions_" .. vim.bo.filetype
+	vim.api.nvim_create_autocmd({ "WinEnter", "BufWinEnter" }, {
 		callback = function()
-			self.NameFileFunction = "functions_" .. vim.bo.filetype
+			if active    then
+				return
+			end
+			self.NameFileFunction = "Functions_" .. vim.bo.filetype
 			local status = pcall(require, self.NameFileFunction)
+			print(status)
 			if status then
 				self.KF = require(self.NameFileFunction)
 				self.name = "+Functions_" .. vim.bo.filetype
+				print("Entro una vez")
+				active = true
 			else
 				self.name = "+Functions_General"
 				self.KF = require("functionsKeyBindings")

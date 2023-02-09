@@ -1,4 +1,5 @@
-M = {}
+local M = {}
+
 M.__index = M
 setmetatable(M, {
 	__call = function(cls, ...)
@@ -6,7 +7,7 @@ setmetatable(M, {
 	end,
 })
 
-function M.new()
+function M:new()
 	local self = setmetatable({}, M)
 	return self
 end
@@ -163,7 +164,7 @@ end
 M.DebugStepOver = function()
 	vim.cmd([[ call vimspector#StepOver()]])
 end
---lua Class
+
 M.DebugStop = function()
 	vim.cmd([[ call vimspector#Stop()]])
 end
