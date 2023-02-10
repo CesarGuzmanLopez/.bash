@@ -1,6 +1,5 @@
 local M = {}
 
-M.__index = M
 setmetatable(M, {
 	__call = function(cls, ...)
 		return cls.new(...)
@@ -8,7 +7,10 @@ setmetatable(M, {
 })
 
 function M:new()
-	local self = setmetatable({}, M)
+	self = setmetatable({}, M)
+	M.__index = M
+	self.__index = M
+	self.NamesOfStudio = {}
 	return self
 end
 
@@ -24,7 +26,6 @@ M.NamesOfStudio = {
 	A9 = "Function 9",
 	A0 = "Function 0",
 }
-
 M.A0 = function()
 	print("Not implemented yet")
 end

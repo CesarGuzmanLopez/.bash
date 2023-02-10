@@ -7,28 +7,30 @@ setmetatable(M, {
 	end,
 })
 
+RegisterLanguage = {}
 function M.new(...)
 	local args = { ... }
 	local self = setmetatable({}, M)
 	self.Leader = args[2]
 	self.KF = {}
-	local active = false
 	self.NameFileFunction = "Functions_" .. vim.bo.filetype
 	vim.api.nvim_create_autocmd({ "WinEnter", "BufWinEnter" }, {
 		callback = function()
-			if active    then
+			if vim.bo.filetype == "help" or vim.bo.filetype == "" or vim.bo.filetype == nil then
 				return
 			end
 			self.NameFileFunction = "Functions_" .. vim.bo.filetype
-			local status = pcall(require, self.NameFileFunction)
-			print(status)
-			if status then
-				self.KF = require(self.NameFileFunction)
-				self.name = "+Functions_" .. vim.bo.filetype
-				print("Entro una vez")
-				active = true
+			if RegisterLanguage[vim.bo.filetype] == nil then
+				local ok, mod = pcall(require, self.NameFileFunction)
+				if ok then
+					RegisterLanguage[vim.bo.filetype] = mod
+				elseif vim.bo.filetype ~= "" and vim.bo.filetype ~= nil then
+					RegisterLanguage[vim.bo.filetype] = nil
+				end
+			end
+			if RegisterLanguage[vim.bo.filetype] ~= nil then
+				self.KF = RegisterLanguage[vim.bo.filetype]
 			else
-				self.name = "+Functions_General"
 				self.KF = require("functionsKeyBindings")
 			end
 			M.register(self)

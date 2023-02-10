@@ -116,7 +116,7 @@ temp = {
 	},
 }
 vim.g.wk.register(temp,{})
-
+--asdf asadf asf 
 keyset("n", "\\z", "<cmd>FZF<CR>", opts_silent)
 keyset("n", "\\h", "<cmd>History<CR>", opts_silent)
 keyset("n", "\\f", "<cmd>Files<CR>", opts_silent)
