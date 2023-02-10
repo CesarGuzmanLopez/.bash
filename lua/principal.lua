@@ -7,7 +7,10 @@ require("toggleterm").setup({})
 require('Comment').setup()
 --require("nvim-surround").setup()
 require("hop").setup({ keys = "etovxqpdygfblzhckisuran" })
+vim.notify = require("notify")
 local navic = require("nvim-navic")
+local Popup = require("nui.popup")
+local Layout = require("nui.layout")
 -- examples for your init.lua
 vim.g.copilot_node_command = "~/.nvm/versions/node/v17.9.1/bin/node"
 vim.g.copilot_no_tab_map = 1
@@ -18,6 +21,24 @@ vim.g.CheatSheetDoNotMap=1
 vim.g.ale_linters_ignore = { "lacheck" }
 
 
+require("noice").setup({
+  lsp = {
+    -- override markdown rendering so that **cmp** and other plugins use **Treesitter**
+    override = {
+      ["vim.lsp.util.convert_input_to_markdown_lines"] = true,
+      ["vim.lsp.util.stylize_markdown"] = true,
+      ["cmp.entry.get_documentation"] = true,
+    },
+  },
+  -- you can enable a preset for easier configuration
+  presets = {
+    bottom_search = true, -- use a classic bottom cmdline for search
+    command_palette = true, -- position the cmdline and popupmenu together
+    long_message_to_split = true, -- long messages will be sent to a split
+    inc_rename = false, -- enables an input dialog for inc-rename.nvim
+    lsp_doc_border = false, -- add a border to hover docs and signature help
+  },
+})
 
 --vim.g.CheatSheetDoNotMap=1
 local api = vim.api
