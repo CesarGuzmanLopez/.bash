@@ -5,12 +5,15 @@ vim.g.wk.setup({})
 require("gitsigns").setup()
 require("toggleterm").setup({})
 require('Comment').setup()
---require("nvim-surround").setup()
 require("hop").setup({ keys = "etovxqpdygfblzhckisuran" })
-vim.notify = require("notify")
+vim.notify = require("notify").setup({
+	background_colour = "#1e222a",
+})
+
+
 local navic = require("nvim-navic")
-local Popup = require("nui.popup")
-local Layout = require("nui.layout")
+require("nui.popup")
+require("nui.layout")
 -- examples for your init.lua
 vim.g.copilot_node_command = "~/.nvm/versions/node/v17.9.1/bin/node"
 vim.g.copilot_no_tab_map = 1
