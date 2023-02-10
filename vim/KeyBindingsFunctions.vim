@@ -19,7 +19,7 @@ function! RunOnlyCode()
     if !exists("g:loaded_run_code") || !g:loaded_run_code
         let g:loaded_run_code = 1
     else
-        let g:loaded_run_code = 0
+        let g:loaded_run_code = -1
     endif
     if(&filetype == "java")
         call RunJavaCode()
