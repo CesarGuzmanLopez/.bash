@@ -41,6 +41,6 @@ opt.tabstop = 4
 opt.undodir = vim.fn.stdpath('config') .. '/undodir'
 opt.undofile = true
 opt.updatetime = 300
-opt.wrap = false
+opt.wrap = true
 opt.writebackup = false
 opt.conceallevel = 1

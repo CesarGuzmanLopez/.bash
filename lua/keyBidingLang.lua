@@ -14,7 +14,7 @@ function M.new(...)
 	self.Leader = args[2]
 	self.KF = {}
 	self.NameFileFunction = "Functions_" .. vim.bo.filetype
-	vim.api.nvim_create_autocmd({ "WinEnter", "BufWinEnter" }, {
+	vim.api.nvim_create_autocmd({ "WinEnter", "BufWinEnter","BufEnter","VimEnter" }, {
 		callback = function()
 			if vim.bo.filetype == "help" or vim.bo.filetype == "" or vim.bo.filetype == nil then
 				return
@@ -28,11 +28,13 @@ function M.new(...)
 					RegisterLanguage[vim.bo.filetype] = nil
 				end
 			end
+
 			if RegisterLanguage[vim.bo.filetype] ~= nil then
 				self.KF = RegisterLanguage[vim.bo.filetype]
 			else
 				self.KF = require("functionsKeyBindings")
 			end
+
 			M.register(self)
 		end,
 	})

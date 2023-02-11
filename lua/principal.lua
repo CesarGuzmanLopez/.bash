@@ -3,15 +3,13 @@ require("nvim-lastplace").setup({})
 vim.g.wk = require("which-key")
 vim.g.wk.setup({})
 require("gitsigns").setup()
-require("toggleterm").setup({})
+require("toggleterm").setup()
 require('Comment').setup()
 require("hop").setup({ keys = "etovxqpdygfblzhckisuran" })
 vim.notify = require("notify").setup({
 	background_colour = "#1e222a",
 })
 
-
-local navic = require("nvim-navic")
 require("nui.popup")
 require("nui.layout")
 -- examples for your init.lua
@@ -22,7 +20,6 @@ vim.g.lastplace_ignore_buftype = "quickfix,nofile,help"
 vim.g.lastplace_open_folds = 0
 vim.g.CheatSheetDoNotMap=1
 vim.g.ale_linters_ignore = { "lacheck" }
-
 
 require("noice").setup({
   lsp = {
@@ -202,6 +199,7 @@ require("gitsigns").setup({
 local on_attach = function(client, bufnr)
 	if client.server_capabilities.documentSymbolProvider then
 		navic.attach(client, bufnr)
+
 	end
 end
 
