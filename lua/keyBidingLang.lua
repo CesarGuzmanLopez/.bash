@@ -14,8 +14,9 @@ function M.new(...)
 	self.Leader = args[2]
 	self.KF = {}
 	self.NameFileFunction = "Functions_" .. vim.bo.filetype
-	vim.api.nvim_create_autocmd({ "WinEnter", "BufWinEnter","BufEnter","VimEnter" }, {
+	vim.api.nvim_create_autocmd({ "WinEnter", "BufWinEnter", "BufEnter", "VimEnter" }, {
 		callback = function()
+			vim.cmd([[ TSInstall all ]])
 			if vim.bo.filetype == "help" or vim.bo.filetype == "" or vim.bo.filetype == nil then
 				return
 			end

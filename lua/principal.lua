@@ -195,7 +195,7 @@ require("gitsigns").setup({
 		map({ "o", "x" }, "ih", ":<C-U>Gitsigns select_hunk<CR>")
 	end,
 })
-
+local navic = require("navic")
 local on_attach = function(client, bufnr)
 	if client.server_capabilities.documentSymbolProvider then
 		navic.attach(client, bufnr)
@@ -216,4 +216,3 @@ vim.o.timeoutlen = 300
 
 vim.g.translator_window_type = 'popup'
 vim.g.translator_target_lang = 'es'
-
