@@ -18,31 +18,32 @@ end
 
 M.NamesOfStudio = {
 	A1 = "Draw image",
-	A2 = "Function lua 2",
-	A3 = "Function lua 3",
-	A4 = "Function lua 4",
-	A5 = "Function lua 5",
-	A6 = "Function lua 6",
-	A7 = "Function lua 7",
-	A8 = "Function lua 8",
-	A9 = "Function lua 9",
-	A0 = "Function lua 0",
+	A2 = "",
+	A3 = "",
+	A4 = "",
+	A5 = "",
+	A6 = "",
+	A7 = "",
+	A8 = "",
+	A9 = "",
+	A0 = "",
 }
 
 M.A0 = function()
-	
-end
-M.A1 = function()
-	local mode = M.GetMode()
-	if(mode == "i") then
-		vim.cmd[[
-		<Esc>: silent exec '.!inkscape-figures create \"'.getline('.').'\" \"'.b:vimtex.root.'/figures/\"'<CR><CR>:w<CR>
-		]]
-	else
-		vim.cmd[[	<cmd>exec '!inkscape-figures edit \"'.b:vimtex.root.'/figures/\" > /dev/null 2>&1 &'<CR><CR>:redraw!<CR>]]
-	end
 
 end
+M.A1 = function()
+	local mode = a.GetMode()
+	if mode == "i" then
+		vim.cmd([[silent exec '.!inkscape-figures create "'.getline('.').'" "'.b:vimtex.root.'/figures/"']])
+		vim.cmd([[w]])
+	else
+		vim.cmd([[exec '!inkscape-figures edit "'.b:vimtex.root.'/figures/" > /dev/null 2>&1']])
+		vim.cmd([[redraw!]])
+	end
+end
+
+
 
 M.A2 = function()
 	-- local mode = M.GetMode()

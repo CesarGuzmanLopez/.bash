@@ -44,3 +44,4 @@ opt.updatetime = 300
 opt.wrap = true
 opt.writebackup = false
 opt.conceallevel = 1
+vim.g.is_bash = 1

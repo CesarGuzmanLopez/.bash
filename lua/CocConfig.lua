@@ -55,7 +55,7 @@ vim.g.coc_global_extensions = {
    'coc-clangd',
    'coc-explorer',
    'coc-flutter',
-   'coc-flutter', 
+   'coc-flutter',
    'coc-git',
    'coc-git',
    'coc-go',
@@ -69,7 +69,7 @@ vim.g.coc_global_extensions = {
    'coc-java-lombok',
    'coc-java-vimspector',
    'coc-json',
-   'coc-json', 
+   'coc-json',
    'coc-julia',
    'coc-lightbulb',
    'coc-lists',
@@ -85,7 +85,7 @@ vim.g.coc_global_extensions = {
    'coc-translate',
    'coc-translator',
    'coc-vetur',
-   'coc-vimlsp',          
+   'coc-vimlsp',
    'coc-vimtex',
    'coc-lua',
    'coc-stylua'           ,
@@ -93,8 +93,10 @@ vim.g.coc_global_extensions = {
    'coc-sumneko-lua'     ,
    'coc-nelua',
    'coc-marketplace',
-   'coc-tabnine'
-   
+   'coc-tabnine',
+   'coc-sh',
+   'coc-rls',
+
 }
 
 vim.g.coc_config_home = vim.g.OSH 

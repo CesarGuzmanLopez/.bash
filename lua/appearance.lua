@@ -180,9 +180,10 @@ require("true-zen").setup{
     lualine = true -- hide nvim-lualine (ataraxis)
   },
 }
+
 require("barbecue").setup({
     create_autocmd = true,
-    show_navic = true,
+--    show_navic = true,
     show_modified = true,
   })
 require("barbecue.ui").toggle(false)

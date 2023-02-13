@@ -4,41 +4,38 @@ vim.g.wk = require("which-key")
 vim.g.wk.setup({})
 require("gitsigns").setup()
 require("toggleterm").setup()
-require('Comment').setup()
+require("Comment").setup()
 require("hop").setup({ keys = "etovxqpdygfblzhckisuran" })
 vim.notify = require("notify").setup({
 	background_colour = "#1e222a",
 })
-
-require("nui.popup")
-require("nui.layout")
 -- examples for your init.lua
 vim.g.copilot_node_command = "~/.nvm/versions/node/v17.9.1/bin/node"
 vim.g.copilot_no_tab_map = 1
 vim.g.lastplace_ignore = "gitcommit,gitrebase,svn,hgcommit"
 vim.g.lastplace_ignore_buftype = "quickfix,nofile,help"
 vim.g.lastplace_open_folds = 0
-vim.g.CheatSheetDoNotMap=1
+vim.g.CheatSheetDoNotMap = 1
 vim.g.ale_linters_ignore = { "lacheck" }
 
-require("noice").setup({
-  lsp = {
-    -- override markdown rendering so that **cmp** and other plugins use **Treesitter**
-    override = {
-      ["vim.lsp.util.convert_input_to_markdown_lines"] = true,
-      ["vim.lsp.util.stylize_markdown"] = true,
-      ["cmp.entry.get_documentation"] = true,
-    },
-  },
-  -- you can enable a preset for easier configuration
-  presets = {
-    bottom_search = true, -- use a classic bottom cmdline for search
-    command_palette = true, -- position the cmdline and popupmenu together
-    long_message_to_split = true, -- long messages will be sent to a split
-    inc_rename = false, -- enables an input dialog for inc-rename.nvim
-    lsp_doc_border = false, -- add a border to hover docs and signature help
-  },
-})
+--require("noice").setup({
+--	lsp = {
+--		-- override markdown rendering so that **cmp** and other plugins use **Treesitter**
+--		override = {
+--			["vim.lsp.util.convert_input_to_markdown_lines"] = true,
+--			["vim.lsp.util.stylize_markdown"] = true,
+--			["cmp.entry.get_documentation"] = true,
+--		},
+--	},
+--	-- you can enable a preset for easier configuration
+--	presets = {
+--		bottom_search = true, -- use a classic bottom cmdline for search
+--		command_palette = true, -- position the cmdline and popupmenu together
+--		long_message_to_split = true, -- long messages will be sent to a split
+--		inc_rename = false, -- enables an input dialog for inc-rename.nvim
+--		lsp_doc_border = false, -- add a border to hover docs and signature help
+--	},
+--})
 
 --vim.g.CheatSheetDoNotMap=1
 local api = vim.api
@@ -54,10 +51,6 @@ api.nvim_create_autocmd("TextYankPost", {
 vim.g.loaded_netrw = 1
 vim.g.loaded_netrwPlugin = 1
 vim.opt.termguicolors = true
-
--- empty setup using defaults
--- OR setup with some options
-
 require("nvim-tree").setup({
 	sort_by = "case_sensitive",
 	view = {
@@ -195,17 +188,21 @@ require("gitsigns").setup({
 		map({ "o", "x" }, "ih", ":<C-U>Gitsigns select_hunk<CR>")
 	end,
 })
-local navic = require("navic")
-local on_attach = function(client, bufnr)
-	if client.server_capabilities.documentSymbolProvider then
-		navic.attach(client, bufnr)
-
-	end
-end
 
 require("lspconfig").clangd.setup({
 	on_attach = on_attach,
 })
+
+
+--vim.api.nvim_create_autocmd('FileType', {
+--  pattern = 'sh',
+--  callback = function()
+--    vim.lsp.start({
+--      name = 'bash-language-server',
+--      cmd = { 'bash-language-server', 'start' },
+--    })
+--  end,
+--})
 
 
 vim.g.nrrw_rgn_nomap_nr = 1
@@ -214,5 +211,5 @@ vim.g.nrrw_rgn_nomap_Nr = 1
 vim.o.timeout = true
 vim.o.timeoutlen = 300
 
-vim.g.translator_window_type = 'popup'
+vim.g.translator_window_type = "popup"
 vim.g.translator_target_lang = 'es'

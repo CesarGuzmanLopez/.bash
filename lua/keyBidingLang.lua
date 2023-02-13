@@ -14,32 +14,62 @@ function M.new(...)
 	self.Leader = args[2]
 	self.KF = {}
 	self.NameFileFunction = "Functions_" .. vim.bo.filetype
-	vim.api.nvim_create_autocmd({ "WinEnter", "BufWinEnter", "BufEnter", "VimEnter" }, {
-		callback = function()
-			vim.cmd([[ TSInstall all ]])
-			if vim.bo.filetype == "help" or vim.bo.filetype == "" or vim.bo.filetype == nil then
-				return
-			end
-			self.NameFileFunction = "Functions_" .. vim.bo.filetype
-			if RegisterLanguage[vim.bo.filetype] == nil then
-				local ok, mod = pcall(require, self.NameFileFunction)
-				if ok then
-					RegisterLanguage[vim.bo.filetype] = mod
-				elseif vim.bo.filetype ~= "" and vim.bo.filetype ~= nil then
-					RegisterLanguage[vim.bo.filetype] = nil
+	vim.api.nvim_create_autocmd(
+		{ "WinEnter", "BufWinEnter", "BufEnter", "FileType", "VimEnter", "BufLeave", "BufWinLeave", "InsertEnter" },
+		{
+			callback = function()
+				if vim.bo.filetype == "help" or vim.bo.filetype == "" or vim.bo.filetype == nil then
+					return
 				end
-			end
-
-			if RegisterLanguage[vim.bo.filetype] ~= nil then
-				self.KF = RegisterLanguage[vim.bo.filetype]
-			else
-				self.KF = require("functionsKeyBindings")
-			end
-
-			M.register(self)
-		end,
-	})
+				self.NameFileFunction = "Functions_" .. vim.bo.filetype
+				if RegisterLanguage[vim.bo.filetype] == nil then
+					local ok, mod = pcall(require, self.NameFileFunction)
+					if ok then
+						RegisterLanguage[vim.bo.filetype] = mod
+					elseif vim.bo.filetype ~= "" and vim.bo.filetype ~= nil then
+						RegisterLanguage[vim.bo.filetype] = nil
+					end
+				end
+				if RegisterLanguage[vim.bo.filetype] ~= nil then
+					self.KF = RegisterLanguage[vim.bo.filetype]
+				else
+					self.KF = require("functionsKeyBindings")
+				end
+				M.register(self)
+			end,
+		}
+	)
 	return self
+end
+
+function M.Getlanguage()
+   if vim.bo.filetype == "help" or vim.bo.filetype == "" or vim.bo.filetype == nil then
+	return
+   end
+   if(vim.bo.filetype == "cpp" or vim.bo.filetype == "c" or vim.bo.filetype == "c++" or vim.bo.filetype == "c++") then
+	return "cpp"
+   end
+   if(vim.bo.filetype == "python" or vim.bo.filetype == "py") then
+   	return "python"
+   end
+   if(vim.bo.filetype == "lua") then
+   	return "lua"
+   end
+   if(vim.bo.filetype == "java") then
+   	return "java"
+   end
+   if(vim.bo.filetype == "javascript") then
+   	return "javascript"
+   end
+
+
+   if(vim.bo.filetype == "typescript") then
+   	return "typescript"
+   end
+	
+
+
+	return vim.bo.filetype
 end
 
 function M.register(self)
@@ -87,8 +117,8 @@ function M.register(self)
 		["<F7>"] = {
 			name = "+Debug",
 			["<F5>"] = { self.KF.RunDebug, "Run Debug" },
-			["C"] = 	{ self.KF.CompileDebug, "Compile Debug" },
-			["f"] = { 	self.KF.DebugAddFunctionBreakpoint, "Add function Break point" },
+			["C"] = { self.KF.CompileDebug, "Compile Debug" },
+			["f"] = { self.KF.DebugAddFunctionBreakpoint, "Add function Break point" },
 			["z0"] = { self.KF.DebugBalloonEval0, "Add ballon 0" },
 			["z1"] = { self.KF.DebugBalloonEval1, "Add ballon 1" },
 			["b"] = { self.KF.DebugBreakPoints, "Break Points" },
