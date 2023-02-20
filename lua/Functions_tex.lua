@@ -96,7 +96,7 @@ M.CompileOnlyCode = function()
 end
 
 M.Compile = function()
-  a.Compile()
+ 	vim.cmd([[VimtexCompile]])
 end
 
 M.CompileDebug = function()

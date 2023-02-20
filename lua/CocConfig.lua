@@ -61,7 +61,6 @@ vim.g.coc_global_extensions = {
    'coc-go',
    'coc-go',
    'coc-highlight',
-   'coc-highlight',
    'coc-java',
    'coc-java-debug',
    'coc-java-dependency',
@@ -96,7 +95,10 @@ vim.g.coc_global_extensions = {
    'coc-tabnine',
    'coc-sh',
    'coc-rls',
-
+   'coc-ultisnips',
+   'coc-neosnippet',
+   'prismic-snippets'
 }
+
 
 vim.g.coc_config_home = vim.g.OSH 
