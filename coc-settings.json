@@ -1,4 +1,4 @@
-﻿{
+{
   "coc.preferences.colorSupport": true,
   "coc.preferences.jumpCommand": "drop",
   "coc.preferences.rootPatterns": [".git", ".vscode"],
@@ -16,5 +16,20 @@
     "tex",
     "plaintex"
   ],
-  "diagnostic.displayByAle": true
+  "diagnostic.displayByAle": true,
+   "languageserver": {
+    "ccls": {
+      "command": "ccls",
+      "filetypes": ["c", "cpp", "cuda", "objc", "objcpp"],
+      "rootPatterns": [".ccls-root", "compile_commands.json"],
+      "initializationOptions": {
+        "cache": {
+          "directory": ".ccls-cache"
+        },
+        "client": {
+          "snippetSupport": true
+        }
+      }
+    }
+  }
 }

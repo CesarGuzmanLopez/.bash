@@ -52,7 +52,7 @@ vim.g.coc_global_extensions = {
    'coc-markdownlint',
    'coc-bibtex',
    'coc-calc',
-   'coc-clangd',
+   'coc-pyright',
    'coc-explorer',
    'coc-flutter',
    'coc-flutter',
