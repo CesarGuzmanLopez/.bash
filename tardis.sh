@@ -15,8 +15,12 @@ export ram_used=$(free -m | awk 'NR==2{print $3}')
 export tarjetaGrafica=$(lspci | grep VGA | head -1 | cut -d ":" -f3 | cut -c 1-45)
 export procesoMasUsado=$(ps aux --sort -rss | head -2 | tail -1 | awk '{print $11,$6/1024}'| xargs basename)
 export memoriaMasUsada=$(ps aux --sort -rss | head -2 | tail -1 | awk '{print $6/1024}')
+export segundo_mas_usado=$(ps aux --sort -rss | head -3 | tail -1 | awk '{print $11,$6/1024}'| xargs basename)
+export segundo_mas_usado_memoria=$(ps aux --sort -rss | head -3 | tail -1 | awk '{print $6/1024}')
 export procesocpu=$(ps aux --sort -pcpu | head -2 | tail -1 | awk '{print $11,$3}'| xargs basename)
 export cpuMasUsada=$(ps aux --sort -pcpu | head -2 | tail -1 | awk '{print $3}')
+export porcentaje_segundo_mas_usado_cpu=$(ps aux --sort -pcpu | head -3 | tail -1 | awk '{print $3}')
+export segundo_mas_usado_cpu_nombre=$(ps aux --sort -pcpu | head -3 | tail -1 | awk '{print $11}')
 GREEN='\033[0;32m'
 
 NC='\033[0m' # No Color
@@ -56,8 +60,8 @@ echo -e "  |  ------  |O ------  |  ${GREEN}${BOLD} 🏠 IP LOCAL:${NC} $iplocal
 echo -e "  |  ------  |° ------  |  ${GREEN}${BOLD} 🌐 IP PUBLICA ${NC} $ippublic ${NC}" | cut -c -${cols}
 echo -e "♥ |  |    |  |  |    |  |  ${GREEN}${BOLD} 🌐 IP v6 ${NC} $ipv6 ${NC}" | cut -c -${cols}
 echo -e "L |  |    |  |  |    |  |•˛${GREEN}${BOLD} 🚀 GRAFICA:${NC} $tarjetaGrafica  ${NC}" | cut -c -${cols}
-echo -e "A |  ------  |  ------  |。${GREEN}${BOLD} 🏋️  PROCESO MAS MEMORIA:${NC} $procesoMasUsado ${NC} | ${GREEN}${BOLD}MEMORIA:${NC} $memoriaMasUsada MB ${NC}" | cut -c -${cols}
-echo -e "U |  ------  |  ------  |• ${GREEN}${BOLD} 🔥 PROCESO MAS CPU:${NC} $procesocpu ${NC} | ${GREEN}${BOLD}CPU:${NC} $cpuMasUsada % ${NC}" | cut -c -${cols}
+echo -e "A |  ------  |  ------  |。${GREEN}${BOLD} 🏋️  PROC. MEMORIA:${NC} $procesoMasUsado, $segundo_mas_usado ${NC} | ${GREEN}${BOLD}MEMORIA:${NC} $memoriaMasUsada MB, $segundo_mas_usado_memoria MB  ${NC}" |cut -c -${cols}
+echo -e "U |  ------  |  ------  |• ${GREEN}${BOLD} 🔥 PROC. CPU:${NC} $procesocpu, $segundo_mas_usado_cpu_nombre ${NC} | ${GREEN}${BOLD}CPU:${NC} $cpuMasUsada%, $porcentaje_segundo_mas_usado_cpu%  ${NC}" |cut -c -${cols}
 echo -e "♥ |  |    |  |  |    |  |˚•" | cut -c -${cols}
 echo -e "˚ |  |    |  |  |    |  |•˚" | cut -c -${cols}
 echo -e "  |  ------  |  ------  |  " | cut -c -${cols}

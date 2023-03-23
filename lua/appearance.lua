@@ -3,7 +3,6 @@
 vim.opt.list = true
 vim.opt.listchars:append "space: "
 vim.opt.termguicolors = true
-
 require("tokyonight").setup(
   {
     -- your configuration comes here
@@ -43,6 +42,10 @@ require("tokyonight").setup(
 local ok, _ = pcall(vim.cmd, 'colorscheme tokyonight')
 
 
+vim.cmd('hi Comment guifg=#ee88da')
+vim.cmd('highlight Comment gui=italic')
+vim.cmd('highlight Constant gui=bold')
+--vim.cmd('highlight Identifier gui=bold')
 -- char = '▏',
 require('lualine').setup {
   options = {
