@@ -6,9 +6,10 @@ case $- in
 esac
 
 # Path to your oh-my-bash installation.
-
-export OSH=/home/cesarguzman/.bash_vim
-
+if [ -n "${OSH}"] 
+then
+   export OSH=/home/cesarguzman/.bash_vim
+fi
 
 alias neofetch="neofetch --config $OSH/neofetch.conf --ascii "$OSH"/tardis.txt"
 source $OSH/tardis.sh
