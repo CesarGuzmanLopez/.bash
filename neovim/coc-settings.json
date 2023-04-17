@@ -1,0 +1,41 @@
+{
+  "coc.preferences.colorSupport": true,
+  "coc.preferences.jumpCommand": "drop",
+  "coc.preferences.rootPatterns": [".git", ".vscode"],
+  "coc.preferences.useQuickfixForLocations": true,
+  "codeLens.enable": true,
+  "codeLens.separator": "🔍",
+  "diagnostic.errorSign": "✘",
+  "diagnostic.hintSign": "➤",
+  "diagnostic.infoSign": "ℹ️",
+  "highlight.colors.enable": true,
+  "suggest.enablePreselect": false,
+  "suggest.noselect": true,
+  "suggest.removeDuplicateItems": true,
+  "coc.source.vimtex.filetypes": [
+    "tex",
+    "plaintex"
+  ],
+  "diagnostic.displayByAle": true,
+   "languageserver": {
+    "ccls": {
+      "command": "ccls",
+      "filetypes": ["c", "cpp", "cuda", "objc", "objcpp"],
+      "rootPatterns": [".ccls-root", "compile_commands.json"],
+      "initializationOptions": {
+        "cache": {
+          "directory": ".ccls-cache"
+        },
+        "client": {
+          "snippetSupport": true
+        }
+      }
+    },
+    "coc-clangd": {
+      "command": "clangd",
+      "rootPatterns": [ ".git/", "compile_flags.txt", "compile_commands.json"],
+      "filetypes": ["c", "cc", "cpp", "c++", "objc", "objcpp","cuda"],
+    }
+  },
+  "snippets.ultisnips.pythonPrompt": false
+}
