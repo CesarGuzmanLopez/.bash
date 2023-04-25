@@ -6,8 +6,7 @@ case $- in
 esac
 
 # Path to your oh-my-bash installation.
-if [ -n "${OSH}"] 
-then
+if [ -n $OSH ] ; then
    export OSH=/home/cesarguzman/.bash_vim
 fi
 
