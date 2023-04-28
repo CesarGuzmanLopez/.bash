@@ -18,7 +18,10 @@ require('CocConfig')
 require('functionsKeyBindings')
 cmd('source '..vim.g.OSH..'/vim/appearance.vim')
 cmd('source '..vim.g.OSH..'/vim/FZF.vim')
+cmd('set laststatus=3')
+
 --cmd('source '..vim.g.OSH..'/vim/Functions_Java.vim')
 --cmd('source '..vim.g.OSH..'/vim/Functions_C.vim')
 
 require('keybindings')
+vim.opt.laststatus = 3

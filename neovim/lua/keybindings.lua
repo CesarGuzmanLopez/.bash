@@ -305,7 +305,9 @@ keyset(
 
 keyset({"n","o","i","v"}, "<C-T>", "<Cmd>ToggleTerm<CR>", opts_silent)
 keyset({"t"}, "<C-T>", "<C-\\><C-n><Cmd>ToggleTerm<CR>", opts_silent)
-keyset({"n","o","i","v"}, "<C-O>", "<cmd>Tagbar<CR>", opts_silent)
+keyset({"n","v"}, "<leader>O", "<cmd>Tagbar<CR>", opts_silent)
+ 
+
 
 --vim.keymap.set('', 'f', function()
 --  hop.hint_char1({ direction = directions.AFTER_CURSOR, current_line_only = true })

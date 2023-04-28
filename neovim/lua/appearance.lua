@@ -47,6 +47,8 @@ vim.cmd('highlight Comment gui=italic')
 vim.cmd('highlight Constant gui=bold')
 --vim.cmd('highlight Identifier gui=bold')
 -- char = '▏',
+vim.opt.laststatus =3
+
 require('lualine').setup {
   options = {
     icons_enabled = true,
@@ -57,8 +59,8 @@ require('lualine').setup {
       winbar = {},
     },
     ignore_focus = {},
-    always_divide_middle = true,
-    globalstatus = true,
+    always_divide_middle = false,
+    globalstatus =true,
     refresh = {
       statusline = 1000,
       tabline = 1000,
@@ -87,110 +89,6 @@ require('lualine').setup {
   extensions = {},
   theme = 'tokyonight'
 }
-require("true-zen").setup{
-  modes = { -- configurations per mode
-    ataraxis = {
-      shade = "dark", -- if `dark` then dim the padding windows, otherwise if it's `light` it'll brighten said windows
-      backdrop = 0, -- percentage by which padding windows should be dimmed/brightened. Must be a number between 0 and 1. Set to 0 to keep the same background color
-      minimum_writing_area = { -- minimum size of main window
-        width = 160,
-        height = 44,
-      },
-      quit_untoggles = true, -- type :q or :qa to quit Ataraxis mode
-      padding = { -- padding windows
-        left = 52,
-        right = 52,
-        top = 0,
-        bottom = 0,
-      },
-      callbacks = { -- run functions when opening/closing Ataraxis mode
-        open_pre = function() -- function to run before opening Ataraxis mode
-          require("barbecue.ui").toggle(true)
-          require("indent_blankline").setup {
-            -- for example, context is off by default, use this to turn it on
-            show_current_context = true,
-            show_current_context_start = true,
-            char_list = {' ',  ' ', ' ', ' ', ' ',}
-            -- char = '▏',
-          }
-          vim.cmd("IndentBlanklineRefresh")
-        end,
-        open_pos = nil,
-        close_pre = nil,
-        close_pos = function() -- function to run after closing Ataraxis mode
-          vim.cmd("IndentBlanklineEnable") -- enable indent-blankline
-          require("barbecue.ui").toggle(false)
-          require("indent_blankline").setup { 
-            space_char_blankline = " ",
-            show_current_context = false,
-            show_current_context_start = true,
-            char_list = {'▏',  '|', '¦', '┆', '┊',}
-          }
-        end,
-      },
-    },
-    minimalist = {
-      ignored_buf_types = { "nofile" }, -- save current options from any window except ones displaying these kinds of buffers
-      options = { -- options to be disabled when entering Minimalist mode
-        number = false,
-        relativenumber = false,
-        showtabline = 0,
-        signcolumn = "no",
-        statusline = "",
-        cmdheight = 1,
-        laststatus = 0,
-        showcmd = false,
-        showmode = false,
-        ruler = false,
-        numberwidth = 1
-      },
-      callbacks = { -- run functions when opening/closing Minimalist mode
-        open_pre = nil,
-        open_pos = nil,
-        close_pre = nil,
-        close_pos = nil
-      },
-    },
-    narrow = {
-      --- change the style of the fold lines. Set it to:
-      --- `informative`: to get nice pre-baked folds
-      --- `invisible`: hide them
-      --- function() end: pass a custom func with your fold lines. See :h foldtext
-      folds_style = "informative",      run_ataraxis = true, -- display narrowed text in a Ataraxis session
-      callbacks = { -- run functions when opening/closing Narrow mode
-        pen_pre = nil,
-        open_pos = nil,
-        close_pre = nil,
-        close_pos = nil
-      },
-    },
-    focus = {
-      callbacks = { -- run functions when opening/closing Focus mode
-        open_pre = nil,
-        open_pos = nil,
-        close_pre = nil,
-        close_pos = nil
-      },
-    }
-  },
-  integrations = {
-    tmux = false, -- hide tmux status bar in (minimalist, ataraxis)
-    kitty = { -- increment font size in Kitty. Note: you must set `allow_remote_control socket-only` and `listen_on unix:/tmp/kitty` in your personal config (ataraxis)
-      enabled = false,
-      font = "+3"
-    },
-    twilight = false, -- enable twilight (ataraxis)
-    lualine = true -- hide nvim-lualine (ataraxis)
-  },
-}
-
-require("barbecue").setup({
-    create_autocmd = true,
---    show_navic = true,
-    show_modified = true,
-  })
-require("barbecue.ui").toggle(false)
-
 vim.api.nvim_create_autocmd("BufEnter", {
     group = vim.api.nvim_create_augroup("IndentBlanklineBigFile", {}),
     pattern = "*",
@@ -217,4 +115,3 @@ require("indent_blankline").setup( {
         "jsx_element", "jsx_self_closing_element", "jsx_fragment", "public"
     }
 })
-

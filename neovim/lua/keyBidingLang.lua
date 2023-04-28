@@ -50,23 +50,22 @@ function M.Getlanguage()
 	return "cpp"
    end
    if(vim.bo.filetype == "python" or vim.bo.filetype == "py") then
-   	return "python"
+	   return "python"
    end
    if(vim.bo.filetype == "lua") then
-   	return "lua"
+	   return "lua"
    end
    if(vim.bo.filetype == "java") then
-   	return "java"
+		return "java"
    end
    if(vim.bo.filetype == "javascript") then
-   	return "javascript"
+	return "javascript"
    end
 
 
    if(vim.bo.filetype == "typescript") then
    	return "typescript"
    end
-	
 
 
 	return vim.bo.filetype
