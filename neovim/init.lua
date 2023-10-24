@@ -19,7 +19,7 @@ require('functionsKeyBindings')
 cmd('source '..vim.g.OSH..'/vim/appearance.vim')
 cmd('source '..vim.g.OSH..'/vim/FZF.vim')
 cmd('set laststatus=3')
-
+cmd('let g:loaded_ruby_provider = 0 ')
 --cmd('source '..vim.g.OSH..'/vim/Functions_Java.vim')
 --cmd('source '..vim.g.OSH..'/vim/Functions_C.vim')
 
