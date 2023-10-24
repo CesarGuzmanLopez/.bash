@@ -216,7 +216,10 @@ _vboxmanage() {
 	    esac
 	fi
     done
+    #add configuration to mac
+
 
     # echo "Got to end withoug completion"
+    # 
 }
 complete -F _vboxmanage vboxmanage

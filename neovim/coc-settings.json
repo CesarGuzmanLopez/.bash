@@ -1,7 +1,6 @@
 {
-  "coc.preferences.colorSupport": true,
   "coc.preferences.jumpCommand": "drop",
-  "coc.preferences.rootPatterns": [".git", ".vscode"],
+  "workspace.rootPatterns": [".git", ".vscode"],
   "coc.preferences.useQuickfixForLocations": true,
   "codeLens.enable": true,
   "codeLens.separator": "🔍",
