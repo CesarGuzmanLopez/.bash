@@ -7,11 +7,11 @@ esac
 
 # Path to your oh-my-bash installation.
 if [ -n $OSH ] ; then
-   export OSH=/home/cesarguzman/.bash_vim
+   export OSH=/home/cesar/.bash_vim
 fi
 
 alias neofetch="neofetch --config $OSH/neofetch.conf --ascii "$OSH"/tardis.txt"
-source $OSH/tardis.sh
+#source $OSH/tardis.sh
 
 # Set name of the theme to load. Optionally, if you set this to "random"
 # it'll load a random theme each time that oh-my-bash is loaded.
@@ -137,10 +137,12 @@ alias c-ssh-personal="ssh -o ServerAliveInterval=30 root@74.208.211.146 -v"
 alias c-ssh-generico="ssh -o ServerAliveInterval=30 root@198.71.50.22 -v"
 alias c-ssh-plata="ssh -o ServerAliveInterval=30 root@74.208.235.42 -v"
 alias c-ssh-agalano="ssh -p 2222 -o ServerAliveInterval=30 agalano@ssh.web7.us.cloudlogin.co -v"
-alias clsource="clear && source ~/.bashrc"
+alias clsource="clear && source $OSH/tardis.sh"
 alias c-ssh-sqm="ssh -o ServerAliveInterval=30 -o TCPKeepAlive=yes sqmorg1@173.231.197.92 -v"
 alias c-ssh-cggl="ssh -6 -o  ServerAliveInterval=30 -o TCPKeepAlive=yes cesarguzmanlopez@cggl1.duckdns.org -v"
 alias conn-ssh="netstat -at | grep ssh && who"
+alias proyectos="cd $HOME/Documents/Proyectos"
+
 force_color_prompt=yes
 
 bg_color=$(echo "$COLORFGBG" | cut -d ";" -f2)
@@ -194,11 +196,6 @@ export -f Grep
 export -f _fzf_compgen_path
 export -f _fzf_compgen_dir
 
-# fzf on Fedora
-if [ -x "$(command -v fzf)"  ]
-then
-  source /usr/share/fzf/shell/key-bindings.bash
-fi
 
 _fzf_compgen_path() {
   echo "$1"
@@ -242,3 +239,4 @@ insertar_texto() {
 }
 
 bind -x '"\C-t":insertar_texto'
+

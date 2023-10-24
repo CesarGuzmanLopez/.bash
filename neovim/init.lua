@@ -25,3 +25,4 @@ cmd('set laststatus=3')
 
 require('keybindings')
 vim.opt.laststatus = 3
+

@@ -44,7 +44,7 @@ fi
 
 
 # Salida del sistema con emojis y formato
-echo -e "。★  ˚ •    -   ˚ •。★˚˛˚  ${GREEN}${BOLD}       👤 Usuario:${NC} $USER | ${GREEN}${BOLD}💻 Hostname:${NC} $host " | cut -c -${cols}
+echo -e "。★  ˚ •    -   ˚ •。★˚˛˚  ${GREEN}${BOLD}       👤 Usuario:${NC} $USER | ${GREEN}${BOLD}💻 Hostname:${NC} $HOSTNAME " | cut -c -${cols}
 echo -e "    _______|@|_________  • ${GREEN}${BOLD} ${NC}" | cut -c -${cols}
 echo -e "   --------------------- ˚ ${GREEN}${BOLD} 🔧 SISTEMA OPERATIVO:${NC} $os" | cut -c -${cols}
 echo -e "  ||  POLICE ---- BOX  ||  ${GREEN}${BOLD} 💾 CPU:${NC} $cpu" | cut -c -${cols}
