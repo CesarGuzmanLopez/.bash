@@ -10,7 +10,6 @@ if [ -n $OSH ] ; then
    export OSH=/home/cesar/.bash_vim
 fi
 
-alias neofetch="neofetch --config $OSH/neofetch.conf --ascii "$OSH"/tardis.txt"
 #source $OSH/tardis.sh
 OSH_THEME="kitsune"
 
@@ -65,6 +64,7 @@ completions=(
   git
   composer
   ssh
+
 )
 
 # Which aliases would you like to load? (aliases can be found in .oh-my-bash/aliases/*)
@@ -113,22 +113,10 @@ export LANG=en_US.UTF-8
 # ssh
 # export SSH_KEY_PATH=".ssh/rsa_id"
 
-# Set personal aliases, overriding those provided by oh-my-bash libs,
-# plugins, and themes. Aliases can be placed here, though oh-my-bash
-# users are encouraged to define aliases within the OSH_CUSTOM folder.
-# For a full list of active aliases, run `alias`.
-#
-# Example aliases
-# alias bashconfig="mate .bashrc"
-# alias ohmybash="mate .oh-my-bash"
 
 
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
 mkdir -p ~/.vim/undodir
-alias cls=clear
-alias conn-ssh="netstat -at | grep ssh && who"
-alias proyectos="cd $HOME/Documents/Proyectos"
-
 force_color_prompt=yes
 
 bg_color=$(echo "$COLORFGBG" | cut -d ";" -f2)
@@ -239,3 +227,5 @@ else
 }
 
 bind -x '"\C-t":insertar_texto'
+
+

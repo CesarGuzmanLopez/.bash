@@ -62,3 +62,10 @@ alias fix_stty='stty sane'                  # fix_stty:     Restore terminal set
 alias fix_term='echo -e "\033c"'            # fix_term:     Reset the conosle.  Similar to the reset command
 alias cic='bind "set completion-ignore-case on"' # cic:          Make tab-completion case-insensitive
 alias src='source ~/.bashrc'                # src:          Reload .bashrc file
+
+alias cls=clear
+
+alias conn-ssh="netstat -at | grep ssh && who"
+alias proyectos="cd $HOME/Documents/Proyectos"
+alias neofetch="neofetch --config $OSH/neofetch.conf --ascii "$OSH"/tardis.txt"
+
