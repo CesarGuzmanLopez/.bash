@@ -128,29 +128,9 @@ _omb_module_require_alias "${aliases[@]}"
 # Load all of the completions that were defined in ~/.bashrc
 _omb_module_require_completion "${completions[@]}"
 
-# Load all of your custom configurations from custom/
-_omb_util_glob_expand _omb_init_files '"$OSH_CUSTOM"/*.{sh,bash}'
-for _omb_init_file in "${_omb_init_files[@]}"; do
-  [[ -f $_omb_init_file ]] &&
-    source "$_omb_init_file"
-done
 unset -v _omb_init_files _omb_init_file
 
-# Load the theme
-if [[ $OSH_THEME == random ]]; then
-  _omb_util_glob_expand _omb_init_files '"$OSH"/themes/*/*.theme.sh'
-  if ((${#_omb_init_files[@]})); then
-    _omb_init_file=${_omb_init_files[RANDOM%${#_omb_init_files[@]}]}
-    source "$_omb_init_file"
-    OMB_THEME_RANDOM_SELECTED=${_omb_init_file##*/}
-    OMB_THEME_RANDOM_SELECTED=${OMB_THEME_RANDOM_SELECTED%.theme.bash}
-    OMB_THEME_RANDOM_SELECTED=${OMB_THEME_RANDOM_SELECTED%.theme.sh}
-    echo "[oh-my-bash] Random theme '$OMB_THEME_RANDOM_SELECTED' ($_omb_init_file) loaded..."
-  fi
-  unset -v _omb_init_files _omb_init_file
-elif [[ $OSH_THEME ]]; then
-  _omb_module_require_theme "$OSH_THEME"
-fi
+_omb_module_require_theme "$OSH_THEME"
 
 if [[ $PROMPT ]]; then
   export PS1="\["$PROMPT"\]"
@@ -163,4 +143,3 @@ fi
 # Adding Support for other OSes
 [ -s /usr/bin/gloobus-preview ] && PREVIEW="gloobus-preview" ||
 [ -s /Applications/Preview.app ] && PREVIEW="/Applications/Preview.app" || PREVIEW="less"
-[[ -s /etc/profile.d/autojump.sh ]] && source /etc/profile.d/autojump.sh

@@ -12,9 +12,6 @@ fi
 
 alias neofetch="neofetch --config $OSH/neofetch.conf --ascii "$OSH"/tardis.txt"
 #source $OSH/tardis.sh
-
-# Set name of the theme to load. Optionally, if you set this to "random"
-# it'll load a random theme each time that oh-my-bash is loaded.
 OSH_THEME="kitsune"
 
 # Uncomment the following line to use case-sensitive completion.
@@ -22,25 +19,21 @@ OSH_THEME="kitsune"
 
 # Uncomment the following line to use hyphen-insensitive completion. Case
 # sensitive completion must be off. _ and - will be interchangeable.
-# HYPHEN_INSENSITIVE="true"
+ HYPHEN_INSENSITIVE="true"
 
 # Uncomment the following line to disable bi-weekly auto-update checks.
 # DISABLE_AUTO_UPDATE="true"
 
-# Uncomment the following line to change how often to auto-update (in days).
-# export UPDATE_OSH_DAYS=13
 
 # Uncomment the following line to disable colors in ls.
-# DISABLE_LS_COLORS="true"
 
 # Uncomment the following line to disable auto-setting terminal title.
 # DISABLE_AUTO_TITLE="true"
 
-# Uncomment the following line to enable command auto-correction.
-# ENABLE_CORRECTION="true"
+ENABLE_CORRECTION="true"
 
 # Uncomment the following line to display red dots whilst waiting for completion.
-# COMPLETION_WAITING_DOTS="true"
+COMPLETION_WAITING_DOTS="true"
 
 # Uncomment the following line if you want to disable marking untracked files
 # under VCS as dirty. This makes repository status check for large repositories
@@ -54,7 +47,7 @@ HIST_STAMPS="dd/mm/yyyy"
 
 # Uncomment the following line if you do not want OMB to overwrite the existing
 # aliases by the default OMB aliases defined in lib/*.sh
-# OMB_DEFAULT_ALIASES="check"
+OMB_DEFAULT_ALIASES="check"
 
 # Would you like to use another custom folder than $OSH/custom?
 # OSH_CUSTOM=/path/to/new-custom-folder
@@ -67,6 +60,7 @@ OMB_USE_SUDO=true
 # Custom completions may be added to .oh-my-bash/custom/completions/
 # Example format: completions=(ssh git bundler gem pip pip3)
 # Add wisely, as too many completions slow down shell startup.
+
 completions=(
   git
   composer
@@ -109,7 +103,7 @@ export LANG=en_US.UTF-8
  if [[ -n $SSH_CONNECTION ]]; then
    export EDITOR='nvim'
  else
-   export EDITOR='mvim'
+   export EDITOR='nvim'
  fi
 
 # Compilation flags
@@ -132,14 +126,6 @@ export LANG=en_US.UTF-8
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
 mkdir -p ~/.vim/undodir
 alias cls=clear
-alias c-ssh-gabrielsan="ssh -o ServerAliveInterval=30 root@198.71.49.57 -v"
-alias c-ssh-personal="ssh -o ServerAliveInterval=30 root@74.208.211.146 -v"
-alias c-ssh-generico="ssh -o ServerAliveInterval=30 root@198.71.50.22 -v"
-alias c-ssh-plata="ssh -o ServerAliveInterval=30 root@74.208.235.42 -v"
-alias c-ssh-agalano="ssh -p 2222 -o ServerAliveInterval=30 agalano@ssh.web7.us.cloudlogin.co -v"
-alias clsource="clear && source $OSH/tardis.sh"
-alias c-ssh-sqm="ssh -o ServerAliveInterval=30 -o TCPKeepAlive=yes sqmorg1@173.231.197.92 -v"
-alias c-ssh-cggl="ssh -6 -o  ServerAliveInterval=30 -o TCPKeepAlive=yes cesarguzmanlopez@cggl1.duckdns.org -v"
 alias conn-ssh="netstat -at | grep ssh && who"
 alias proyectos="cd $HOME/Documents/Proyectos"
 
@@ -163,10 +149,9 @@ function wallpaper_color() {
 if [[ $(wallpaper_color) == "dark" ]]; then
   alias nvim="nvim -c\"colo zellner\" -c\"hi Normal guibg=NONE ctermbg=NONE\" -c\":hi LineNr guifg=#010001\" "
 fi
-alias vim=nvim
-alias vi=nvim
 
 alias a-grep='grep -lirs --exclude-dir=".git;.svn" --color=always'
+
 function a-find () {
   find $1 -type f -not -path "*/\.git/*"
 }
@@ -214,7 +199,6 @@ bind -x '"\C-f": custom_fzf_search'
 
 
 
-
 _fzf_compgen_path() {
   echo "$1"
   command find -L "$1" \
@@ -240,9 +224,6 @@ _fzf_comprun() {
   esac
 }
 
-cheat() { curl cheat.sh/"$1" | less; }
-
-
 __get_first_arg() {
   echo "$1"
 }
@@ -258,4 +239,3 @@ else
 }
 
 bind -x '"\C-t":insertar_texto'
-
