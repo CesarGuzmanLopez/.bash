@@ -188,13 +188,31 @@ export FZF_DEFAULT_COMMAND="find . -type f -not -path '*/\.git/*'"
 # - The first argument to the function ($1) is the base path to start traversal
 # - See the source code (completion.{bash,zsh}) for the details.
 
-function Grep(){
-  bash   $OSH/rfv $1
-}
-
-export -f Grep
 export -f _fzf_compgen_path
 export -f _fzf_compgen_dir
+# agrego el comando para que se actuve al presionar ctrl + g
+
+function custom_fzf_search() {
+  rg --color=always --line-number --no-heading --smart-case "${*:-}" |
+    fzf --ansi \
+        --color "hl:-1:underline,hl+:-1:underline:reverse" \
+        --delimiter : \
+        --preview 'bat --color=always {1} --highlight-line {2}' \
+        --preview-window 'up,60%,border-bottom,+{2}+3/3,~3' |
+    awk -F: '{print $1}' |
+    xargs nvim
+
+}
+#verifico que exista el comando xargs y si no mande un mensaje de error
+if ! command -v xargs &> /dev/null
+then
+    echo "xargs could not be found"
+    echo "install xargs"
+    exit
+fi
+bind -x '"\C-f": custom_fzf_search'
+
+
 
 
 _fzf_compgen_path() {
@@ -231,7 +249,8 @@ __get_first_arg() {
 insertar_texto() {
  if [[ -z  ${READLINE_LINE//[$'\t\n ']} ]]; then
     Grep;
-  else
+else
+
     local result="$(_fzf_comprun $(__get_first_arg $READLINE_LINE))";
     READLINE_LINE=$(echo "$READLINE_LINE" | awk -v texto="$result" -v  posicion="$READLINE_POINT" '{print substr($0,1,posicion-1) " " texto " " substr($0,posicion)} ');
     READLINE_POINT=$(( $READLINE_POINT +  ${#result} + 1));
