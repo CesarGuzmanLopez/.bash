@@ -124,7 +124,7 @@ function! Random(n) abort
   return g:rnd * a:n / 0x10000
 endfunction
 
-let aleatorio = Random(5)
+let aleatorio = Random(4)
 
 if aleatorio == 0  && BufWidth() > 85
   let g:startify_custom_header = 
