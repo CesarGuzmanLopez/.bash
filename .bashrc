@@ -169,7 +169,7 @@ export -f _fzf_compgen_dir
 # agrego el comando para que se actuve al presionar ctrl + g
 
 function custom_fzf_search() {
-  rg --color=always --line-number --no-heading --smart-case "${*:-}" |
+    rg --color=always --line-number --no-heading --smart-case "${*:-}" |
     fzf --ansi \
         --color "hl:-1:underline,hl+:-1:underline:reverse" \
         --delimiter : \
@@ -177,7 +177,7 @@ function custom_fzf_search() {
         --preview-window 'up,60%,border-bottom,+{2}+3/3,~3' |
     awk -F: '{print $1}' |
     xargs nvim
-
+    
 }
 #verifico que exista el comando xargs y si no mande un mensaje de error
 if ! command -v xargs &> /dev/null

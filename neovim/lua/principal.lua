@@ -17,28 +17,8 @@ vim.g.lastplace_ignore_buftype = "quickfix,nofile,help"
 vim.g.lastplace_open_folds = 0
 vim.g.CheatSheetDoNotMap = 1
 vim.g.ale_linters_ignore = { "lacheck" }
-
---require("noice").setup({
---	lsp = {
---		-- override markdown rendering so that **cmp** and other plugins use **Treesitter**
---		override = {
---			["vim.lsp.util.convert_input_to_markdown_lines"] = true,
---			["vim.lsp.util.stylize_markdown"] = true,
---			["cmp.entry.get_documentation"] = true,
---		},
---	},
---	-- you can enable a preset for easier configuration
---	presets = {
---		bottom_search = true, -- use a classic bottom cmdline for search
---		command_palette = true, -- position the cmdline and popupmenu together
---		long_message_to_split = true, -- long messages will be sent to a split
---		inc_rename = false, -- enables an input dialog for inc-rename.nvim
---		lsp_doc_border = false, -- add a border to hover docs and signature help
---	},
---})
-
---vim.g.CheatSheetDoNotMap=1
 local api = vim.api
+
 
 -- Highlight on yank
 local yankGrp = api.nvim_create_augroup("YankHighlight", { clear = true })
@@ -174,7 +154,6 @@ require("gitsigns").setup({
 			gs.diffthis("~")
 		end)
 		map("n", "<leader>td", gs.toggle_deleted)
-
 		vim.api.nvim_set_keymap("n", "<c-x>n", ":silent! TZNarrow<CR>", {})
 		vim.api.nvim_set_keymap("v", "<c-x>n", ":'<,'>TZNarrow<CR>", {})
 		vim.api.nvim_set_keymap("n", "<c-x>f", ":silent! TZFocus<CR>", {})
@@ -189,17 +168,6 @@ require("lspconfig").clangd.setup({
 })
 
 
---vim.api.nvim_create_autocmd('FileType', {
---  pattern = 'sh',
---  callback = function()
---    vim.lsp.start({
---      name = 'bash-language-server',
---      cmd = { 'bash-language-server', 'start' },
---    })
---  end,
---})
-
-
 vim.g.nrrw_rgn_nomap_nr = 1
 vim.g.nrrw_rgn_nomap_Nr = 1
 
@@ -208,8 +176,6 @@ vim.o.timeoutlen = 300
 
 vim.g.translator_window_type = "popup"
 vim.g.translator_target_lang = 'es'
-
-
 
 vim.cmd[[
 	au BufNewFile,BufRead *.cu set ft=cuda
