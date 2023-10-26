@@ -52,6 +52,7 @@ alias cp='_omb_alias_general_cp_init'       # Preferred 'cp' implementation
 alias mv='_omb_alias_general_mv_init'       # Preferred 'mv' implementation
 alias mkdir='_omb_alias_general_mkdir_init' # Preferred 'mkdir' implementation
 alias ll='ls -lAFh'                         # Preferred 'ls' implementation
+alias la='ls -A'                           # Preferred 'ls' implementation
 alias less='less -FSRXc'                    # Preferred 'less' implementation
 alias nano='nano -W'                        # Preferred 'nano' implementation
 alias wget='wget -c'                        # Preferred 'wget' implementation (resume download)
