@@ -97,8 +97,8 @@ vim.g.coc_global_extensions = {
    'coc-rls',
    'coc-ultisnips',
    'coc-neosnippet',
-   'prismic-snippets'
-
+   'prismic-snippets',
+   'coc-angular'
 }
 
 
