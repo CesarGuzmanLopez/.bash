@@ -159,13 +159,7 @@ FZF_DEFAULT_OPTS="--height='30%' --layout='reverse'"
 
 export FZF_DEFAULT_COMMAND="find . -type f -not -path '*/\.git/*'"
 
-# Use fd (https://github.com/sharkdp/fd) instead of the default find
-# command for listing path candidates.
-# - The first argument to the function ($1) is the base path to start traversal
-# - See the source code (completion.{bash,zsh}) for the details.
 
-export -f _fzf_compgen_path
-export -f _fzf_compgen_dir
 # agrego el comando para que se actuve al presionar ctrl + g
 
 function custom_fzf_search() {
