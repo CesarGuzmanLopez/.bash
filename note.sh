@@ -1,3 +1,4 @@
+
 #!/bin/bash
 
 # Directorio para guardar los archivos de notas
@@ -5,6 +6,8 @@ notes_dir="$HOME/.notes"
 
 # Crea el directorio si no existe
 mkdir -p "$notes_dir"
+
+# También enviaré un mensaje así donde el token está en $TOKEN_MEMOS
 
 # Comprobando si se pasa el argumento para abrir la configuración web
 if [[ "$1" == "-f" ]]; then
@@ -14,8 +17,8 @@ if [[ "$1" == "-f" ]]; then
 fi
 
 # Comprobando si se pasa un mensaje directamente
-if [[ "$1" == "-m" ]] && [[ "$2" != "" ]]; then
-    mensaje="$2"
+if [[ "$1" != "" ]]; then
+    mensaje="$1"
     filename="$(date +'%Y-%m-%d_%H-%M-%S').txt"
     tempfile="$notes_dir/$filename"
     echo "$mensaje" > "$tempfile"
@@ -43,10 +46,15 @@ function check_and_send {
         sleep 120  # Espera 2 minutos
     done
 
+    # Escapar caracteres especiales en el mensaje
+    mensaje_escaped=$(printf '%s\n' "$mensaje" | sed 's/\\/\\\\/g; s/"/\\"/g; s/$/\\n/g' | tr -d '\n')
+
     # Envía el mensaje una vez que hay conexión
     curl -s -X POST "https://api.telegram.org/bot$TOKEN_telegram/sendMessage" -d chat_id="$TOKEN_USER_telegram" -d text="$mensaje" >> /dev/null
+    curl -k -X POST "https://notes.guzman-lopez.com/api/v2/memos" -H "Accept: application/json" -H "Authorization: Bearer $TOKEN_MEMOS" -H "Content-Type: application/json" -d "{\"content\": \"$mensaje_escaped\"}" >> /dev/null
     echo "Mensaje enviado exitosamente."
 }
+
 # Llama a la función en segundo plano
 check_and_send &
 

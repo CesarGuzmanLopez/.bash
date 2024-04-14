@@ -70,5 +70,6 @@ alias clsource="cls && source $HOME/.bashrc"
 alias zip="zip -r"
 alias updateAll="yay -Syu --noconfirm && yay -Qdtq && sudo pacman -Rns --noconfirm  && flatpak update"
 alias agenda="firefox agenda.guzman-lopez.com"
-alias notes="$OSH/telegram.sh"
+alias note="$OSH/note.sh"
+alias nota=note
 alias dos2unixAll="find . -type f -print0 | xargs -0 dos2unix"
