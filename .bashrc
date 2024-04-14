@@ -18,6 +18,7 @@ else
   echo "export OSH=/home/cesar/.bash_vim" >> $OSH/.env
   echo "export TOKEN_telegram=" >> $OSH/.env
   echo "export TOKEN_USER_telegram=" >> $OSH/.env
+  echo "export TOKEN_MEMOS="
   source $OSH/.env
 fi
 

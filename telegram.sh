@@ -44,7 +44,7 @@ function check_and_send {
     done
 
     # Envía el mensaje una vez que hay conexión
-    curl -s -X POST "https://api.telegram.org/bot$TOKEN_telegram/sendMessage" -d chat_id="$TOKEN_USER_telegram" -d text="$mensaje"
+    curl -s -X POST "https://api.telegram.org/bot$TOKEN_telegram/sendMessage" -d chat_id="$TOKEN_USER_telegram" -d text="$mensaje" >> /dev/null
     echo "Mensaje enviado exitosamente."
 }
 # Llama a la función en segundo plano
