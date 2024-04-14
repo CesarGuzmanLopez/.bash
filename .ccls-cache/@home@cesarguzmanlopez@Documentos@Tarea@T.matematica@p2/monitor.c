@@ -1,4 +1,4 @@
-﻿#include "parson.h"
+#include "parson.h"
 #include<stdio.h>
 #include <signal.h>
 #include<stdlib.h>

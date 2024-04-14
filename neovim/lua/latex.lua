@@ -1,4 +1,4 @@
-﻿g = vim.g
+g = vim.g
 api = vim.api
 
 g.vimtex_view_general_viewer = 'okular'

@@ -5,9 +5,20 @@ case $- in
     *) return;;
 esac
 
-# Path to your oh-my-bash installation.
-if [ -n $OSH ] ; then
-   export OSH=/home/cesar/.bash_vim
+
+# obtengo el OSH del archivo .env
+# primero verifico si existe el archivo
+# si no existe lo creo con 4 variables de entorno token telegram, token usuario telegram y el directorio donde se encuentra osh 
+
+
+export OSH=/home/cesar/.bash_vim
+if [ -f $OSH/.env ]; then
+  source $OSH/.env
+else
+  echo "export OSH=/home/cesar/.bash_vim" >> $OSH/.env
+  echo "export TOKEN_telegram=" >> $OSH/.env
+  echo "export TOKEN_USER_telegram=" >> $OSH/.env
+  source $OSH/.env
 fi
 
 #source $OSH/tardis.sh

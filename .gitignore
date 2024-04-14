@@ -1,3 +1,4 @@
-﻿.ccls-cache
+.ccls-cache
 .ccls-cache/*
 :LOCALAPPDATA
+.env

@@ -1,4 +1,4 @@
-﻿local api = vim.api
+local api = vim.api
 
 vim.opt.list = true
 vim.opt.listchars:append "space: "

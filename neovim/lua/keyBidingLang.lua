@@ -1,4 +1,4 @@
-﻿local M = {}
+local M = {}
 M.__index = M
 
 setmetatable(M, {
