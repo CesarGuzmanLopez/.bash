@@ -56,5 +56,4 @@ function check_and_send {
 }
 
 # Llama a la función en segundo plano
-check_and_send &
-
+check_and_send 
