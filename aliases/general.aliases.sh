@@ -68,5 +68,4 @@ alias proyectos="cd $HOME/Documents/Proyectos"
 alias neofetch="neofetch --config $OSH/neofetch.conf --ascii "$OSH"/tardis.txt"
 alias clsource="cls && source $HOME/.bashrc"
 alias zip="zip -r"
-
-
+alias updateAll="yay -Syu --noconfirm && yay -Qdtq && sudo pacman -Rns --noconfirm  && flatpak update"
