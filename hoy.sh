@@ -13,31 +13,42 @@ SHOW_VISIBILITY=false
 # Función para obtener emojis
 get_emoji() {
     local value=$1
-    local type=$2
     local emoji
 
-    case $type in
+    case $2 in
         temp)
-            emoji=$(awk 'BEGIN{print ("🔥", "🌞", "❄️")[$1 > 25 ? 1 : ($1 < 10 ? 2 : 3)]}' <<< "$value")
+            if (( $(echo "$value > 25" | bc -l) )); then emoji="🔥"
+            elif (( $(echo "$value < 10" | bc -l) )); then emoji="❄️"
+            else emoji="🌞"; fi
             ;;
         rain)
-            emoji=$(awk 'BEGIN{print ("🌧️", "☀️")[$1 > 50 ? 1 : 2]}' <<< "$value")
+            if [ -n "$value" ] && (( $(echo "$value > 50" | bc -l) )); then emoji="🌧️"
+            else emoji="☀️"; fi
             ;;
         cloud)
-            emoji=$(awk 'BEGIN{print ("☁️", "⛅", "☀️")[$1 > 50 ? 1 : ($1 > 25 ? 2 : 3)]}' <<< "$value")
+            if [ -n "$value" ] && (( $(echo "$value > 50" | bc -l) )); then emoji="☁️"
+            elif [ -n "$value" ] && (( $(echo "$value > 25" | bc -l) )); then emoji="⛅"
+            else emoji="☀️"; fi
             ;;
         is_day)
             local hour=$(date -d "$value" "+%H")
-            emoji=$(awk 'BEGIN{print ("🌞", "🌙")[$1 >= 6 && $1 < 18 ? 1 : 2]}' <<< "$hour")
+            if [ "$hour" -ge 6 ] && [ "$hour" -lt 18 ]; then emoji="🌞"
+            else emoji="🌙"; fi
             ;;
         wind)
-            emoji=$(awk 'BEGIN{print ("🌬️", "💨", "🍃")[$1 > 30 ? 1 : ($1 > 10 ? 2 : 3)]}' <<< "$value")
+            if [ -n "$value" ] && (( $(echo "$value > 30" | bc -l) )); then emoji="🌬️"
+            elif [ -n "$value" ] && (( $(echo "$value > 10" | bc -l) )); then emoji="💨"
+            else emoji="🍃"; fi
             ;;
         pressure)
-            emoji=$(awk 'BEGIN{print ("🌡️", "❗", "✔️")[$1 > 1013 ? 1 : ($1 < 1000 ? 2 : 3)]}' <<< "$value")
+            if [ -n "$value" ] && (( $(echo "$value > 1013" | bc -l) )); then emoji="🌡️"
+            elif [ -n "$value" ] && (( $(echo "$value < 1000" | bc -l) )); then emoji="❗"
+            else emoji="✔️"; fi
             ;;
         visibility)
-            emoji=$(awk 'BEGIN{print ("🌫️", "🌁", "👀")[$1 < 5 ? 1 : ($1 < 10 ? 2 : 3)]}' <<< "$value")
+            if [ -n "$value" ] && (( $(echo "$value < 5" | bc -l) )); then emoji="🌫️"
+            elif [ -n "$value" ] && (( $(echo "$value < 10" | bc -l) )); then emoji="🌁"
+            else emoji="👀"; fi
             ;;
     esac
 
