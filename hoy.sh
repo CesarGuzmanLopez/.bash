@@ -47,7 +47,19 @@ get_cloud_emoji() {
     fi
     echo "$emoji"
 }
+get_is_day() {
+    # fomrateo de la hora 12:00
+    local hour_time=$1
+    local emoji
+    local hour=$(date -d "$hour_time" "+%H")
+    if [ "$hour" -ge 6 ] && [ "$hour" -lt 18 ]; then
+      emoji="🌞"
+    else
+      emoji="🌙"
+    fi
 
+    echo "$emoji"
+}
 # Procesar los parámetros de línea de comandos
 while getopts "h:s:tcrap" opt; do
     case ${opt} in
@@ -129,9 +141,8 @@ for ((hour = 0; hour < $HOURS; hour+=$STEP)); do
 
     # Formatea la hora en formato legible (opcional)
     hour_time=$(echo "$response" | jq -r ".forecast.forecastday[0].hour[$hour].time")
-    hour_time_formatted=$hour_time
-
-    hour_data+=" $hour_time_formatted"
+    time=$(date -d "$hour_time" "+%H:%M")
+    hour_data+="$time $(get_is_day "$time")"
 
     if [ "$SHOW_TEMPERATURE" = true ]; then
         hour_temp=$(echo "$response" | jq -r ".forecast.forecastday[0].hour[$hour].temp_c")
