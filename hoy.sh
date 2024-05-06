@@ -7,8 +7,49 @@ SHOW_TEMPERATURE=true
 SHOW_CLOUDS=false
 SHOW_RAIN=false
 
+# Funciones para obtener emojis
+get_temp_emoji() {
+    local temp=$1
+    local emoji
+
+    if (( $(echo "$temp > 25" | bc -l) )); then
+        emoji="🔥"
+    elif (( $(echo "$temp < 10" | bc -l) )); then
+        emoji="❄️"
+    else
+        emoji="🌞"
+    fi
+
+    echo "$emoji"
+}
+
+get_rain_emoji() {
+    local rain=$1
+    local emoji
+
+    if [ -n "$rain" ] && [ "$rain" -gt 50 ]; then
+        emoji="🌧️"
+    else
+        emoji="☀️"
+    fi
+    echo "$emoji"
+}
+
+get_cloud_emoji() {
+    local cloud=$1
+    local emoji
+    if [ -n "$cloud" ] && [ "$cloud" -gt 50 ]; then
+        emoji="☁️"
+    elif [ -n "$cloud" ] && [ "$cloud" -gt 25 ]; then
+        emoji="⛅"
+    else
+        emoji="☀️"
+    fi
+    echo "$emoji"
+}
+
 # Procesar los parámetros de línea de comandos
-while getopts "h:s:tcr" opt; do
+while getopts "h:s:tcrap" opt; do
     case ${opt} in
         h )
             HOURS=$OPTARG
@@ -25,8 +66,13 @@ while getopts "h:s:tcr" opt; do
         r )
             SHOW_RAIN=true
             ;;
-        h )
-            echo "Uso: $0 [-h horas] [-s paso] [-c {nubes}] [-r {lluvia}"
+        a )
+                SHOW_TEMPERATURE=true
+                SHOW_CLOUDS=true
+                SHOW_RAIN=true
+            ;;              
+        p )
+            echo "Uso: $0 [-h horas] [-s paso] [-c {nubes}] [-r {lluvia}] [-t {temperatura}] [-a {todos}] [-p {help}]"
             exit 1
             ;;
     esac
@@ -89,17 +135,17 @@ for ((hour = 0; hour < $HOURS; hour+=$STEP)); do
 
     if [ "$SHOW_TEMPERATURE" = true ]; then
         hour_temp=$(echo "$response" | jq -r ".forecast.forecastday[0].hour[$hour].temp_c")
-        hour_data+=" | $hour_temp"
+        hour_data+=" | $hour_temp°C $(get_temp_emoji "$hour_temp")"
     fi
 
     if [ "$SHOW_CLOUDS" = true ]; then
         hour_cloud=$(echo "$response" | jq -r ".forecast.forecastday[0].hour[$hour].cloud")
-        hour_data+=" | $hour_cloud"
+        hour_data+=" | $hour_cloud% $(get_cloud_emoji "$hour_cloud")"
     fi
 
     if [ "$SHOW_RAIN" = true ]; then
         hour_rain=$(echo "$response" | jq -r ".forecast.forecastday[0].hour[$hour].chance_of_rain")
-        hour_data+=" | $hour_rain"
+        hour_data+=" | $hour_rain% $(get_rain_emoji "$hour_rain")"
     fi
 
     echo "$hour_data"
