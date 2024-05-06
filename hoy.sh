@@ -82,7 +82,7 @@ latitude=$(echo "$response" | jq -r '.loc | split(",")[0]')
 longitude=$(echo "$response" | jq -r '.loc | split(",")[1]')
 
 # Define la URL de la API y tu clave de API
-API_URL="https://api.weatherapi.com/v1/forecast.json?key=${API_WHWATHERAPI_KEY}&q=${latitude},${longitude}&days=1&aqi=no&alerts=no"
+API_URL="https://api.weatherapi.com/v1/forecast.json?key=${API_WHWATHERAPI_KEY}&q=${latitude},${longitude}&days=3&aqi=no&alerts=no"
 
 # Realiza la solicitud a la API y obtiene la respuesta en formato JSON
 response=$(curl -s "$API_URL")
@@ -98,7 +98,8 @@ if [ "$SHOW_RAIN" = true ]; then table_header+="|Lluvia (%)"; fi
 if [ "$SHOW_WIND" = true ]; then table_header+="|Viento (km/h)"; fi
 if [ "$SHOW_PRESSURE" = true ]; then table_header+="|Presión (hPa)"; fi
 if [ "$SHOW_VISIBILITY" = true ]; then table_header+="|Visibilidad (km)"; fi
-
+#la hora de inicio es esta hora menos una hora y quito el 0 ubucuak si ki hay 0
+start_hour=$(date +"%H" | sed 's/^0//')
 # Construir la línea de separación de la tabla
 table_separator=$(echo "$table_header" | sed 's/./-/g')
 
@@ -107,39 +108,39 @@ echo "$table_header" | column -t -s '|'
 echo "$table_separator"
 
 # Imprime los datos para cada hora según los comandos aceptados
-for ((hour = 0; hour < $HOURS; hour+=$STEP)); do
+for ((hour = $start_hour; hour < $start_hour+$HOURS; hour+=$STEP)); do
     hour_data=""
-    hour_time=$(echo "$response" | jq -r ".forecast.forecastday[0].hour[$hour].time")
+    to_day=$(($hour/24))
+    hour_time=$(echo "$response" | jq -r ".forecast.forecastday[$to_day].hour[$hour%24].time")
     time=$(date -d "$hour_time" "+%H:%M")
-    hour_data+="$time $(get_emoji "$time" "is_day")"
-
+    hour_data+="$hour_time $(get_emoji "$time" "is_day")"
     if [ "$SHOW_TEMPERATURE" = true ]; then
-        hour_temp=$(echo "$response" | jq -r ".forecast.forecastday[0].hour[$hour].temp_c")
+        hour_temp=$(echo "$response" | jq -r ".forecast.forecastday[$to_day].hour[$hour%24].temp_c")
         hour_data+="|$(printf "%5s" "$hour_temp")°C $(get_emoji "$hour_temp" "temp")"
     fi
 
     if [ "$SHOW_CLOUDS" = true ]; then
-        hour_cloud=$(echo "$response" | jq -r ".forecast.forecastday[0].hour[$hour].cloud")
+        hour_cloud=$(echo "$response" | jq -r ".forecast.forecastday[$to_day].hour[$hour%24].cloud")
         hour_data+="|$(printf "%5s" "$hour_cloud")% $(get_emoji "$hour_cloud" "cloud")"
     fi
 
     if [ "$SHOW_RAIN" = true ]; then
-        hour_rain=$(echo "$response" | jq -r ".forecast.forecastday[0].hour[$hour].chance_of_rain")
+        hour_rain=$(echo "$response" | jq -r ".forecast.forecastday[$to_day].hour[$hour%24].chance_of_rain")
         hour_data+="|$(printf "%5s" "$hour_rain")% $(get_emoji "$hour_rain" "rain")"
     fi
 
     if [ "$SHOW_WIND" = true ]; then
-        hour_wind=$(echo "$response" | jq -r ".forecast.forecastday[0].hour[$hour].wind_kph")
+        hour_wind=$(echo "$response" | jq -r ".forecast.forecastday[$to_day].hour[$hour%24].wind_kph")
         hour_data+="|$(printf "%5s" "$hour_wind") km/h $(get_emoji "$hour_wind" "wind")"
     fi
 
     if [ "$SHOW_PRESSURE" = true ]; then
-        hour_pressure=$(echo "$response" | jq -r ".forecast.forecastday[0].hour[$hour].pressure_mb")
+        hour_pressure=$(echo "$response" | jq -r ".forecast.forecastday[$to_day].hour[$hour%24].pressure_mb")
         hour_data+="|$(printf "%5s" "$hour_pressure") hPa $(get_emoji "$hour_pressure" "pressure")"
     fi
 
     if [ "$SHOW_VISIBILITY" = true ]; then
-        hour_visibility=$(echo "$response" | jq -r ".forecast.forecastday[0].hour[$hour].vis_km")
+        hour_visibility=$(echo "$response" | jq -r ".forecast.forecastday[$to_day].hour[$hour%24].vis_km")
         hour_data+="|$(printf "%5s" "$hour_visibility") km $(get_emoji "$hour_visibility" "visibility")"
     fi
 
