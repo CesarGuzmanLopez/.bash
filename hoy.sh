@@ -13,42 +13,31 @@ SHOW_VISIBILITY=false
 # Función para obtener emojis
 get_emoji() {
     local value=$1
+    local type=$2
     local emoji
 
-    case $2 in
+    case $type in
         temp)
-            if (( $(echo "$value > 25" | bc -l) )); then emoji="🔥"
-            elif (( $(echo "$value < 10" | bc -l) )); then emoji="❄️"
-            else emoji="🌞"; fi
+            emoji=$(awk 'BEGIN{print ("🔥", "🌞", "❄️")[$1 > 25 ? 1 : ($1 < 10 ? 2 : 3)]}' <<< "$value")
             ;;
         rain)
-            if [ -n "$value" ] && (( $(echo "$value > 50" | bc -l) )); then emoji="🌧️"
-            else emoji="☀️"; fi
+            emoji=$(awk 'BEGIN{print ("🌧️", "☀️")[$1 > 50 ? 1 : 2]}' <<< "$value")
             ;;
         cloud)
-            if [ -n "$value" ] && (( $(echo "$value > 50" | bc -l) )); then emoji="☁️"
-            elif [ -n "$value" ] && (( $(echo "$value > 25" | bc -l) )); then emoji="⛅"
-            else emoji="☀️"; fi
+            emoji=$(awk 'BEGIN{print ("☁️", "⛅", "☀️")[$1 > 50 ? 1 : ($1 > 25 ? 2 : 3)]}' <<< "$value")
             ;;
         is_day)
             local hour=$(date -d "$value" "+%H")
-            if [ "$hour" -ge 6 ] && [ "$hour" -lt 18 ]; then emoji="🌞"
-            else emoji="🌙"; fi
+            emoji=$(awk 'BEGIN{print ("🌞", "🌙")[$1 >= 6 && $1 < 18 ? 1 : 2]}' <<< "$hour")
             ;;
         wind)
-            if [ -n "$value" ] && (( $(echo "$value > 30" | bc -l) )); then emoji="🌬️"
-            elif [ -n "$value" ] && (( $(echo "$value > 10" | bc -l) )); then emoji="💨"
-            else emoji="🍃"; fi
+            emoji=$(awk 'BEGIN{print ("🌬️", "💨", "🍃")[$1 > 30 ? 1 : ($1 > 10 ? 2 : 3)]}' <<< "$value")
             ;;
         pressure)
-            if [ -n "$value" ] && (( $(echo "$value > 1013" | bc -l) )); then emoji="🌡️"
-            elif [ -n "$value" ] && (( $(echo "$value < 1000" | bc -l) )); then emoji="❗"
-            else emoji="✔️"; fi
+            emoji=$(awk 'BEGIN{print ("🌡️", "❗", "✔️")[$1 > 1013 ? 1 : ($1 < 1000 ? 2 : 3)]}' <<< "$value")
             ;;
         visibility)
-            if [ -n "$value" ] && (( $(echo "$value < 5" | bc -l) )); then emoji="🌫️"
-            elif [ -n "$value" ] && (( $(echo "$value < 10" | bc -l) )); then emoji="🌁"
-            else emoji="👀"; fi
+            emoji=$(awk 'BEGIN{print ("🌫️", "🌁", "👀")[$1 < 5 ? 1 : ($1 < 10 ? 2 : 3)]}' <<< "$value")
             ;;
     esac
 
@@ -92,22 +81,18 @@ echo "Condiciones para las próximas $HOURS horas con un paso de $STEP horas:"
 
 # Construir la cabecera de la tabla
 table_header="Hora"
-if [ "$SHOW_TEMPERATURE" = true ]; then table_header+=" | Temperatura (°C)"; fi
-if [ "$SHOW_CLOUDS" = true ]; then table_header+=" | Nubosidad (%)"; fi
-if [ "$SHOW_RAIN" = true ]; then table_header+=" | Lluvia (%)"; fi
-if [ "$SHOW_WIND" = true ]; then table_header+=" | Viento (km/h)"; fi
-if [ "$SHOW_PRESSURE" = true ]; then table_header+=" | Presión (hPa)"; fi
-if [ "$SHOW_VISIBILITY" = true ]; then table_header+=" | Visibilidad (km)"; fi
-echo "$table_header"
+if [ "$SHOW_TEMPERATURE" = true ]; then table_header+="|Temperatura (°C)"; fi
+if [ "$SHOW_CLOUDS" = true ]; then table_header+="|Nubosidad (%)"; fi
+if [ "$SHOW_RAIN" = true ]; then table_header+="|Lluvia (%)"; fi
+if [ "$SHOW_WIND" = true ]; then table_header+="|Viento (km/h)"; fi
+if [ "$SHOW_PRESSURE" = true ]; then table_header+="|Presión (hPa)"; fi
+if [ "$SHOW_VISIBILITY" = true ]; then table_header+="|Visibilidad (km)"; fi
 
 # Construir la línea de separación de la tabla
-table_separator="-----"
-if [ "$SHOW_TEMPERATURE" = true ]; then table_separator+="|-----------------"; fi
-if [ "$SHOW_CLOUDS" = true ]; then table_separator+="|--------------"; fi
-if [ "$SHOW_RAIN" = true ]; then table_separator+="|------------"; fi
-if [ "$SHOW_WIND" = true ]; then table_separator+="|-------------"; fi
-if [ "$SHOW_PRESSURE" = true ]; then table_separator+="|-----------------"; fi
-if [ "$SHOW_VISIBILITY" = true ]; then table_separator+="|-----------------"; fi
+table_separator=$(echo "$table_header" | sed 's/./-/g')
+
+# Imprime la cabecera de la tabla
+echo "$table_header" | column -t -s '|'
 echo "$table_separator"
 
 # Imprime los datos para cada hora según los comandos aceptados
@@ -119,33 +104,34 @@ for ((hour = 0; hour < $HOURS; hour+=$STEP)); do
 
     if [ "$SHOW_TEMPERATURE" = true ]; then
         hour_temp=$(echo "$response" | jq -r ".forecast.forecastday[0].hour[$hour].temp_c")
-        hour_data+=" | $(printf "%5s" "$hour_temp")°C $(get_emoji "$hour_temp" "temp")"
+        hour_data+="|$(printf "%5s" "$hour_temp")°C $(get_emoji "$hour_temp" "temp")"
     fi
 
     if [ "$SHOW_CLOUDS" = true ]; then
         hour_cloud=$(echo "$response" | jq -r ".forecast.forecastday[0].hour[$hour].cloud")
-        hour_data+=" | $(printf "%5s" "$hour_cloud")% $(get_emoji "$hour_cloud" "cloud")"
+        hour_data+="|$(printf "%5s" "$hour_cloud")% $(get_emoji "$hour_cloud" "cloud")"
     fi
 
     if [ "$SHOW_RAIN" = true ]; then
         hour_rain=$(echo "$response" | jq -r ".forecast.forecastday[0].hour[$hour].chance_of_rain")
-        hour_data+=" | $(printf "%5s" "$hour_rain")% $(get_emoji "$hour_rain" "rain")"
+        hour_data+="|$(printf "%5s" "$hour_rain")% $(get_emoji "$hour_rain" "rain")"
     fi
 
     if [ "$SHOW_WIND" = true ]; then
         hour_wind=$(echo "$response" | jq -r ".forecast.forecastday[0].hour[$hour].wind_kph")
-        hour_data+=" | $(printf "%5s" "$hour_wind") km/h $(get_emoji "$hour_wind" "wind")"
+        hour_data+="|$(printf "%5s" "$hour_wind") km/h $(get_emoji "$hour_wind" "wind")"
     fi
 
     if [ "$SHOW_PRESSURE" = true ]; then
         hour_pressure=$(echo "$response" | jq -r ".forecast.forecastday[0].hour[$hour].pressure_mb")
-        hour_data+=" | $(printf "%5s" "$hour_pressure") hPa $(get_emoji "$hour_pressure" "pressure")"
+        hour_data+="|$(printf "%5s" "$hour_pressure") hPa $(get_emoji "$hour_pressure" "pressure")"
     fi
 
     if [ "$SHOW_VISIBILITY" = true ]; then
         hour_visibility=$(echo "$response" | jq -r ".forecast.forecastday[0].hour[$hour].vis_km")
-        hour_data+=" | $(printf "%5s" "$hour_visibility") km $(get_emoji "$hour_visibility" "visibility")"
+        hour_data+="|$(printf "%5s" "$hour_visibility") km $(get_emoji "$hour_visibility" "visibility")"
     fi
 
-    echo "$hour_data"
+    echo "$hour_data" | column -t -s '|'
 done
+
