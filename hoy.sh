@@ -17,8 +17,11 @@ get_emoji() {
 
     case $2 in
         temp)
-            if (( $(echo "$value > 25" | bc -l) )); then emoji="🔥"
+            if(( $(echo "$value > 35" | bc -l) )); then emoji="☠️ "
+            elif(( $(echo "$value > 30" | bc -l) )); then emoji="🔥"
+            elif (( $(echo "$value > 25" | bc -l) )); then emoji="🥵"
             elif (( $(echo "$value < 10" | bc -l) )); then emoji="❄️"
+            elif(( $(echo "$value < 5" | bc -l) )); then emoji="🥶"
             else emoji="🌞"; fi
             ;;
         rain)
