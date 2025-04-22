@@ -74,3 +74,4 @@ alias note="$OSH/note.sh"
 alias nota=note
 alias dos2unixAll="find . -type f -print0 | xargs -0 dos2unix"
 alias hoy="$OSH/hoy.sh"
+alias conect-personal-vpn="sudo openvpn --config $HOME/.ssh/desktop-to-personal.ovpn"
