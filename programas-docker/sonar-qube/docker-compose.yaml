@@ -1,4 +1,4 @@
-﻿services:
+services:
   sonarqube:
     image: sonarqube:lts-community
     depends_on:

@@ -1,3 +1,4 @@
+
 #!/bin/bash 
 export iplocal=$(ip route get 1.2.3.4 | awk '{print $7}')
 export host=$(hostname)
@@ -21,6 +22,22 @@ export procesocpu=$(ps aux --sort -pcpu | head -2 | tail -1 | awk '{print $11,$3
 export cpuMasUsada=$(ps aux --sort -pcpu | head -2 | tail -1 | awk '{print $3}')
 export porcentaje_segundo_mas_usado_cpu=$(ps aux --sort -pcpu | head -3 | tail -1 | awk '{print $3}')
 export segundo_mas_usado_cpu_nombre=$(ps aux --sort -pcpu | head -3 | tail -1 | awk '{print $11}')
+
+
+# Obtener la IPv4 local
+ipv4_local=$(ifconfig enp5s0 | grep -oP 'inet \K[\d.]+')
+
+# Obtener la IPv6 pública
+ipv6_publica=$(ip a show dev enp5s0 | grep -oP 'inet6 \K[0-9a-f:]+(?=/64)' | head -n 1)
+
+# Obtener la IPv6 local (link-local)
+ipv6_local=$(ip a show dev enp5s0 | grep -oP 'inet6 \Kfe80:[0-9a-f:]+(?=/64)' | head -n 1)
+
+# Imprimir los resultados
+echo "IPv4 local: $ipv4_local"
+echo "IPv6 pública: $ipv6_publica"
+echo "IPv6 local: $ipv6_local"
+
 GREEN='\033[0;32m'
 
 NC='\033[0m' # No Color
@@ -57,7 +74,7 @@ echo -e "% |  ------  |  ------  |˚ ${GREEN}${BOLD} 💾 USO DE CPU:${NC} $(top
 echo -e "  |  |BAD |  |  |    |  |˚ ${GREEN}${BOLD} 💽 USO DE DISCO:${NC} $disk libre de $(df -h / | awk 'NR==2{print $2}') ${NC}" | cut -c -${cols}
 echo -e "  |  |WOLF|  |  |    |  |  ${GREEN}${BOLD} 🧑 Arquitectura:${NC} $arch ${NC}" | cut -c -${cols}
 echo -e "  |  ------  |O ------  |  ${GREEN}${BOLD} 🏠 IP LOCAL:${NC} $iplocal ${NC}" | cut -c -${cols}
-echo -e "  |  ------  |° ------  |  ${GREEN}${BOLD} 🌐 IP PUBLICA ${NC} $ippublic ${NC}" | cut -c -${cols}
+echo -e "  |  ------  |° ------  |  ${GREEN}${BOLD} 🌐 IP PUBLICA ${NC} $ipv6_publica ${NC}" | cut -c -${cols}
 echo -e "♥ |  |    |  |  |    |  |  ${GREEN}${BOLD} 🌐 IP v6 ${NC} $ipv6 ${NC}" | cut -c -${cols}
 echo -e "L |  |    |  |  |    |  |•˛${GREEN}${BOLD} 🚀 GRAFICA:${NC} $tarjetaGrafica  ${NC}" | cut -c -${cols}
 echo -e "A |  ------  |  ------  |。${GREEN}${BOLD} 🏋️  PROC. MEMORIA:${NC} $procesoMasUsado, $segundo_mas_usado ${NC} | ${GREEN}${BOLD}MEMORIA:${NC} $memoriaMasUsada MB, $segundo_mas_usado_memoria MB  ${NC}" |cut -c -${cols}

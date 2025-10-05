@@ -153,10 +153,10 @@ fi
 
 alias a-grep='grep -lirs --exclude-dir=".git;.svn" --color=always'
 
-function a-find () {
+function Afind () {
   find $1 -type f -not -path "*/\.git/*"
 }
-export -f a-find
+export -f Afind
 
 function :q () {
   echo "use exit remember?"
@@ -223,14 +223,10 @@ __get_first_arg() {
   echo "$1"
 }
 insertar_texto() {
- if [[ -z  ${READLINE_LINE//[$'\t\n ']} ]]; then
-    Grep;
-else
 
     local result="$(_fzf_comprun $(__get_first_arg $READLINE_LINE))";
     READLINE_LINE=$(echo "$READLINE_LINE" | awk -v texto="$result" -v  posicion="$READLINE_POINT" '{print substr($0,1,posicion-1) " " texto " " substr($0,posicion)} ');
     READLINE_POINT=$(( $READLINE_POINT +  ${#result} + 1));
-  fi;
 }
 
 bind -x '"\C-t":insertar_texto'

@@ -39,11 +39,7 @@ function get_symbol_user_info {
   if [ "$(id -u)" = 0 ]; then
     printf "💀"
   else
-    if id -Gn "$USER" | grep -qw wheel; then
       printf "🌟"
-    else
-      printf "%"
-    fi
   fi
 }
 
@@ -62,9 +58,9 @@ function _omb_theme_PROMPT_COMMAND() {
   esac
   local SC
   if ((status == 0)); then
-    SC=""; #SC="$_omb_prompt_teal-$_omb_prompt_bold_green(${_omb_prompt_green}^_^$_omb_prompt_bold_green)";
+    SC="$_omb_prompt_teal-$_omb_prompt_bold_green(${_omb_prompt_green}🪄$_omb_prompt_bold_green)";
   else
-    SC="$_omb_prompt_teal-$_omb_prompt_bold_green(${_omb_prompt_brown}! $status $_omb_prompt_bold_green)";
+    SC="$_omb_prompt_teal-$_omb_prompt_bold_green(${_omb_prompt_red}! $status $_omb_prompt_bold_green)";#pb_error
   fi
   local BC=$(battery_percentage)
   [[ $BC == no && $BC == -1 ]] && BC=
@@ -73,12 +69,12 @@ function _omb_theme_PROMPT_COMMAND() {
   PS1+="${_omb_prompt_bold_green}[\A]$(__powerline_python_venv_prompt)"
   PS1+="${_omb_prompt_teal}${_omb_prompt_bold_olive}(\w)$(scm_prompt_info)\n"
   PS1+="${_omb_prompt_teal}└─${_omb_prompt_bold_teal}$(__ssh_client)$BC${_omb_prompt_green}"
-  PS1+="$SC${_omb_prompt_bold_green}$(get_symbol_user_info)${_omb_prompt_bold_teal}${_omb_prompt_bold_white} "
+  PS1+="$SC${_omb_prompt_bold_green}$(get_symbol_user_info)${_omb_prompt_bold_teal}${_omb_prompt_bold_purple} "
 
 }
 # scm theming
-SCM_THEME_PROMPT_DIRTY=" ${_omb_prompt_brown}✗"
-SCM_THEME_PROMPT_CLEAN=" ${_omb_prompt_bold_gren}✓"
+SCM_THEME_PROMPT_DIRTY=" ${_omb_prompt_red}✗"
+SCM_THEME_PROMPT_CLEAN=" ${_omb_prompt_bold_green}✓"
 SCM_THEME_PROMPT_PREFIX="${_omb_prompt_bold_teal}("
 SCM_THEME_PROMPT_SUFFIX="${_omb_prompt_bold_teal})${_omb_prompt_reset_color}"
 

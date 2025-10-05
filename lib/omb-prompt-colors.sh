@@ -111,7 +111,7 @@ _omb_deprecate_function 20000 echo_color _omb_theme_color_echo
 _omb_deprecate_const 20000 black             "$_omb_prompt_black"             "${_omb_deprecate_msg_please_use/'%s'/_omb_prompt_black}"
 _omb_deprecate_const 20000 cyan              "$_omb_prompt_teal"              "${_omb_deprecate_msg_please_use/'%s'/_omb_prompt_teal}"
 _omb_deprecate_const 20000 white             "$_omb_prompt_white"             "${_omb_deprecate_msg_please_use/'%s'/_omb_prompt_white}"
-_omb_deprecate_const 20000 orange            "$_omb_prompt_red"               "${_omb_deprecate_msg_please_use/'%s'/_omb_prompt_red}"
+_omb_deprecate_const 20000 red               "$_omb_prompt_red"               "${_omb_deprecate_msg_please_use/'%s'/_omb_prompt_red}"
 
 _omb_deprecate_const 20000 bold_black        "$_omb_prompt_bold_black"        "${_omb_deprecate_msg_please_use/'%s'/_omb_prompt_bold_black}"
 _omb_deprecate_const 20000 bold_red          "$_omb_prompt_bold_brown"        "${_omb_deprecate_msg_please_use/'%s'/_omb_prompt_bold_brown}"
