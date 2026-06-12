@@ -11,18 +11,13 @@ esac
 # si no existe lo creo con 4 variables de entorno token telegram, token usuario telegram y el directorio donde se encuentra osh 
 
 
-export OSH=/home/cesar/.bash_vim
-if [ -f $OSH/.env ]; then
-  source $OSH/.env
-else
-  echo "export OSH=/home/cesar/.bash_vim" >> $OSH/.env
-  echo "export TOKEN_telegram=" >> $OSH/.env
-  echo "export TOKEN_USER_telegram=" >> $OSH/.env
-  echo "export TOKEN_MEMOS="
-  source $OSH/.env
+export OSH=/home/cesar/oh-my-bash-fork
+# .env stays in original location to preserve tokens
+ENV_FILE=/home/cesar/.bash_vim/.env
+if [ -f "$ENV_FILE" ]; then
+  source "$ENV_FILE"
 fi
 
-#source $OSH/tardis.sh
 OSH_THEME="kitsune"
 
 # Uncomment the following line to use case-sensitive completion.
