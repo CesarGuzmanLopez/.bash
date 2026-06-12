@@ -58,7 +58,7 @@ function _omb_theme_PROMPT_COMMAND() {
   esac
   local SC
   if ((status == 0)); then
-    SC="$_omb_prompt_teal-$_omb_prompt_bold_green(${_omb_prompt_green}🪄$_omb_prompt_bold_green)";
+    SC="" #SC="$_omb_prompt_teal-$_omb_prompt_bold_green(${_omb_prompt_green}✳️$_omb_prompt_bold_green)";
   else
     SC="$_omb_prompt_teal-$_omb_prompt_bold_green(${_omb_prompt_red}! $status $_omb_prompt_bold_green)";#pb_error
   fi

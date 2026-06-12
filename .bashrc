@@ -113,11 +113,11 @@ source "$OSH"/oh-my-bash.sh
 
 
 # Preferred editor for local and remote sessions
- if [[ -n $SSH_CONNECTION ]]; then
-   export EDITOR='nvim'
- else
-   export EDITOR='nvim'
- fi
+  if [[ -n $SSH_CONNECTION ]]; then
+    export EDITOR='nvim'
+  else
+    export EDITOR='nvim'
+  fi
 
 # Compilation flags
 # export ARCHFLAGS="-arch x86_64"
@@ -129,7 +129,7 @@ source "$OSH"/oh-my-bash.sh
 
 
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
-mkdir -p ~/.vim/undodir
+
 force_color_prompt=yes
 
 bg_color=$(echo "$COLORFGBG" | cut -d ";" -f2)
@@ -148,7 +148,7 @@ function wallpaper_color() {
 }
 
 if [[ $(wallpaper_color) == "dark" ]]; then
-  alias nvim="nvim -c\"colo zellner\" -c\"hi Normal guibg=NONE ctermbg=NONE\" -c\":hi LineNr guifg=#010001\" "
+  
 fi
 
 alias a-grep='grep -lirs --exclude-dir=".git;.svn" --color=always'
