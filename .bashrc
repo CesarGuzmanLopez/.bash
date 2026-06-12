@@ -129,6 +129,7 @@ source "$OSH"/oh-my-bash.sh
 
 
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
+mkdir -p ~/.vim/undodir
 
 force_color_prompt=yes
 
