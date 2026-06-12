@@ -11,12 +11,19 @@ esac
 # si no existe lo creo con 4 variables de entorno token telegram, token usuario telegram y el directorio donde se encuentra osh 
 
 
-# .env stays in original location to preserve tokens (telegram, etc.)
-ENV_FILE=/home/cesar/.bash_vim/.env
+# ├─ Determinar ubicación de este repositorio (dotfiles)
+#    Portátil: funciona sin importar el usuario o máquina
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+export DOTFILES="$SCRIPT_DIR"
+
+# ├─ .env (tokens personales: telegram, etc.)
+ENV_FILE="$DOTFILES/.env"
 if [ -f "$ENV_FILE" ]; then
   source "$ENV_FILE"
 fi
-export OSH=/home/cesar/oh-my-bash-fork
+
+# ├─ Oh-My-Bash fork (debe estar en ~/oh-my-bash-fork o definir OSH en .env)
+export OSH="${OSH:-$HOME/oh-my-bash-fork}"
 
 OSH_THEME="kitsune"
 
