@@ -148,10 +148,6 @@ function wallpaper_color() {
   fi
 }
 
-if [[ $(wallpaper_color) == "dark" ]]; then
-  
-fi
-
 alias a-grep='grep -lirs --exclude-dir=".git;.svn" --color=always'
 
 function Afind () {
