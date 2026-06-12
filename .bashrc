@@ -174,15 +174,29 @@ export FZF_DEFAULT_COMMAND="find . -type f -not -path '*/\.git/*'"
 # agrego el comando para que se actuve al presionar ctrl + g
 
 function custom_fzf_search() {
-    rg --color=always --line-number --no-heading --smart-case "${*:-}" |
+    local selected
+    selected=$(rg --color=always --line-number --no-heading --smart-case "${*:-}" |
     fzf --ansi \
         --color "hl:-1:underline,hl+:-1:underline:reverse" \
         --delimiter : \
         --preview 'bat --color=always {1} --highlight-line {2}' \
-        --preview-window 'up,60%,border-bottom,+{2}+3/3,~3' |
-    awk -F: '{print $1}' |
-    xargs nvim
+        --preview-window 'up,60%,border-bottom,+{2}+3/3,~3' \
+        --exit-0 \
+        --expect=ctrl-v) || return 0
     
+    # If ESC was pressed (no selection), exit gracefully
+    if [[ -z "$selected" ]]; then
+        return 0
+    fi
+    
+    # Extract the file path (first line contains key info, second line the actual selection)
+    local file_path
+    file_path=$(echo "$selected" | sed -n '2s/\([^:]*\):.*/\1/p')
+    
+    # Only open nvim if we actually have a file path
+    if [[ -n "$file_path" && -f "$file_path" ]]; then
+        echo "$file_path" | xargs nvim
+    fi
 }
 #verifico que exista el comando xargs y si no mande un mensaje de error
 if ! command -v xargs &> /dev/null
