@@ -171,7 +171,14 @@ export FZF_DEFAULT_COMMAND="find . -type f -not -path '*/\.git/*'"
 
 function custom_fzf_search() {
     local selected
-    selected=$(rg --color=always --line-number --no-heading --smart-case "${*:-}" |
+    selected=$(rg --color=always --line-number --no-heading --smart-case \
+        -g '!node_modules/**' \
+        -g '!.git/**' \
+        -g '!LibreChat/**' \
+        -g '!.cache/**' \
+        -g '!vendor/**' \
+        -g '!*.wt' -g '!*.bson' -g '!storage.bson' \
+        "${*:-}" |
     fzf --ansi \
         --color "hl:-1:underline,hl+:-1:underline:reverse" \
         --delimiter : \
