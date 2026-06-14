@@ -5,6 +5,8 @@ case $- in
     *) return;;
 esac
 
+# No cerrar sesión con Ctrl+D (EOF). Se necesitan 10 seguidos para salir.
+IGNOREEOF=10
 
 # obtengo el OSH del archivo .env
 # primero verifico si existe el archivo
@@ -90,6 +92,8 @@ aliases=(
   chmod
   ls
   misc
+  ssh-kitty
+  custom
 )
 
 # Which plugins would you like to load? (plugins can be found in .oh-my-bash/plugins/*)
